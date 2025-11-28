@@ -7,12 +7,16 @@
           <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#E8A0BF] via-[#B4A0E8] to-[#A0E8C8]">Arogya</h1>
           <p class="text-[#6E6E7A] text-sm">Nourish Your Inner Fire</p>
         </div>
-        <nav class="hidden md:flex items-center space-x-6">
-          @for(category of poseCategories(); track category.id) {
-            <button (click)="scrollTo(category.id)" class="text-sm font-medium text-[#B8B8C4] hover:text-[#E8A0BF] transition-colors">{{ category.title }}</button>
-          }
-           <button (click)="scrollTo('top5')" class="text-sm font-medium text-[#B8B8C4] hover:text-[#E8A0BF] transition-colors">Top 5 Poses</button>
-        </nav>
+
+        <div class="flex items-center gap-4 md:gap-6">
+          <nav class="hidden md:flex items-center space-x-6">
+            @for(category of poseCategories(); track category.id) {
+              <button (click)="scrollTo(category.id)" class="text-sm font-medium text-[#B8B8C4] hover:text-[#E8A0BF] transition-colors">{{ category.title }}</button>
+            }
+             <button (click)="scrollTo('top5')" class="text-sm font-medium text-[#B8B8C4] hover:text-[#E8A0BF] transition-colors">Top 5 Poses</button>
+          </nav>
+        </div>
+
       </div>
     </div>
   </header>
@@ -23,7 +27,22 @@
       <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F4F4F8]" style="text-shadow: 0 0 30px rgba(180, 160, 232, 0.5);">
         Revitalize your body & mind
       </h2>
-      <p class="mt-6 text-lg leading-8 text-[#B8B8C4] max-w-2xl mx-auto">
+
+      <!-- Gender Toggle -->
+      <div class="flex justify-center my-8">
+        <div class="flex items-center space-x-1.5 bg-[#12121A] p-1 rounded-full border border-white/10">
+          <button (click)="setGender('female')" 
+                  [class]="'px-4 py-1.5 text-base rounded-full transition-colors ' + (selectedGender() === 'female' ? 'bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] text-[#0A0A0F] font-semibold shadow-lg' : 'text-[#B8B8C4] hover:bg-white/5')">
+            Female Poses
+          </button>
+          <button (click)="setGender('male')" 
+                  [class]="'px-4 py-1.5 text-base rounded-full transition-colors ' + (selectedGender() === 'male' ? 'bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] text-[#0A0A0F] font-semibold shadow-lg' : 'text-[#B8B8C4] hover:bg-white/5')">
+            Male Poses
+          </button>
+        </div>
+      </div>
+
+      <p class="text-lg leading-8 text-[#B8B8C4] max-w-2xl mx-auto">
         Discover a curated collection of yoga poses scientifically known to improve metabolism, energy, hormonal balance, and digestive power.
       </p>
     </section>
@@ -38,14 +57,14 @@
           <p class="text-[#B8B8C4] mt-1">{{ category.description }}</p>
         </div>
         
-        <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           @for (pose of category.poses; track pose.sanskritName; let poseIndex = $index) {
             <div (click)="openModal(pose)" 
                  class="group relative transition-all duration-300 hover:-translate-y-1 hover:scale-105 cursor-pointer">
               <div class="holo-border-container h-full rounded-xl bg-[#12121A]">
                   <div class=" rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
-                    <figure class="aspect-[4/3] overflow-hidden rounded-t-xl">
-                      <img [src]="pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300" />
+                    <figure [class]="category.id === 'inversion' ? 'overflow-hidden rounded-t-xl' : 'aspect-[4/3] overflow-hidden rounded-t-xl'">
+                      <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300" [class.h-full]="category.id !== 'inversion'" />
                     </figure>
                     <div class="p-5 flex flex-col flex-grow">
                       <div>
@@ -79,7 +98,7 @@
           <div (click)="openModal(pose)" class="group text-center cursor-pointer">
             <figure class="relative p-1">
                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#E8A0BF] to-[#B4A0E8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
-              <img [src]="pose.imageUrl" [alt]="pose.englishName" width="300" height="300" class="relative w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover shadow-lg border-4 border-white/10 transition-all duration-300 group-hover:scale-110 group-hover:border-[#B4A0E8]/50" />
+              <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="300" height="300" class="relative w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover shadow-lg border-4 border-white/10 transition-all duration-300 group-hover:scale-110 group-hover:border-[#B4A0E8]/50" />
             </figure>
             <div class="mt-4">
               <h3 class="text-lg font-bold text-[#F4F4F8]">{{ pose.sanskritName }}</h3>
@@ -110,6 +129,7 @@
 @if (selectedPose(); as pose) {
   <app-pose-detail-modal 
     [pose]="pose" 
+    [gender]="selectedGender()"
     (close)="closeModal()"
     (previous)="goToPreviousPose()"
     (next)="goToNextPose()">

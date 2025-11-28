@@ -9,6 +9,8 @@ import { PoseDetailModalComponent } from './pose-detail-modal.component';
   imports: [PoseDetailModalComponent],
 })
 export class AppComponent {
+  selectedGender = signal<'female' | 'male'>('female');
+
   readonly poseCategories = signal<PoseCategory[]>([
     {
       id: 'inversion',
@@ -43,7 +45,20 @@ export class AppComponent {
           englishName: 'Headstand',
           pronunciation: 'sheer-SHAH-sa-na',
           benefit: 'Increases brain oxygen', 
-          imageUrl: 'https://omstars.com/blog/wp-content/uploads/2022/04/ig-feed-pose-breakdown-2022-Sirsasana.png',
+          imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+          imageUrls: [
+            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/4.png?raw=true'
+          ],
+          imageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
+          imageUrlsMale: [
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/4.png?raw=true'
+          ],
           howToDo: [
             "Kneel on the floor and interlock your fingers to create a cup with your hands.",
             "Place your forearms and the crown of your head on the floor, cupping the back of your head with your hands.",
@@ -555,6 +570,10 @@ export class AppComponent {
   readonly topPoses = signal<Pose[]>(this.poseCategories().flatMap(c => c.poses).filter(p => [
       'Sarvangasana', 'Surya Namaskar', 'Navasana', 'Kapalbhati', 'Dhanurasana'
     ].includes(p.sanskritName)));
+
+  setGender(gender: 'female' | 'male') {
+    this.selectedGender.set(gender);
+  }
 
   scrollTo(id: string) {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });

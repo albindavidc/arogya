@@ -12,6 +12,9 @@ export interface Pose {
   pronunciation: string;
   benefit: string;
   imageUrl: string;
+  imageUrls?: string[];
+  imageUrlMale?: string;
+  imageUrlsMale?: string[];
   howToDo: string[];
   frequency: FrequencyDetail[];
   why: string[];

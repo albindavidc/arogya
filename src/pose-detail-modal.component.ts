@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, output, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output, input, signal, effect, computed } from '@angular/core';
 import { Pose } from './models/pose.model';
 
 @Component({
@@ -19,19 +19,45 @@ import { Pose } from './models/pose.model';
         class="bg-[#1A1A24]/80 backdrop-blur-xl border border-[#B4A0E8]/15 rounded-2xl shadow-2xl shadow-black/40 w-full max-w-3xl max-h-[90vh] flex flex-col md:flex-row animate-scale-in">
         
         <!-- Image Section -->
-        <div class="relative w-full md:w-1/2 h-64 md:h-auto rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden flex-shrink-0">
-          <img [src]="pose().imageUrl" [alt]="pose().englishName" width="600" height="800" class="w-full h-full object-cover">
+        <div 
+          (click)="openFullscreen()"
+          class="relative w-full md:w-1/2 h-[45vh] md:h-auto bg-black/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden flex-shrink-0 cursor-zoom-in">
+          <img [src]="selectedImageUrl()" [alt]="pose().englishName" width="600" height="800" class="w-full h-full object-contain">
           
+          <!-- Image Thumbnails - Left -->
+          @if (leftThumbnails().length > 0) {
+            <div class="absolute left-3 bottom-3 z-20 flex flex-col-reverse space-y-2 space-y-reverse">
+              @for(imageUrl of leftThumbnails(); track imageUrl) {
+                <button (click)="$event.stopPropagation(); selectImage(imageUrl)" 
+                        [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none ' + (selectedImageUrl() === imageUrl ? 'border-[#E8A0BF] scale-110' : 'border-transparent hover:border-white/50')">
+                  <img [src]="imageUrl" [alt]="'Variation for ' + pose().englishName" width="48" height="48" class="w-full h-full object-cover">
+                </button>
+              }
+            </div>
+          }
+
+          <!-- Image Thumbnails - Right -->
+          @if (rightThumbnails().length > 0) {
+            <div class="absolute right-3 bottom-3 z-20 flex flex-col-reverse space-y-2 space-y-reverse">
+              @for(imageUrl of rightThumbnails(); track imageUrl) {
+                <button (click)="$event.stopPropagation(); selectImage(imageUrl)" 
+                        [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none ' + (selectedImageUrl() === imageUrl ? 'border-[#E8A0BF] scale-110' : 'border-transparent hover:border-white/50')">
+                  <img [src]="imageUrl" [alt]="'Variation for ' + pose().englishName" width="48" height="48" class="w-full h-full object-cover">
+                </button>
+              }
+            </div>
+          }
+
           <!-- Prev/Next Buttons -->
           <button 
-            (click)="previous.emit()"
+            (click)="$event.stopPropagation(); previous.emit()"
             aria-label="Previous pose"
             class="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 text-white/80 hover:bg-black/60 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-white/50">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
           </button>
     
           <button 
-            (click)="next.emit()"
+            (click)="$event.stopPropagation(); next.emit()"
             aria-label="Next pose"
             class="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-black/40 text-white/80 hover:bg-black/60 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-white/50">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
@@ -58,8 +84,9 @@ import { Pose } from './models/pose.model';
           
           <!-- Scrollable Details -->
           <div class="overflow-y-auto p-6">
-            <div class="space-y-6 text-[#B8B8C4]">
-              <div>
+            <div class="flex flex-col space-y-6 text-[#B8B8C4]">
+              
+              <div class="order-2 md:order-1">
                 <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">How to Do It</h3>
                 <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
                   @for(step of pose().howToDo; track step) {
@@ -68,7 +95,7 @@ import { Pose } from './models/pose.model';
                 </ul>
               </div>
 
-              <div>
+              <div class="order-1 md:order-2">
                 <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Practice Guide</h3>
                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
                   @for(level of pose().frequency; track level.level) {
@@ -96,48 +123,172 @@ import { Pose } from './models/pose.model';
                 </div>
               </div>
 
-              <div>
-                <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Why You Should Do It</h3>
+              <div class="order-3">
+                <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Why This Helps</h3>
                 <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
-                  @for(reason of pose().why; track reason) {
-                    <li>{{ reason }}</li>
+                  @for(item of pose().why; track item) {
+                    <li>{{ item }}</li>
                   }
                 </ul>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Fullscreen Image Viewer -->
+    @if (isImageFullscreen()) {
+      <div 
+        (click)="closeFullscreen()"
+        (wheel)="onWheel($event)"
+        (pointerdown)="onPointerDown($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="onPointerUp($event)"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center animate-fade-in"
+        [style.cursor]="zoomScale() > 1 ? 'grab' : 'zoom-out'">
+        
+        <img 
+          (click)="$event.stopPropagation()"
+          [src]="selectedImageUrl()" 
+          [alt]="pose().englishName" 
+          class="max-w-[95vw] max-h-[95vh] transition-transform duration-100 ease-out"
+          [style.transform]="'translate(' + panPosition().x + 'px, ' + panPosition().y + 'px) scale(' + zoomScale() + ')'"
+        />
+
+        <!-- Close Button -->
+        <button 
+          (click)="closeFullscreen()" 
+          class="absolute top-4 right-4 z-[70] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+          aria-label="Close fullscreen image">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <!-- Reset Zoom Button -->
+        <button 
+          (click)="$event.stopPropagation(); resetZoom()" 
+          class="absolute bottom-4 right-4 z-[70] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+          aria-label="Reset zoom">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M5 5h5V3H3v7h2V5zm14-2h-7v2h5v5h2V3zM5 19v-5H3v7h7v-2H5zm14 5h-7v-2h5v-5h2v7z"/></svg>
+        </button>
+      </div>
+    }
   `,
-  styles: [`
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes scaleIn {
-      from { 
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to { 
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-    .animate-fade-in {
-      animation: fadeIn 0.3s ease-out forwards;
-    }
-    .animate-scale-in {
-      animation: scaleIn 0.3s ease-out forwards;
-    }
-  `],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: []
 })
 export class PoseDetailModalComponent {
   pose = input.required<Pose>();
+  gender = input.required<'female' | 'male'>();
   close = output<void>();
   previous = output<void>();
   next = output<void>();
+
+  selectedImageUrl = signal<string | undefined>(undefined);
+
+  // --- Fullscreen image viewer state ---
+  isImageFullscreen = signal(false);
+  zoomScale = signal(1);
+  panPosition = signal({ x: 0, y: 0 });
+  isPanning = signal(false);
+  private startPanPosition = { x: 0, y: 0 };
+  private startImagePosition = { x: 0, y: 0 };
+
+  readonly leftThumbnails = computed(() => {
+    const p = this.pose();
+    const urls = (this.gender() === 'male' && p.imageUrlsMale) ? p.imageUrlsMale : p.imageUrls;
+    if (!urls || urls.length <= 1) return [];
+    const middleIndex = Math.ceil(urls.length / 2);
+    return urls.slice(0, middleIndex);
+  });
+
+  readonly rightThumbnails = computed(() => {
+    const p = this.pose();
+    const urls = (this.gender() === 'male' && p.imageUrlsMale) ? p.imageUrlsMale : p.imageUrls;
+    if (!urls || urls.length <= 1) return [];
+    const middleIndex = Math.ceil(urls.length / 2);
+    return urls.slice(middleIndex);
+  });
+
+  constructor() {
+    effect(() => {
+      const p = this.pose();
+      const gender = this.gender();
+      let imageUrl: string;
+      if (gender === 'male' && p.imageUrlMale) {
+        imageUrl = p.imageUrlsMale?.[0] ?? p.imageUrlMale;
+      } else {
+        imageUrl = p.imageUrls?.[0] ?? p.imageUrl;
+      }
+      this.selectedImageUrl.set(imageUrl);
+    });
+  }
+
+  selectImage(imageUrl: string): void {
+    this.selectedImageUrl.set(imageUrl);
+  }
+
+  // --- Fullscreen image viewer methods ---
+  openFullscreen(): void {
+    this.isImageFullscreen.set(true);
+    this.resetZoom();
+  }
+
+  closeFullscreen(): void {
+    this.isImageFullscreen.set(false);
+  }
+
+  resetZoom(): void {
+    this.zoomScale.set(1);
+    this.panPosition.set({ x: 0, y: 0 });
+  }
+
+  onWheel(event: WheelEvent): void {
+    event.preventDefault();
+    const zoomSpeed = 0.1;
+    const oldScale = this.zoomScale();
+    let newScale = oldScale - event.deltaY * zoomSpeed * 0.05;
+    newScale = Math.max(1, Math.min(newScale, 5)); // Clamp scale
+    
+    if (newScale === oldScale) return;
+
+    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+    
+    const oldPos = this.panPosition();
+    
+    const newX = mouseX - (mouseX - oldPos.x) * (newScale / oldScale);
+    const newY = mouseY - (mouseY - oldPos.y) * (newScale / oldScale);
+
+    this.zoomScale.set(newScale);
+    this.panPosition.set({ x: newX, y: newY });
+  }
+
+  onPointerDown(event: PointerEvent): void {
+    if (this.zoomScale() <= 1) return;
+    event.preventDefault();
+    const target = event.currentTarget as HTMLElement;
+    this.isPanning.set(true);
+    target.style.cursor = 'grabbing';
+    this.startPanPosition = { x: event.clientX, y: event.clientY };
+    this.startImagePosition = this.panPosition();
+    target.setPointerCapture(event.pointerId);
+  }
+
+  onPointerMove(event: PointerEvent): void {
+    if (!this.isPanning()) return;
+    event.preventDefault();
+    const dx = event.clientX - this.startPanPosition.x;
+    const dy = event.clientY - this.startPanPosition.y;
+    this.panPosition.set({ x: this.startImagePosition.x + dx, y: this.startImagePosition.y + dy });
+  }
+
+  onPointerUp(event: PointerEvent): void {
+    if (!this.isPanning()) return;
+    const target = event.currentTarget as HTMLElement;
+    this.isPanning.set(false);
+    target.style.cursor = 'grab';
+    target.releasePointerCapture(event.pointerId);
+  }
 }
