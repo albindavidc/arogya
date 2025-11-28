@@ -42,7 +42,7 @@
           @for (pose of category.poses; track pose.sanskritName; let poseIndex = $index) {
             <div (click)="openModal(pose)" 
                  class="group relative transition-all duration-300 hover:-translate-y-1 hover:scale-105 cursor-pointer">
-              <div class="holo-border-container h-full bg-[#12121A]">
+              <div class="holo-border-container h-full rounded-xl bg-[#12121A]">
                   <div class=" rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
                     <figure class="aspect-[4/3] overflow-hidden rounded-t-xl">
                       <img [src]="pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300" />
