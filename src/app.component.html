@@ -1,129 +1,147 @@
 <div class="min-h-screen">
-  <!-- Header -->
-  <header class="bg-[#0A0A0F]/80 backdrop-blur-lg sticky top-0 z-20 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <div class="flex justify-between items-center">
-        <div>
-          <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#E8A0BF] via-[#B4A0E8] to-[#A0E8C8]">Arogya</h1>
-          <p class="text-[#6E6E7A] text-sm">Nourish Your Inner Fire</p>
-        </div>
 
-        <div class="flex items-center gap-4 md:gap-6">
-          <nav class="hidden md:flex items-center space-x-6">
-            @for(category of poseCategories(); track category.id) {
-              <button (click)="scrollTo(category.id)" class="text-sm font-medium text-[#B8B8C4] hover:text-[#E8A0BF] transition-colors">{{ category.title }}</button>
-            }
-             <button (click)="scrollTo('top5')" class="text-sm font-medium text-[#B8B8C4] hover:text-[#E8A0BF] transition-colors">Top 5 Poses</button>
-          </nav>
-        </div>
+  @if (!showWarmUpView()) {
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-30 border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#E8A0BF] via-[#B4A0E8] to-[#A0E8C8]">Arogya</h1>
+            <p class="text-[#6E6E7A] text-sm">Nourish Your Inner Fire</p>
+          </div>
 
-      </div>
-    </div>
-  </header>
+          <div class="flex items-center gap-4 md:gap-6">
+            <nav class="hidden md:flex items-center space-x-6">
+              @for(category of poseCategories(); track category.id) {
+                <button (click)="scrollTo(category.id)" class="text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">{{ category.title }}</button>
+              }
+              <button (click)="scrollTo('top5')" class="text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">Top 5 Poses</button>
+            </nav>
+          </div>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <!-- Intro Section -->
-    <section class="relative text-center mb-20 py-20 overflow-hidden">
-      <h2 class="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#F4F4F8]" style="text-shadow: 0 0 30px rgba(180, 160, 232, 0.5);">
-        Revitalize your body & mind
-      </h2>
-
-      <!-- Gender Toggle -->
-      <div class="flex justify-center my-8">
-        <div class="flex items-center space-x-1.5 bg-[#12121A] p-1 rounded-full border border-white/10">
-          <button (click)="setGender('female')" 
-                  [class]="'px-4 py-1.5 text-base rounded-full transition-colors ' + (selectedGender() === 'female' ? 'bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] text-[#0A0A0F] font-semibold shadow-lg' : 'text-[#B8B8C4] hover:bg-white/5')">
-            Female Poses
-          </button>
-          <button (click)="setGender('male')" 
-                  [class]="'px-4 py-1.5 text-base rounded-full transition-colors ' + (selectedGender() === 'male' ? 'bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] text-[#0A0A0F] font-semibold shadow-lg' : 'text-[#B8B8C4] hover:bg-white/5')">
-            Male Poses
-          </button>
         </div>
       </div>
+    </header>
 
-      <p class="text-lg leading-8 text-[#B8B8C4] max-w-2xl mx-auto">
-        Discover a curated collection of yoga poses scientifically known to improve metabolism, energy, hormonal balance, and digestive power.
-      </p>
-    </section>
-    
-    <!-- Pose Categories -->
-    @for (category of poseCategories(); track category.id; let catIndex = $index) {
-      <section [id]="category.id" class="mb-20 scroll-mt-20">
-        <div class="mb-8 border-l-4 border-[#B4A0E8] pl-4">
-          <h2 class="text-3xl font-bold text-[#F4F4F8]">
-            <span class="mr-2">🌿</span>{{ category.title }}
-          </h2>
-          <p class="text-[#B8B8C4] mt-1">{{ category.description }}</p>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Intro Section -->
+      <section class="relative text-center mb-20 py-20 overflow-hidden">
+        <h2 class="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-[#F4F4F8]" style="text-shadow: 0 0 40px rgba(180, 160, 232, 0.3);">
+          Revitalize Your Body & Mind
+        </h2>
+
+        <!-- Gender Toggle -->
+        <div class="flex justify-center my-10">
+          <div class="flex items-center space-x-2 bg-black/20 p-1 rounded-full border border-white/10">
+            <button (click)="setGender('female')" 
+                    [class]="'px-4 py-1.5 text-base rounded-full transition-all duration-300 relative ' + (selectedGender() === 'female' ? 'text-white' : 'text-[#B8B8C4] hover:text-white')">
+              @if(selectedGender() === 'female') {
+                <span class="absolute inset-0 rounded-full bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] opacity-30 blur-md"></span>
+                <span class="absolute inset-0 rounded-full border border-white/50"></span>
+              }
+              <span class="relative">Female Poses</span>
+            </button>
+            <button (click)="setGender('male')" 
+                    [class]="'px-4 py-1.5 text-base rounded-full transition-all duration-300 relative ' + (selectedGender() === 'male' ? 'text-white' : 'text-[#B8B8C4] hover:text-white')">
+               @if(selectedGender() === 'male') {
+                <span class="absolute inset-0 rounded-full bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] opacity-30 blur-md"></span>
+                <span class="absolute inset-0 rounded-full border border-white/50"></span>
+              }
+              <span class="relative">Male Poses</span>
+            </button>
+          </div>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-          @for (pose of category.poses; track pose.sanskritName; let poseIndex = $index) {
-            <div (click)="openModal(pose)" 
-                 class="group relative transition-all duration-300 hover:-translate-y-1 hover:scale-105 cursor-pointer">
-              <div class="holo-border-container h-full rounded-xl bg-[#12121A]">
-                  <div class=" rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
-                    <figure [class]="category.id === 'inversion' ? 'overflow-hidden rounded-t-xl' : 'aspect-[4/3] overflow-hidden rounded-t-xl'">
-                      <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300" [class.h-full]="category.id !== 'inversion'" />
-                    </figure>
-                    <div class="p-5 flex flex-col flex-grow">
-                      <div>
-                        <h3 class="text-lg font-bold text-[#F4F4F8]">{{ pose.sanskritName }}</h3>
-                        <p class="text-sm text-[#B8B8C4]">{{ pose.englishName }} ({{ pose.pronunciation }})</p>
-                      </div>
-                      <div class="mt-auto pt-4">
-                        <span class="inline-block bg-gradient-to-r from-[#A0E8C8]/10 to-[#A0C8E8]/10 text-[#A0E8C8] text-xs font-medium px-3 py-1 rounded-full">
-                          {{ pose.benefit }}
-                        </span>
+        <p class="text-lg leading-8 text-[#B8B8C4] max-w-2xl mx-auto">
+          Discover a curated collection of yoga poses scientifically known to improve metabolism, energy, hormonal balance, and digestive power.
+        </p>
+
+        <button (click)="showWarmUp()" class="mt-8 bg-transparent border border-[#B4A0E8]/50 text-[#B4A0E8] font-bold py-3 px-8 rounded-full hover:bg-[#B4A0E8]/10 hover:border-[#B4A0E8] transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(180,160,232,0.15)] hover:shadow-[0_0_35px_rgba(180,160,232,0.3)] focus:outline-none focus:ring-2 focus:ring-[#B4A0E8] focus:ring-offset-2 focus:ring-offset-[#050508]">
+          Start with a Warm-Up
+        </button>
+      </section>
+      
+      <!-- Pose Categories -->
+      @for (category of poseCategories(); track category.id; let catIndex = $index) {
+        <section [id]="category.id" class="mb-20 scroll-mt-20">
+          <div class="mb-8 flex gap-4">
+             <div class="w-1.5 rounded-full bg-gradient-to-b from-[#E8A0BF] to-[#B4A0E8]" style="filter: blur(2px);"></div>
+            <div>
+              <h2 class="text-3xl font-bold text-[#F4F4F8]">{{ category.title }}</h2>
+              <p class="text-[#B8B8C4] mt-1">{{ category.description }}</p>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            @for (pose of category.poses; track pose.sanskritName; let poseIndex = $index) {
+              <div (click)="openModal(pose)" 
+                  class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
+                <div class="holo-border-container h-full">
+                    <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
+                      <figure [class]="category.id === 'inversion' && pose.sanskritName !== 'Surya Namaskar' ? 'overflow-hidden rounded-t-xl' : 'aspect-[4/3] overflow-hidden rounded-t-xl'">
+                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" [class.h-full]="category.id !== 'inversion' || pose.sanskritName === 'Surya Namaskar'" [class.object-contain]="pose.sanskritName === 'Surya Namaskar'" [class.p-4]="pose.sanskritName === 'Surya Namaskar'" />
+                      </figure>
+                      <div class="p-5 flex flex-col flex-grow">
+                        <div>
+                          <h3 class="text-lg font-bold text-[#F4F4F8]">{{ pose.sanskritName }}</h3>
+                          <p class="text-sm text-[#B8B8C4]">{{ pose.englishName }} ({{ pose.pronunciation }})</p>
+                        </div>
+                        <div class="mt-auto pt-4">
+                          <span class="inline-block bg-gradient-to-r from-[#A0E8C8]/5 to-[#A0C8E8]/5 border border-[#A0E8C8]/20 text-[#A0E8C8] text-xs font-medium px-3 py-1 rounded-full">
+                            {{ pose.benefit }}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- Top 5 Section -->
+      <section id="top5" class="mb-20 bg-black/30 border border-white/5 rounded-xl p-8 lg:p-12 scroll-mt-20">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-[#F4F4F8]">
+            <span class="text-yellow-400 mr-2">🌟</span>Top 5 for the Fastest Results
+          </h2>
+          <p class="text-[#B8B8C4] mt-2 max-w-2xl mx-auto">If you want the most effective poses to kickstart your journey, focus on these.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          @for (pose of topPoses(); track pose.sanskritName) {
+            <div (click)="openModal(pose)" class="group text-center cursor-pointer">
+              <figure class="relative p-1">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#E8A0BF] to-[#B4A0E8] opacity-0 group-hover:opacity-60 transition-opacity duration-300 blur-xl"></div>
+                <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="300" height="300" class="relative w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover shadow-lg border-2 border-white/10 transition-all duration-300 group-hover:scale-110 group-hover:border-[#B4A0E8]/50" />
+              </figure>
+              <div class="mt-4">
+                <h3 class="text-lg font-bold text-[#F4F4F8]">{{ pose.sanskritName }}</h3>
+                <p class="text-[#B8B8C4] text-sm">{{ pose.englishName }} ({{ pose.pronunciation }})</p>
               </div>
             </div>
           }
         </div>
       </section>
-    }
 
-    <!-- Top 5 Section -->
-    <section id="top5" class="mb-20 bg-[#12121A] border border-white/10 rounded-xl p-8 lg:p-12 scroll-mt-20">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold text-[#F4F4F8]">
-          <span class="text-yellow-400 mr-2">🌟</span>Top 5 for the Fastest Results
-        </h2>
-        <p class="text-[#B8B8C4] mt-2 max-w-2xl mx-auto">If you want the most effective poses to kickstart your journey, focus on these.</p>
+      <!-- Call to Action -->
+      <section class="text-center py-12">
+          <h3 class="text-2xl font-bold text-[#F4F4F8]">Ready for a daily routine?</h3>
+          <p class="mt-2 text-[#B8B8C4]">I can create a 7-minute daily metabolism-boost yoga routine for you to follow every morning.</p>
+          <button class="mt-6 bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] text-black font-bold py-3 px-8 rounded-full hover:scale-105 transition-transform shadow-[0_4px_30px_rgba(232,160,191,0.4)] hover:shadow-[0_6px_40px_rgba(232,160,191,0.6)] focus:outline-none focus:ring-2 focus:ring-[#E8A0BF] focus:ring-offset-2 focus:ring-offset-[#050508]">
+              Generate My 7-Minute Routine
+          </button>
+      </section>
+    </main>
+
+    <footer class="bg-black/20 border-t border-white/5 text-[#6E6E7A] mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+        <p>&copy; 2025 Arogya. Practice with compassion.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-        @for (pose of topPoses(); track pose.sanskritName) {
-          <div (click)="openModal(pose)" class="group text-center cursor-pointer">
-            <figure class="relative p-1">
-               <div class="absolute inset-0 rounded-full bg-gradient-to-br from-[#E8A0BF] to-[#B4A0E8] opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
-              <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="300" height="300" class="relative w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover shadow-lg border-4 border-white/10 transition-all duration-300 group-hover:scale-110 group-hover:border-[#B4A0E8]/50" />
-            </figure>
-            <div class="mt-4">
-              <h3 class="text-lg font-bold text-[#F4F4F8]">{{ pose.sanskritName }}</h3>
-              <p class="text-[#B8B8C4] text-sm">{{ pose.englishName }} ({{ pose.pronunciation }})</p>
-            </div>
-          </div>
-        }
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="text-center py-12">
-        <h3 class="text-2xl font-bold text-[#F4F4F8]">Ready for a daily routine?</h3>
-        <p class="mt-2 text-[#B8B8C4]">I can create a 7-minute daily metabolism-boost yoga routine for you to follow every morning.</p>
-        <button class="mt-6 bg-gradient-to-r from-[#E8A0BF] to-[#B4A0E8] text-[#0A0A0F] font-bold py-3 px-8 rounded-full hover:scale-105 transition-transform shadow-[0_4px_20px_rgba(232,160,191,0.35)] hover:shadow-[0_6px_28px_rgba(232,160,191,0.5)] focus:outline-none focus:ring-2 focus:ring-[#E8A0BF] focus:ring-offset-2 focus:ring-offset-[#0A0A0F]">
-            Generate My 7-Minute Routine
-        </button>
-    </section>
-  </main>
-
-  <footer class="bg-[#12121A] border-t border-white/10 text-[#6E6E7A] mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
-      <p>&copy; 2025 Arogya. Practice with compassion.</p>
-    </div>
-  </footer>
+    </footer>
+  } @else {
+    <app-warm-up (back)="hideWarmUp()"></app-warm-up>
+  }
 </div>
 
 @if (selectedPose(); as pose) {

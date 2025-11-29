@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0A0A0F">
+  <meta name="theme-color" content="#050508">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,32 +14,63 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
+      background-color: #050508;
     }
     h1, h2, h3 {
       font-family: 'Lora', serif;
     }
+    
+    /* --- Card Hover Effects --- */
+    
+    /* Mild glow effect */
     .holo-border-container::before {
         content: '';
         position: absolute;
+        inset: -1px;
+        border-radius: 13px; /* 1px larger than inner for blur */
+        background: linear-gradient(135deg, #E8A0BF, #B4A0E8, #A0E8C8);
+        filter: blur(8px);
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        z-index: -1;
+    }
+    
+    /* Sharp gradient border */
+    .holo-border-container::after {
+        content: '';
+        position: absolute;
         inset: 0;
+        border-radius: 12px; /* Should match the inner element's border-radius (rounded-xl) */
         padding: 1px;
-        border-radius: 12px; /* This should match the inner element's border-radius */
         background: linear-gradient(135deg, #E8A0BF, #B4A0E8, #A0E8C8);
         -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask:
             linear-gradient(#fff 0 0) content-box,
             linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
     }
+
     .group:hover .holo-border-container::before {
+        opacity: 0.4;
+    }
+
+    .group:hover .holo-border-container::after {
         opacity: 1;
     }
 
     /* --- Splash Screen Styles --- */
     #splash-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
       transition: opacity 0.5s ease-out;
+      background-color: #050508;
     }
     body.loaded #splash-screen {
       opacity: 0;
@@ -87,6 +118,67 @@
      .ripple-loader div:nth-child(3) {
       animation-delay: -1s;
     }
+
+    /* --- Aurora Background --- */
+    #aurora-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        filter: blur(100px);
+        opacity: 0.4;
+    }
+
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        mix-blend-mode: screen;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
+
+    .blob1 {
+        width: 400px;
+        height: 400px;
+        background-color: #E8A0BF;
+        animation-name: move1;
+        animation-duration: 25s;
+    }
+
+    .blob2 {
+        width: 500px;
+        height: 500px;
+        background-color: #B4A0E8;
+        animation-name: move2;
+        animation-duration: 30s;
+    }
+    
+    .blob3 {
+        width: 350px;
+        height: 350px;
+        background-color: #A0E8C8;
+        animation-name: move3;
+        animation-duration: 20s;
+    }
+
+    @keyframes move1 {
+        0%, 100% { transform: translate(10vw, 10vh) scale(1); }
+        50% { transform: translate(50vw, 70vh) scale(1.2); }
+    }
+
+    @keyframes move2 {
+        0%, 100% { transform: translate(80vw, 20vh) scale(1.2); }
+        50% { transform: translate(20vw, 80vh) scale(1); }
+    }
+
+    @keyframes move3 {
+        0%, 100% { transform: translate(30vw, 90vh) scale(0.9); }
+        50% { transform: translate(70vw, 10vh) scale(1.1); }
+    }
+
   </style>
 <script type="importmap">
 {
@@ -105,10 +197,17 @@
 }
 </script>
 </head>
-<body class="bg-[#0A0A0F] text-[#B8B8C4] antialiased">
+<body class="bg-[#050508] text-[#B8B8C4] antialiased">
+
+  <!-- Aurora Background -->
+  <div id="aurora-background">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+  </div>
 
   <!-- Splash Screen -->
-  <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0A0A0F]">
+  <div id="splash-screen" class="flex flex-col items-center justify-center">
       <div class="relative w-32 h-32 flex items-center justify-center">
         <!-- Ripple Loader -->
         <div class="ripple-loader">
@@ -132,7 +231,7 @@
       <h1 class="splash-title text-4xl mt-6 pb-2" style="background: linear-gradient(135deg, #E8A0BF 0%, #B4A0E8 50%, #A0E8C8 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Arogya</h1>
   </div>
   
-  <app-root></app-root>
+  <app-root class="relative z-10"></app-root>
   
   <script>
     const startTime = Date.now();
@@ -164,7 +263,7 @@
           });
       });
     } else {
-        hideSplashScreen(); // Hide splash if SW is not supported
+        hideSplashScreen(); // Hide splash if not supported
     }
   </script>
 </body>

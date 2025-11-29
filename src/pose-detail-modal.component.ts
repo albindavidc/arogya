@@ -6,7 +6,7 @@ import { Pose } from './models/pose.model';
   template: `
     <div 
       (click)="close.emit()" 
-      class="fixed inset-0 bg-[#0A0A0F]/80 backdrop-blur-md z-40 animate-fade-in"
+      class="fixed inset-0 bg-black/70 backdrop-blur-md z-40 animate-fade-in"
       aria-hidden="true">
     </div>
 
@@ -16,7 +16,7 @@ import { Pose } from './models/pose.model';
       class="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div 
         (click)="$event.stopPropagation()"
-        class="bg-[#1A1A24]/80 backdrop-blur-xl border border-[#B4A0E8]/15 rounded-2xl shadow-2xl shadow-black/40 w-full max-w-3xl max-h-[90vh] flex flex-col md:flex-row animate-scale-in">
+        class="bg-black/50 backdrop-blur-xl border border-[#B4A0E8]/20 rounded-2xl shadow-2xl shadow-[0_0_50px_rgba(180,160,232,0.15)] w-full max-w-3xl max-h-[90vh] flex flex-col md:flex-row animate-scale-in">
         
         <!-- Image Section -->
         <div 
@@ -26,7 +26,7 @@ import { Pose } from './models/pose.model';
           
           <!-- Image Thumbnails - Left -->
           @if (leftThumbnails().length > 0) {
-            <div class="absolute left-3 bottom-3 z-20 flex flex-col-reverse space-y-2 space-y-reverse">
+            <div class="absolute left-3 bottom-3 z-20 grid grid-cols-2 gap-2">
               @for(imageUrl of leftThumbnails(); track imageUrl) {
                 <button (click)="$event.stopPropagation(); selectImage(imageUrl)" 
                         [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none ' + (selectedImageUrl() === imageUrl ? 'border-[#E8A0BF] scale-110' : 'border-transparent hover:border-white/50')">
@@ -67,7 +67,7 @@ import { Pose } from './models/pose.model';
         <!-- Content Section -->
         <div class="w-full md:w-1/2 flex flex-col min-h-0">
           <!-- Sticky Header -->
-          <div class="flex-shrink-0 p-6 pb-4 border-b border-[#B4A0E8]/15 bg-[#1A1A24]/95 backdrop-blur-md z-10">
+          <div class="flex-shrink-0 p-6 pb-4 border-b border-[#B4A0E8]/15 bg-black/50 backdrop-blur-md z-10 rounded-tr-2xl">
             <div class="flex justify-between items-start">
               <div>
                 <h2 class="text-2xl font-bold text-[#E8A0BF] font-lora">{{ pose().sanskritName }}</h2>
@@ -89,48 +89,52 @@ import { Pose } from './models/pose.model';
               <div class="order-2 md:order-1">
                 <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">How to Do It</h3>
                 <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
-                  @for(step of pose().howToDo; track step) {
+                  @for(step of howToDoSteps(); track step) {
                     <li>{{ step }}</li>
                   }
                 </ul>
               </div>
 
-              <div class="order-1 md:order-2">
-                <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Practice Guide</h3>
-                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
-                  @for(level of pose().frequency; track level.level) {
-                    <div class="bg-[#242430]/50 rounded-lg p-2 border border-white/10 text-center">
-                      <h4 class="font-bold text-sm mb-2"
-                          [class.text-green-400]="level.level === 'Beginner'"
-                          [class.text-sky-400]="level.level === 'Intermediate'"
-                          [class.text-fuchsia-400]="level.level === 'Advanced'">
-                        {{ level.level }}
-                      </h4>
-                      <div class="text-xs space-y-1 text-[#B8B8C4]">
-                        @if (level.duration) {
-                          <p><strong class="font-medium text-white/70">Time:</strong> {{ level.duration }}</p>
-                        }
-                        @if (level.sets) {
-                          <p><strong class="font-medium text-white/70">Sets:</strong> {{ level.sets }}</p>
-                        }
-                        @if (level.reps) {
-                          <p><strong class="font-medium text-white/70">Reps:</strong> {{ level.reps }}</p>
-                        }
-                        <p><strong class="font-medium text-white/70">Freq:</strong> {{ level.frequency }}</p>
+              @if (pose().frequency.length > 0) {
+                <div class="order-1 md:order-2">
+                  <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Practice Guide</h3>
+                  <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
+                    @for(level of pose().frequency; track level.level) {
+                      <div class="bg-black/30 rounded-lg p-2 border border-white/10 text-center">
+                        <h4 class="font-bold text-sm mb-2"
+                            [class.text-green-400]="level.level === 'Beginner'"
+                            [class.text-sky-400]="level.level === 'Intermediate'"
+                            [class.text-fuchsia-400]="level.level === 'Advanced'">
+                          {{ level.level }}
+                        </h4>
+                        <div class="text-xs space-y-1 text-[#B8B8C4]">
+                          @if (level.duration) {
+                            <p><strong class="font-medium text-white/70">Time:</strong> {{ level.duration }}</p>
+                          }
+                          @if (level.sets) {
+                            <p><strong class="font-medium text-white/70">Sets:</strong> {{ level.sets }}</p>
+                          }
+                          @if (level.reps) {
+                            <p><strong class="font-medium text-white/70">Reps:</strong> {{ level.reps }}</p>
+                          }
+                          <p><strong class="font-medium text-white/70">Freq:</strong> {{ level.frequency }}</p>
+                        </div>
                       </div>
-                    </div>
-                  }
+                    }
+                  </div>
                 </div>
-              </div>
+              }
 
-              <div class="order-3">
-                <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Why This Helps</h3>
-                <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
-                  @for(item of pose().why; track item) {
-                    <li>{{ item }}</li>
-                  }
-                </ul>
-              </div>
+              @if (pose().why.length > 0) {
+                <div class="order-3">
+                  <h3 class="font-bold text-[#B4A0E8] mb-2 border-b border-[#B4A0E8]/20 pb-1">Why This Helps</h3>
+                  <ul class="list-disc list-inside space-y-1 pl-2 text-sm">
+                    @for(item of pose().why; track item) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
+                </div>
+              }
 
             </div>
           </div>
@@ -194,20 +198,29 @@ export class PoseDetailModalComponent {
   private startPanPosition = { x: 0, y: 0 };
   private startImagePosition = { x: 0, y: 0 };
 
+  readonly howToDoSteps = computed(() => {
+    const p = this.pose();
+    const gender = this.gender();
+    if (gender === 'male' && p.howToDoMale) {
+      return p.howToDoMale;
+    }
+    if (gender === 'female' && p.howToDoFemale) {
+      return p.howToDoFemale;
+    }
+    return p.howToDo;
+  });
+
   readonly leftThumbnails = computed(() => {
     const p = this.pose();
     const urls = (this.gender() === 'male' && p.imageUrlsMale) ? p.imageUrlsMale : p.imageUrls;
-    if (!urls || urls.length <= 1) return [];
-    const middleIndex = Math.ceil(urls.length / 2);
-    return urls.slice(0, middleIndex);
+    return urls ?? [];
   });
 
   readonly rightThumbnails = computed(() => {
     const p = this.pose();
-    const urls = (this.gender() === 'male' && p.imageUrlsMale) ? p.imageUrlsMale : p.imageUrls;
-    if (!urls || urls.length <= 1) return [];
-    const middleIndex = Math.ceil(urls.length / 2);
-    return urls.slice(middleIndex);
+    const gender = this.gender();
+    const stepsUrl = gender === 'male' ? p.stepsImageUrlMale : p.stepsImageUrlFemale;
+    return stepsUrl ? [stepsUrl] : [];
   });
 
   constructor() {

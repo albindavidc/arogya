@@ -1,15 +1,17 @@
 import { ChangeDetectionStrategy, Component, signal, computed } from '@angular/core';
 import { PoseCategory, Pose } from './models/pose.model';
 import { PoseDetailModalComponent } from './pose-detail-modal.component';
+import { WarmUpComponent } from './warm-up.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [PoseDetailModalComponent],
+  imports: [PoseDetailModalComponent, WarmUpComponent],
 })
 export class AppComponent {
   selectedGender = signal<'female' | 'male'>('female');
+  showWarmUpView = signal(false);
 
   readonly poseCategories = signal<PoseCategory[]>([
     {
@@ -45,12 +47,12 @@ export class AppComponent {
           englishName: 'Headstand',
           pronunciation: 'sheer-SHAH-sa-na',
           benefit: 'Increases brain oxygen', 
-          imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
           imageUrls: [
-            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/1b7a41ab7d6c9d7036c20a0bed0f4bd229993a43/public/women/inversion-poses/Sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/4.png?raw=true'
           ],
           imageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
           imageUrlsMale: [
@@ -59,6 +61,8 @@ export class AppComponent {
             'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/3.png?raw=true',
             'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/4.png?raw=true'
           ],
+          stepsImageUrlFemale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/f-steps.png?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/m-steps.png?raw=true',
           howToDo: [
             "Kneel on the floor and interlock your fingers to create a cup with your hands.",
             "Place your forearms and the crown of your head on the floor, cupping the back of your head with your hands.",
@@ -379,7 +383,7 @@ export class AppComponent {
           englishName: 'Sun Salutation',
           pronunciation: 'SOOR-yah nah-mahs-KAR',
           benefit: 'Best for metabolism', 
-          imageUrl: 'https://www.siddhiyoga.com/cdn-cgi/image/width=866,format=auto/https://www.siddhiyoga.com/wp-content/uploads/2019/08/sun-salutation-12-steps.jpg',
+          imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/special/surya-namaskar-transparent.png?raw=true',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
             "Start in Mountain Pose, flow through poses like Forward Fold, Lunge, Plank, Cobra/Upward Dog, and Downward Dog.",
@@ -606,5 +610,15 @@ export class AppComponent {
       const prevIndex = (currentIndex - 1 + totalPoses) % totalPoses;
       this.selectedPoseIndex.set(prevIndex);
     }
+  }
+
+  showWarmUp() {
+    this.showWarmUpView.set(true);
+    window.scrollTo(0, 0);
+  }
+
+  hideWarmUp() {
+    this.showWarmUpView.set(false);
+    window.scrollTo(0, 0);
   }
 }
