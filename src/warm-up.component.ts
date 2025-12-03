@@ -247,62 +247,22 @@ export class WarmUpComponent {
     },
     // SHOULDERS & UPPER BACK
     {
-      name: 'Shoulder Rolls',
+      name: 'Full Shoulder Mobility Series',
       category: 'SHOULDERS & UPPER BACK',
-      description: 'Warms up the shoulder joints and releases tightness in the upper back.',
-      imageUrl: 'https://www.spotebi.com/wp-content/uploads/2015/02/shoulder-rolls-exercise-illustration.jpg',
+      description: 'A comprehensive routine combining dynamic rotations, static stretches, and activation poses to fully prepare the shoulder girdle, improve mobility, and build stability for your practice.',
+      imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/warm-up/f-shoulder.png?raw=true',
+      imageUrlFemale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/warm-up/f-shoulder.png?raw=true',
+      imageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/warm-up/m-shoulder.png?raw=true',
       steps: [
-        'Sit or stand with arms relaxed by your sides.',
-        'Inhale and lift your shoulders up toward your ears.',
-        'Exhale and roll them back and down, squeezing your shoulder blades together.',
-        'Repeat 5-8 times, then reverse the direction, rolling them forward.'
-      ]
-    },
-    {
-      name: 'Arm Circles',
-      category: 'SHOULDERS & UPPER BACK',
-      description: 'Progressive circular movements that lubricate the glenohumeral joint.',
-      imageUrl: 'https://www.spotebi.com/wp-content/uploads/2014/10/arm-circles-exercise-illustration.jpg',
-      steps: [
-        'Stand with your feet shoulder-width apart, arms extended to your sides at shoulder height.',
-        'Make small circles with your arms, gradually making them larger.',
-        'Perform 10-15 circles forward, then reverse the direction for 10-15 circles backward.'
-      ]
-    },
-    {
-      name: 'Eagle Arms (Garudasana Arms)',
-      category: 'SHOULDERS & UPPER BACK',
-      description: 'Deep stretch for the rhomboids, posterior deltoids, and space between the shoulder blades.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2021/10/Eagle-Pose-Garudasana_Andrew-Clark_2400x1350-2-e1634591444583.jpeg',
-      steps: [
-        'Extend your arms forward, parallel to the floor.',
-        'Cross your right arm over your left.',
-        'Bend your elbows, wrapping your right hand to press against your left palm.',
-        'Lift your elbows while keeping your shoulders down. Hold for 20-30 seconds and switch sides.'
-      ]
-    },
-    {
-      name: 'Cow Face Arms (Gomukhasana Arms)',
-      category: 'SHOULDERS & UPPER BACK',
-      description: 'Opens the shoulders through internal and external rotation, stretching the triceps.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2021/10/Cow-Face-Pose_Andrew-Clark_2400x1350-1-e1633534063603.jpeg',
-      steps: [
-        'Reach your right arm up, then bend the elbow to drop your hand down your back.',
-        'Reach your left arm down and behind your back, bending the elbow to reach up.',
-        'Try to clasp your fingers. If you can\'t reach, use a strap or towel.',
-        'Hold for 20-30 seconds, then switch arms.'
-      ]
-    },
-    {
-      name: 'Thread the Needle',
-      category: 'SHOULDERS & UPPER BACK',
-      description: 'Rotational stretch targeting the thoracic spine and posterior shoulder.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2022/07/Thread-the-Needle-Pose_Marisa-Crans_2400x1350-1.jpeg',
-      steps: [
-        'Start on all fours.',
-        'Inhale and reach your right arm to the sky.',
-        'Exhale and "thread" your right arm under your left, resting your right shoulder and cheek on the floor.',
-        'Hold for 20-30 seconds, then repeat on the other side.'
+        'SHOULDER SOCKET ROTATION: Begin with gentle Shoulder Rolls. Inhale shoulders up to your ears, then exhale as you roll them back and down. Repeat 5-8 times, then reverse the direction for 5-8 forward rolls.',
+        'ARM CIRCLES: Extend arms out to your sides. Make 10 small forward circles, then 10 backward circles. Gradually increase the circle size for another set of 10 in each direction.',
+        'ALTERNATE ARM RAISES: Stand tall. Inhale as you raise your right arm straight up overhead. Exhale as you lower it. Alternate with the left arm. Perform 8-10 raises per arm.',
+        'EAGLE ARMS (GARUDASANA): Extend arms forward. Cross the right arm over the left, bend elbows, and wrap forearms to bring palms together. Gently lift elbows and press forearms away. Hold for 20-30 seconds, then switch sides.',
+        'COW FACE ARMS (GOMUKHASANA): Reach your right arm up, bend the elbow, and place your hand on your upper back. Reach your left arm down and behind to clasp fingers. Use a strap if needed. Hold for 20-30 seconds, then switch.',
+        'CROSS-BODY SHOULDER STRETCH: Gently pull your right arm across your chest with your left hand, feeling a stretch in the back of your shoulder. Keep the shoulder down. Hold for 20-30 seconds, then switch sides.',
+        'OVERHEAD TRICEPS STRETCH: Reach your right arm overhead, bend the elbow, and place your hand on your upper back. Use your left hand to gently press on the right elbow. Hold for 20-30 seconds, then switch sides.',
+        'WARRIOR I (VIRABHADRASANA I): Step into a lunge with your right foot forward, back foot angled. Bend your front knee and raise your arms overhead, palms facing. Hold for 5 breaths.',
+        'WARRIOR II (VIRABHADRASANA II): From Warrior I, open your hips and arms out to the sides, parallel to the floor. Gaze over your front fingertips. Hold for 5 breaths, then repeat Warrior I & II on the other side.'
       ]
     },
     // ARMS, WRISTS & HANDS
