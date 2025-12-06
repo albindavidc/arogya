@@ -267,51 +267,18 @@ export class WarmUpComponent {
     },
     // ARMS, WRISTS & HANDS
     {
-      name: 'Wrist Circles',
+      name: 'Full Arm, Wrist & Hand Series',
       category: 'ARMS, WRISTS & HANDS',
-      description: 'Rotational movements lubricating the radiocarpal joint.',
-      imageUrl: 'https://www.spotebi.com/wp-content/uploads/2015/02/wrist-circles-exercise-illustration.jpg',
+      description: 'A complete sequence to lubricate joints, increase flexibility, and activate the muscles from your fingertips to your elbows, preparing them for weight-bearing poses.',
+      imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/warm-up/f-wrist.png?raw=true',
+      imageUrlFemale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/warm-up/f-wrist.png?raw=true',
+      imageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/warm-up/m-wrist.png?raw=true',
       steps: [
-        'Extend your arms forward or to the sides.',
-        'Make a fist or keep hands open.',
-        'Slowly rotate your wrists in a circular motion.',
-        'Perform 10 rotations clockwise, then 10 counterclockwise.'
-      ]
-    },
-    {
-      name: 'Wrist Flexion and Extension',
-      category: 'ARMS, WRISTS & HANDS',
-      description: 'Forward and backward bending of the wrists, preparing them for weight-bearing postures.',
-      imageUrl: 'https://www.acefitness.org/globalassets/sec-pt-images/6-wrist-flexion-and-extension.jpg',
-      steps: [
-        'Extend your right arm forward, palm facing up.',
-        'Gently bend your wrist down with your left hand, stretching the forearm. Hold for 15-20 seconds.',
-        'Now point your fingers up and gently pull them back. Hold for 15-20 seconds.',
-        'Repeat on the other arm.'
-      ]
-    },
-    {
-      name: 'Finger Spreads and Fists',
-      category: 'ARMS, WRISTS & HANDS',
-      description: 'Alternating extension and flexion of the fingers, activating intrinsic hand muscles.',
-      imageUrl: 'https://i.ytimg.com/vi/wzLi22g2A-M/maxresdefault.jpg',
-      steps: [
-        'Extend your arms forward.',
-        'Spread your fingers as wide as possible and hold for 5 seconds.',
-        'Make a tight fist and hold for 5 seconds.',
-        'Repeat this sequence 5-10 times.'
-      ]
-    },
-    {
-      name: 'Prayer Stretch',
-      category: 'ARMS, WRISTS & HANDS',
-      description: 'Deep wrist and forearm stretch opening the carpal tunnel.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2022/06/Prayer-Hands-at-Heart-Center-1.jpeg',
-      steps: [
-        'Bring your palms together in front of your chest in a prayer position.',
-        'Slowly lower your hands towards your waistline, keeping palms together.',
-        'Feel the stretch in your wrists and forearms. Hold for 20-30 seconds.',
-        'For Reverse Prayer, try to bring palms together behind your back.'
+        'WRIST CIRCLES: Extend arms forward. Make 10 slow, large circles with your wrists clockwise, then 10 counterclockwise.',
+        'WRIST FLEXION & EXTENSION: Extend right arm, palm up. Gently bend wrist down with left hand for 15-20 secs. Then, point fingers up and gently pull them back for 15-20 secs. Repeat on the left arm.',
+        'PRAYER & REVERSE PRAYER: Bring palms together at chest (Prayer). Gently lower hands towards waist. Hold 20-30 secs. Then, try to clasp hands behind your back, fingers pointing up (Reverse Prayer).',
+        'FINGER SPREADS & FISTS: Extend arms. Spread fingers wide for 5 secs, then make a tight fist for 5 secs. Repeat 5-10 times.',
+        'TABLETOP WRIST STRETCHES: On hands and knees, first place palms flat with fingers forward. Next, turn fingers to face your knees and gently rock back. Finally, place the back of your hands on the mat, fingers toward knees. Hold each position for 15-20 secs.'
       ]
     },
     // SPINE & TORSO
