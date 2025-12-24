@@ -52,24 +52,24 @@ export class AppComponent {
           englishName: 'Headstand',
           pronunciation: 'sheer-SHAH-sa-na',
           benefit: 'Increases brain oxygen', 
-          imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
           imageUrls: [
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/4.png?raw=true'
           ],
-          imageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
           imageUrlsMale: [
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/4.png?raw=true'
           ],
-          stepsImageUrlFemale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/f-steps.png?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/m-steps.png?raw=true',
-          handImageUrlFemale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/women/inversion-poses/Sirsasana/f-hand.png?raw=true',
-          handImageUrlMale: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/men/inversion-poses/Sirsasana/m-hand.png?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/f-steps.png?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/m-steps.png?raw=true',
+          handImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/f-hand.png?raw=true',
+          handImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/m-hand.png?raw=true',
           howToDo: [
             "Kneel on the floor and interlock your fingers to create a cup with your hands.",
             "Place your forearms and the crown of your head on the floor, cupping the back of your head with your hands.",
@@ -371,7 +371,7 @@ export class AppComponent {
           howToDo: [
             "Stand with your feet together or hip-width apart.",
             "Inhale and raise your arms overhead.",
-            "Exhale and bend your knees, as if sitting back into an imaginary chair.",
+            "Exhale and bend your knees, sitting back as if in an imaginary chair.",
             "Keep your thighs as parallel to the floor as possible. Keep your core engaged."
           ],
           frequency: [
@@ -390,7 +390,7 @@ export class AppComponent {
           englishName: 'Sun Salutation',
           pronunciation: 'SOOR-yah nah-mahs-KAR',
           benefit: 'Best for metabolism', 
-          imageUrl: 'https://github.com/albindavidc/Arogya-Resources/blob/main/public/special/surya-namaskar-transparent.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/special/surya-namaskar-transparent.png?raw=true',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
             "Start in Mountain Pose, flow through poses like Forward Fold, Lunge, Plank, Cobra/Upward Dog, and Downward Dog.",
