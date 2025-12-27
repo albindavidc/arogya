@@ -192,42 +192,21 @@ export class WarmUpComponent {
         'PALMING (REST): Rub palms to create warmth, then gently cup them over closed eyes for 30-60 seconds to relax.'
       ]
     },
-    // FACE & JAW
+    // FACE & JAW (UPDATED)
     {
-      name: 'Lion\'s Breath (Simhasana)',
+      name: 'Face & Jaw Relaxation Series',
       category: 'FACE & JAW',
-      description: 'Releasing tension in the jaw, face, and throat while activating facial muscles.',
-      imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/11/Lion-Pose_Andrew-Clark_2400x1350-1.jpg',
+      description: 'A complete routine to release tension in the jaw, face, and sinuses, improving circulation and relaxation.',
+      imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/warm-up/f-face.png?raw=true',
+      imageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/warm-up/f-face.png?raw=true',
+      imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/warm-up/m-face.png?raw=true',
       steps: [
-        'Kneel or sit comfortably.',
-        'Inhale deeply through your nose.',
-        'Exhale forcefully through your mouth, making a "ha" sound.',
-        'Simultaneously, open your mouth wide, stick your tongue out towards your chin, and gaze upwards.',
-        'Repeat 3-5 times.'
-      ]
-    },
-    {
-      name: 'Jaw Circles',
-      category: 'FACE & JAW',
-      description: 'Releasing the masseter and temporalis muscles, relieving TMJ tension.',
-      imageUrl: 'https://i.ytimg.com/vi/EM18yA08G98/maxresdefault.jpg',
-      steps: [
-        'Sit comfortably with your mouth gently closed.',
-        'Slowly move your lower jaw in a circular motion.',
-        'Complete 5 circles clockwise, then 5 circles counterclockwise.',
-        'Keep the movement gentle and relaxed.'
-      ]
-    },
-    {
-      name: 'Facial Massage',
-      category: 'FACE & JAW',
-      description: 'Self-massage of the forehead, temples, cheeks, and jawline to release fascial tension.',
-      imageUrl: 'https://media.self.com/photos/61dee0705a7698334b5c3bf7/master/w_1600%2Cc_limit/face-yoga-forehead.gif',
-      steps: [
-        'Using your fingertips, gently massage your forehead in circular motions.',
-        'Move to your temples and continue the gentle massage.',
-        'Massage your cheeks, jawline, and the area around your mouth.',
-        'Breathe deeply and relax your facial muscles.'
+        'LION\'S BREATH (Simhasana): Inhale deeply, exhale forcefully "HA" with tongue out and gaze up.',
+        'JAW CIRCLES: Slowly rotate your lower jaw 5 times clockwise, then 5 times counter-clockwise.',
+        'FOREHEAD & TEMPLE MASSAGE: Use fingertips to gently massage in circular motions to release tension.',
+        'SINUS PRESSURE RELEASE: Gently press points near the bridge of the nose and under cheekbones.',
+        'JAW RESISTANCE STRETCH: Place fist under chin, slowly open mouth against the gentle resistance.',
+        'JAWLINE MASSAGE: Use knuckles to sweep from the chin up towards the ears.'
       ]
     },
     // HEAD & NECK
@@ -281,7 +260,7 @@ export class WarmUpComponent {
         'TABLETOP WRIST STRETCHES: On hands and knees, first place palms flat with fingers forward. Next, turn fingers to face your knees and gently rock back. Finally, place the back of your hands on the mat, fingers toward knees. Hold each position for 15-20 secs.'
       ]
     },
-    // SPINE & TORSO (UPDATED)
+    // SPINE & TORSO
     {
       name: 'Spine Mobility Series 1',
       category: 'SPINE & TORSO',
@@ -313,7 +292,7 @@ export class WarmUpComponent {
         'Hold for 5-10 breaths. Press into left hand to rise and switch sides.'
       ]
     },
-    // CORE & ABDOMEN (UPDATED)
+    // CORE & ABDOMEN
     {
       name: 'Core Series 1: Stability & Activation',
       category: 'CORE & ABDOMEN',
@@ -356,76 +335,31 @@ export class WarmUpComponent {
         'Continue this gentle rocking motion to release the lower back and hips.'
       ]
     },
-    // HIPS & PELVIS
+    // HIPS & PELVIS (UPDATED)
     {
-      name: 'Hip Circles',
+      name: 'Hip & Pelvis Series 1: Mobility & Opening',
       category: 'HIPS & PELVIS',
-      description: 'Standing or tabletop circular movements that lubricate the acetabulofemoral joint.',
-      imageUrl: 'https://www.spotebi.com/wp-content/uploads/2014/10/hip-circles-exercise-illustration.jpg',
+      description: 'A dynamic sequence to lubricate the hip joints and open the adductors and hip flexors.',
+      imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/warm-up/f-hip1.png?raw=true',
+      imageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/warm-up/f-hip1.png?raw=true',
+      imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/warm-up/m-hip1.png?raw=true',
       steps: [
-        'Stand with feet hip-width apart, hands on your hips.',
-        'Gently push your hips forward, then circle them to the right, back, and left.',
-        'Make 5-8 large, slow circles in one direction, then switch.'
+        'HIP CIRCLES: Stand or kneel. Make large circles with hips, 5x each direction.',
+        'BUTTERFLY POSE (Baddha Konasana): Soles together, knees wide. Hold feet, sit tall, gently flutter knees.',
+        'LOW LUNGE (Anjaneyasana): Step one foot forward, lower back knee. Sink hips to stretch psoas.',
+        'LIZARD POSE (Utthan Pristhasana): Bring both hands inside front foot. Heel-toe foot out. Deepen the lunge.'
       ]
     },
     {
-      name: 'Butterfly Pose (Baddha Konasana)',
+      name: 'Hip & Pelvis Series 2: Deep Release',
       category: 'HIPS & PELVIS',
-      description: 'Opens the inner thighs and groin, warming the hip adductors.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2021/09/Bound-Angle-Pose_Andrew-Clark_2400x1350-2-e1632338601839.jpeg',
+      description: 'Targeted stretches for the rotators and outer hips to release deep-seated tension.',
+      imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/warm-up/f-hip2.png?raw=true',
+      imageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/warm-up/f-hip2.png?raw=true',
+      imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/warm-up/m-hip2.png?raw=true',
       steps: [
-        'Sit on the floor with the soles of your feet together and your knees out to the sides.',
-        'Hold onto your feet or ankles.',
-        'Sit tall, and gently flap your knees like a butterfly\'s wings for 20-30 seconds.',
-        'For a deeper stretch, hinge forward at the hips.'
-      ]
-    },
-    {
-      name: 'Figure Four Stretch',
-      category: 'HIPS & PELVIS',
-      description: 'Targets the piriformis and deep external hip rotators, releasing tension.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2021/11/Eye-of-the-Needle-Pose_Andrew-Clark_2400x1350-1.jpeg',
-      steps: [
-        'Lie on your back with knees bent.',
-        'Cross your right ankle over your left knee.',
-        'Reach through and clasp your hands behind your left thigh.',
-        'Gently pull the left leg towards you. Hold for 30 seconds and switch sides.'
-      ]
-    },
-    {
-      name: 'Low Lunge (Anjaneyasana)',
-      category: 'HIPS & PELVIS',
-      description: 'Deep hip flexor stretch warming the psoas, iliacus, and rectus femoris.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2021/10/Low-Lunge_Andrew-Clark_2400x1350-2-e1634063715694.jpeg',
-      steps: [
-        'From a tabletop position, step your right foot forward between your hands.',
-        'Slide your left knee back until you feel a comfortable stretch in your hip flexor.',
-        'Keep your front knee stacked over your ankle.',
-        'Hold for 30 seconds, then switch sides.'
-      ]
-    },
-    {
-      name: 'Lizard Pose (Utthan Pristhasana)',
-      category: 'HIPS & PELVIS',
-      description: 'Intensified hip opener targeting the hip flexors, adductors, and groin region.',
-      imageUrl: 'https://www.yogajournal.com/wp-content/uploads/2022/01/Lizard-Pose_Andrew-Clark_2400x1350-2.jpeg',
-      steps: [
-        'From a low lunge, place both hands on the inside of your front foot.',
-        'Heel-toe your front foot out to the edge of your mat.',
-        'Stay on your hands or lower down to your forearms for a deeper stretch.',
-        'Hold for 30 seconds and switch sides.'
-      ]
-    },
-    {
-      name: '90-90 Hip Switches',
-      category: 'HIPS & PELVIS',
-      description: 'Dynamic internal and external rotation transitions that warm all planes of hip movement.',
-      imageUrl: 'https://i.ytimg.com/vi/a_23Gj8l-vY/maxresdefault.jpg',
-      steps: [
-        'Sit on the floor with your knees bent and feet wider than your hips.',
-        'Gently drop both knees to the right side, aiming for 90-degree angles.',
-        'Lift your knees back to the center and switch, dropping them to the left.',
-        'Continue this fluid "windshield wiper" motion for 30-60 seconds.'
+        'FIGURE FOUR STRETCH: Lie on back. Cross ankle over opposite knee. Clasp thigh and pull close.',
+        '90-90 HIP SWITCHES: Sit with feet wide. Drop knees to one side (90-90 angles), then switch to the other.'
       ]
     },
     // LEGS & THIGHS
