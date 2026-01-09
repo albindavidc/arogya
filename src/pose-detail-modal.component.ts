@@ -6,14 +6,14 @@ import { Pose } from './models/pose.model';
   template: `
     <div 
       (click)="close.emit()" 
-      class="fixed inset-0 bg-black/70 backdrop-blur-md z-[70] animate-fade-in"
+      class="fixed inset-0 bg-black/70 backdrop-blur-md z-40 animate-fade-in"
       aria-hidden="true">
     </div>
 
     <div 
       role="dialog" 
       aria-modal="true" 
-      class="fixed inset-0 z-[80] flex items-center justify-center p-4">
+      class="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div 
         (click)="$event.stopPropagation()"
         class="bg-black/50 backdrop-blur-xl border border-accent-20 rounded-2xl shadow-2xl shadow-[0_0_50px_rgba(180,160,232,0.15)] w-full max-w-3xl max-h-[90vh] flex flex-col md:flex-row animate-scale-in">
@@ -24,25 +24,25 @@ import { Pose } from './models/pose.model';
           class="relative w-full md:w-1/2 h-[45vh] md:h-auto bg-black/20 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none overflow-hidden flex-shrink-0 cursor-zoom-in">
           <img [src]="selectedImageUrl()" [alt]="pose().englishName" width="600" height="800" class="w-full h-full object-contain">
           
-          <!-- Image Thumbnails - Left -->
+          <!-- Image Thumbnails - Left (Variations & Main) -->
           @if (leftThumbnails().length > 0) {
             <div class="absolute left-3 bottom-3 z-20 grid grid-cols-2 gap-2">
               @for(imageUrl of leftThumbnails(); track imageUrl) {
                 <button (click)="$event.stopPropagation(); selectImage(imageUrl)" 
-                        [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none ' + (selectedImageUrl() === imageUrl ? 'border-primary-start scale-110' : 'border-transparent hover:border-white/50')">
-                  <img [src]="imageUrl" [alt]="'Variation for ' + pose().englishName" width="48" height="48" class="w-full h-full object-cover">
+                        [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none bg-black/40 ' + (selectedImageUrl() === imageUrl ? 'border-primary-start scale-110 ring-2 ring-primary-start/30' : 'border-white/20 hover:border-white/50')">
+                  <img [src]="imageUrl" [alt]="'View of ' + pose().englishName" width="48" height="48" class="w-full h-full object-cover">
                 </button>
               }
             </div>
           }
 
-          <!-- Image Thumbnails - Right -->
+          <!-- Image Thumbnails - Right (Steps & Anatomy) -->
           @if (rightThumbnails().length > 0) {
             <div class="absolute right-3 bottom-3 z-20 flex flex-col-reverse space-y-2 space-y-reverse">
               @for(imageUrl of rightThumbnails(); track imageUrl) {
                 <button (click)="$event.stopPropagation(); selectImage(imageUrl)" 
-                        [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none ' + (selectedImageUrl() === imageUrl ? 'border-primary-start scale-110' : 'border-transparent hover:border-white/50')">
-                  <img [src]="imageUrl" [alt]="'Variation for ' + pose().englishName" width="48" height="48" class="w-full h-full object-cover">
+                        [class]="'w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 transition-all duration-300 focus:outline-none bg-black/40 ' + (selectedImageUrl() === imageUrl ? 'border-accent scale-110 ring-2 ring-accent/30' : 'border-white/20 hover:border-white/50')">
+                  <img [src]="imageUrl" [alt]="'Steps for ' + pose().englishName" width="48" height="48" class="w-full h-full object-cover">
                 </button>
               }
             </div>
@@ -150,7 +150,7 @@ import { Pose } from './models/pose.model';
         (pointerdown)="onPointerDown($event)"
         (pointermove)="onPointerMove($event)"
         (pointerup)="onPointerUp($event)"
-        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[90] flex items-center justify-center animate-fade-in"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] flex items-center justify-center animate-fade-in"
         [style.cursor]="zoomScale() > 1 ? 'grab' : 'zoom-out'">
         
         <img 
@@ -164,7 +164,7 @@ import { Pose } from './models/pose.model';
         <!-- Close Button -->
         <button 
           (click)="closeFullscreen()" 
-          class="absolute top-4 right-4 z-[100] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+          class="absolute top-4 right-4 z-[70] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
           aria-label="Close fullscreen image">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
@@ -172,7 +172,7 @@ import { Pose } from './models/pose.model';
         <!-- Reset Zoom Button -->
         <button 
           (click)="$event.stopPropagation(); resetZoom()" 
-          class="absolute bottom-4 right-4 z-[100] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+          class="absolute bottom-4 right-4 z-[70] p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
           aria-label="Reset zoom">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor"><path d="M5 5h5V3H3v7h2V5zm14-2h-7v2h5v5h2V3zM5 19v-5H3v7h7v-2H5zm14 5h-7v-2h5v-5h2v7z"/></svg>
         </button>
@@ -212,8 +212,19 @@ export class PoseDetailModalComponent {
 
   readonly leftThumbnails = computed(() => {
     const p = this.pose();
-    const urls = (this.gender() === 'male' && p.imageUrlsMale) ? p.imageUrlsMale : p.imageUrls;
-    return urls ?? [];
+    const gender = this.gender();
+    // Always identify the main image URL
+    const mainUrl = (gender === 'male' && p.imageUrlMale) ? p.imageUrlMale : p.imageUrl;
+    // Get array of variation URLs
+    const extraUrls = ((gender === 'male' && p.imageUrlsMale) ? p.imageUrlsMale : p.imageUrls) ?? [];
+    
+    // Create a set to deduplicate, starting with the main URL if it exists
+    const urlSet = new Set<string>();
+    if (mainUrl) urlSet.add(mainUrl);
+    extraUrls.forEach(url => urlSet.add(url));
+    
+    // Return array, ensuring the main pose is first
+    return Array.from(urlSet);
   });
 
   readonly rightThumbnails = computed(() => {
@@ -240,9 +251,9 @@ export class PoseDetailModalComponent {
       const gender = this.gender();
       let imageUrl: string;
       if (gender === 'male' && p.imageUrlMale) {
-        imageUrl = p.imageUrlsMale?.[0] ?? p.imageUrlMale;
+        imageUrl = p.imageUrlMale;
       } else {
-        imageUrl = p.imageUrls?.[0] ?? p.imageUrl;
+        imageUrl = p.imageUrl;
       }
       this.selectedImageUrl.set(imageUrl);
     });

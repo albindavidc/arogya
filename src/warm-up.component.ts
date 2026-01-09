@@ -91,7 +91,7 @@ interface InstructionCategory {
              <div class="h-px flex-1 bg-white/10"></div>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
             @for(instruction of generalInstructions; track instruction.title) {
               <div class="bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-xl p-5 hover:border-white/20 transition-all duration-300 group relative">
                 <div class="flex justify-between items-start mb-3">
@@ -259,24 +259,26 @@ interface InstructionCategory {
                <p class="text-[#F4F4F8] text-base leading-relaxed">{{ instruction.appliedToText }}</p>
              </div>
 
-             <!-- Matching Exercises Grid -->
+             <!-- Matching Exercises List (Text Only) -->
              <div>
                <h4 class="text-sm font-bold text-[#6E6E7A] uppercase mb-4 flex items-center gap-2">
-                 Recommended Exercises
+                 Recommended Warm-Ups
                  <span class="bg-white/10 text-white text-[10px] px-2 py-0.5 rounded-full">{{ relatedExercises().length }}</span>
                </h4>
                
-               @if (relatedExercises().length > 0) {
-                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                   @for(exercise of relatedExercises(); track exercise.name) {
-                      <div (click)="openModal(exercise)" class="bg-white/5 border border-white/5 rounded-xl p-3 hover:bg-white/10 hover:border-accent/30 transition-all cursor-pointer flex gap-3 items-center group">
-                        <img [src]="gender() === 'male' && exercise.imageUrlMale ? exercise.imageUrlMale : (exercise.imageUrlFemale || exercise.imageUrl)" 
-                             class="w-16 h-16 rounded-lg object-cover bg-black/50" 
-                             alt="Thumbnail">
-                        <div>
-                          <h5 class="font-bold text-white text-sm group-hover:text-accent transition-colors line-clamp-2">{{ exercise.name }}</h5>
-                          <span class="text-[10px] text-[#6E6E7A] uppercase mt-1 block">{{ exercise.category }}</span>
-                        </div>
+               @if (groupedRelatedExercises().length > 0) {
+                 <div class="space-y-4">
+                   @for(group of groupedRelatedExercises(); track group.category) {
+                      <div class="bg-white/5 rounded-xl p-4 border border-white/5 hover:bg-white/10 transition-colors">
+                        <h5 class="text-accent font-bold text-xs uppercase tracking-wider mb-2 flex items-center gap-2">
+                           <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                           {{ group.category }}
+                        </h5>
+                        <ul class="space-y-2 pl-4 border-l border-white/10">
+                          @for(name of group.names; track name) {
+                            <li class="text-[#F4F4F8] text-sm font-medium">{{ name }}</li>
+                          }
+                        </ul>
                       </div>
                    }
                  </div>
@@ -347,6 +349,19 @@ export class WarmUpComponent {
     return this.warmUpExercises.filter(ex => 
       instruction.targetCategories.includes(ex.category)
     );
+  });
+
+  readonly groupedRelatedExercises = computed(() => {
+    const exercises = this.relatedExercises();
+    const groups = new Map<string, string[]>();
+
+    for (const ex of exercises) {
+      if (!groups.has(ex.category)) {
+        groups.set(ex.category, []);
+      }
+      groups.get(ex.category)!.push(ex.name);
+    }
+    return Array.from(groups.entries()).map(([category, names]) => ({ category, names }));
   });
 
   // Determine the current navigation list context
@@ -426,144 +441,79 @@ export class WarmUpComponent {
 
   readonly generalInstructions: InstructionCategory[] = [
     {
-      title: 'Rotational Movements',
-      subTitle: 'Circles',
-      purpose: 'Lubricate joints, increase synovial fluid, warm musculature',
+      title: 'Joint Rotations & Patterns',
+      subTitle: 'Circles & Tracing',
+      purpose: 'Lubricate joints, increase synovial fluid, and improve coordination.',
       instructions: [
-        '8-10 complete circles each direction',
-        'Move slowly and controlled',
-        'Maintain continuous movement',
-        'Breathing: Natural, steady breath'
+        'Reps: 8-10 slow circles or tracings (figure-8s)',
+        'Sets: 1-2 per joint',
+        'Breath: Inhale for half circle, Exhale for half circle',
+        'Freq: Daily, ideally upon waking',
+        'Tip: Move slowly with control through full range'
       ],
       duration: '30-45s per joint',
-      appliedToText: 'Ankles, wrists, shoulders, hips, knees, neck',
-      targetCategories: ['ANKLES & FEET', 'ARMS, WRISTS & HANDS', 'SHOULDERS & UPPER BACK', 'HIPS & PELVIS', 'KNEES & LOWER LEGS', 'HEAD & NECK']
+      appliedToText: 'Neck, shoulders, wrists, hips, knees, ankles',
+      targetCategories: ['HEAD & NECK', 'SHOULDERS & UPPER BACK', 'ARMS, WRISTS & HANDS', 'HIPS & PELVIS', 'KNEES & LOWER LEGS', 'ANKLES & FEET']
     },
     {
-      title: 'Static Holds',
-      subTitle: 'Stretches',
-      purpose: 'Lengthen muscles, increase flexibility, release tension',
+      title: 'Active Motion & Flows',
+      subTitle: 'Lifts, Flexion & Reps',
+      purpose: 'Increase blood flow, warm muscles, and establish range of motion.',
       instructions: [
-        'Hold 15-30s (beginner) or 30-60s (adv)',
-        'Relax into stretch on exhale',
-        'Find your edge without pain',
-        'Avoid bouncing'
-      ],
-      duration: '15-60s per hold',
-      appliedToText: 'Hamstrings, hip flexors, quadriceps, calves, chest, shoulders, spine',
-      targetCategories: ['LEGS & THIGHS', 'HIPS & PELVIS', 'KNEES & LOWER LEGS', 'SHOULDERS & UPPER BACK', 'SPINE & TORSO']
-    },
-    {
-      title: 'Dynamic Movements',
-      subTitle: 'Repetitions',
-      purpose: 'Increase blood flow, active warming, improve mobility',
-      instructions: [
-        '10-15 reps per side',
-        'Controlled rhythm and tempo',
-        'Coordinate with breath',
-        'Gradually increase range of motion'
+        'Reps: 10-15 controlled repetitions',
+        'Sets: 2-3 sets',
+        'Breath: Inhale to lift/open (expansion), Exhale to lower/close (contraction)',
+        'Freq: Pre-workout or warm-up',
+        'Tip: Avoid momentum, focus on muscle engagement'
       ],
       duration: '45-60s per exercise',
-      appliedToText: 'Leg swings, arm circles, cat-cow, torso twists, lunges',
-      targetCategories: ['LEGS & THIGHS', 'SHOULDERS & UPPER BACK', 'SPINE & TORSO', 'HIPS & PELVIS']
+      appliedToText: 'Leg swings, arm raises, cat-cow, squats, heel raises',
+      targetCategories: ['LEGS & THIGHS', 'SHOULDERS & UPPER BACK', 'SPINE & TORSO', 'HIPS & PELVIS', 'CORE & ABDOMEN', 'KNEES & LOWER LEGS']
     },
     {
-      title: 'Pulsing Movements',
-      subTitle: 'Mini Reps',
-      purpose: 'Activate muscles, build endurance, deepen stretch',
+      title: 'Static & Isometric Holds',
+      subTitle: 'Stretches & Stability',
+      purpose: 'Lengthen tight muscles (stretching) or build stability (isometric).',
       instructions: [
-        '20-30 small pulsing movements',
-        'Small range (1-2 inches)',
-        'Maintain continuous tension',
-        'Breathe naturally'
+        'Time: Hold for 15-30 seconds',
+        'Sets: 2-3 holds per side',
+        'Breath: Deep, steady 4-count inhale and 4-count exhale',
+        'Freq: Post-workout or cooldown',
+        'Tip: Engage core at 70% effort (stability) or relax into stretch'
+      ],
+      duration: '15-30s per hold',
+      appliedToText: 'Hamstring stretch, plank hold, wall sits, neck release',
+      targetCategories: ['LEGS & THIGHS', 'HIPS & PELVIS', 'SPINE & TORSO', 'SHOULDERS & UPPER BACK', 'CORE & ABDOMEN']
+    },
+    {
+      title: 'Rhythmic Pulses & Shifts',
+      subTitle: 'Micro-Movements',
+      purpose: 'Improve balance, proprioception, and deepen mobility at end-range.',
+      instructions: [
+        'Reps: 20-30 small pulses',
+        'Sets: 1-2 sets',
+        'Breath: Continuous, rhythmic natural breathing',
+        'Freq: Before deep static stretching',
+        'Tip: Keep range small (1-2 inches) and continuous'
       ],
       duration: '30-45s',
-      appliedToText: 'Plank pulses, squat pulses, calf raises, toe taps',
-      targetCategories: ['CORE & ABDOMEN', 'KNEES & LOWER LEGS', 'ANKLES & FEET']
+      appliedToText: 'Lunge pulses, weight shifts, heel-toe rocks',
+      targetCategories: ['ANKLES & FEET', 'HIPS & PELVIS', 'KNEES & LOWER LEGS', 'CORE & ABDOMEN']
     },
     {
-      title: 'Isometric Holds',
-      subTitle: 'Activation',
-      purpose: 'Build strength, improve stability, activate muscles',
+      title: 'Extremity Activation',
+      subTitle: 'Hands & Feet',
+      purpose: 'Wake up small intrinsic muscles to improve dexterity and grounding.',
       instructions: [
-        'Hold for 10-30 seconds',
-        'Engage at 70-80% max effort',
-        'Do not hold your breath',
-        'Rest 10-15s between holds'
+        'Reps: 10-15 cycles (Spread & Squeeze)',
+        'Sets: 2 sets',
+        'Breath: Inhale to spread wide, Exhale to squeeze tight',
+        'Freq: Anytime stiffness occurs',
+        'Tip: Pause briefly at the extreme of each movement'
       ],
-      duration: '10-30s per hold',
-      appliedToText: 'Plank holds, wall sits, chair pose, warrior holds, balance poses',
-      targetCategories: ['CORE & ABDOMEN', 'LEGS & THIGHS', 'SHOULDERS & UPPER BACK']
-    },
-    {
-      title: 'Rocking / Shifting',
-      subTitle: 'Balance',
-      purpose: 'Improve balance, warm stabilizers, develop proprioception',
-      instructions: [
-        '15-20 controlled rocks/shifts',
-        'Move slowly with intention',
-        'Pause briefly at end range',
-        'Keep core engaged'
-      ],
-      duration: '45-60s',
-      appliedToText: 'Heel-toe rocks, weight shifts in lunges, side-to-side sways',
-      targetCategories: ['ANKLES & FEET', 'HIPS & PELVIS', 'SPINE & TORSO']
-    },
-    {
-      title: 'Flexion & Extension',
-      subTitle: 'Alternating',
-      purpose: 'Warm antagonist pairs, establish range of motion',
-      instructions: [
-        '12-15 complete cycles',
-        'Move through full range',
-        'Inhale one way, exhale other',
-        'Smooth transitions'
-      ],
-      duration: '45-60s',
-      appliedToText: 'Foot flexion/extension, wrist flexion/extension, spinal flexion/extension',
-      targetCategories: ['ANKLES & FEET', 'ARMS, WRISTS & HANDS', 'SPINE & TORSO']
-    },
-    {
-      title: 'Spreading & Contracting',
-      subTitle: 'Dexterity',
-      purpose: 'Activate small intrinsic muscles, improve control',
-      instructions: [
-        '10-15 complete cycles',
-        'Emphasize max spread & contraction',
-        'Pause briefly at extremes',
-        'Focus on target area'
-      ],
-      duration: '30-45s',
-      appliedToText: 'Toe splays, finger spreads, shoulder blade squeezes',
-      targetCategories: ['ANKLES & FEET', 'ARMS, WRISTS & HANDS', 'SHOULDERS & UPPER BACK']
-    },
-    {
-      title: 'Lifting & Lowering',
-      subTitle: 'Controlled Raises',
-      purpose: 'Build strength, improve control, warm specific groups',
-      instructions: [
-        '12-15 controlled lifts',
-        '2-3s up, 2-3s down',
-        'Avoid momentum',
-        'Maintain alignment'
-      ],
-      duration: '45-60s',
-      appliedToText: 'Leg raises, arm raises, shoulder shrugs, calf raises',
-      targetCategories: ['CORE & ABDOMEN', 'LEGS & THIGHS', 'SHOULDERS & UPPER BACK', 'KNEES & LOWER LEGS']
-    },
-    {
-      title: 'Drawing / Tracing',
-      subTitle: 'Coordination',
-      purpose: 'Improve coordination, increase range, refine motor control',
-      instructions: [
-        'Trace shapes (circles, 8s, alphabet)',
-        '5-8 tracings per direction',
-        'Move slowly and precisely',
-        'Keep body stable'
-      ],
-      duration: '45-60s',
-      appliedToText: 'Ankle alphabet, wrist circles, hip circles, nose/chin tracings for neck',
-      targetCategories: ['ANKLES & FEET', 'ARMS, WRISTS & HANDS', 'HIPS & PELVIS', 'HEAD & NECK']
+      duration: '30s',
+      appliedToText: 'Finger spreads, toe splays, fist clenches',
+      targetCategories: ['ANKLES & FEET', 'ARMS, WRISTS & HANDS']
     }
   ];
 

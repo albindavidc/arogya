@@ -13,9 +13,9 @@
           <div class="flex items-center gap-4 md:gap-6">
             <nav class="hidden md:flex items-center space-x-6">
               @for(category of poseCategories(); track category.id) {
-                <button (click)="scrollTo(category.id)" class="text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">{{ category.title }}</button>
+                <button (click)="scrollTo(category.id)" class="text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">{{ category.title.split(':')[0] }}</button>
               }
-              <button (click)="scrollTo('top5')" class="text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">Top 5 Poses</button>
+              <button (click)="scrollTo('top5')" class="text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">Top 5</button>
             </nav>
           </div>
 
@@ -81,8 +81,9 @@
                   class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
                 <div class="holo-border-container h-full">
                     <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
-                      <figure [class]="category.id === 'inversion' && pose.sanskritName !== 'Surya Namaskar' ? 'overflow-hidden rounded-t-xl' : 'aspect-[4/3] overflow-hidden rounded-t-xl'">
-                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" [class.h-full]="category.id !== 'inversion' || pose.sanskritName === 'Surya Namaskar'" [class.object-contain]="pose.sanskritName === 'Surya Namaskar'" [class.p-4]="pose.sanskritName === 'Surya Namaskar'" />
+                      <!-- Updated conditional styling for Phase 4 (Inversions) or Surya Namaskar -->
+                      <figure [class]="category.id === 'phase4' && pose.sanskritName !== 'Surya Namaskar' ? 'overflow-hidden rounded-t-xl' : 'aspect-[4/3] overflow-hidden rounded-t-xl'">
+                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" [class.h-full]="category.id !== 'phase4' || pose.sanskritName === 'Surya Namaskar'" [class.object-contain]="pose.sanskritName === 'Surya Namaskar'" [class.p-4]="pose.sanskritName === 'Surya Namaskar'" />
                       </figure>
                       <div class="p-5 flex flex-col flex-grow">
                         <div>
