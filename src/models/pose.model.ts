@@ -9,8 +9,12 @@ export interface FrequencyDetail {
 export interface Pose {
   sanskritName: string;
   englishName: string;
+  subCategory?: string; // Optional sub-category for grouping within a phase
+  schedule?: string[]; // New: Recommended days (e.g., ['Mon', 'Wed', 'Fri'])
   pronunciation: string;
   benefit: string;
+  pranayama?: string[]; // Breath work
+  mudra?: string[]; // Hand gestures
   imageUrl: string;
   imageUrls?: string[];
   imageUrlMale?: string;

@@ -18,6 +18,250 @@ export class AppComponent {
   selectedGender = signal<'female' | 'male'>('female');
   showWarmUpView = signal(false);
 
+  // --- Pranayama Data ---
+  // Reordered: Core Essentials first, then Logical Progression
+  readonly breathingTechniques = [
+    // --- CATEGORY: Core Essentials (Daily Practice) ---
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Diaphragmatic Breathing (Belly Breathing)', 
+      ratio: 'Natural', 
+      level: 'Beginner', 
+      sequence: '<strong>Nose</strong> → <strong>Belly</strong> expands → <strong>Belly</strong> contracts → <strong>Nose</strong>', 
+      benefits: 'Foundation practice, activates diaphragm, reduces stress' 
+    },
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Ujjayi Breath (Ocean Breath)', 
+      ratio: '4:4 or Natural', 
+      level: 'Beginner', 
+      sequence: '<strong>Nose</strong> → <strong>Throat</strong> constriction → <strong>Lungs</strong> → <strong>Throat</strong> constriction → <strong>Nose</strong>', 
+      benefits: 'Builds heat, enhances focus, used in asana practice' 
+    },
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Nadi Shodhana (Alternate Nostril)', 
+      ratio: '4:4 / 4:4:4', 
+      level: 'Beg-Adv', 
+      sequence: '<strong>Right Nose</strong> → <strong>Lungs</strong> → <strong>Hold</strong> → <strong>Left Nose</strong> | <strong>Left Nose</strong> → <strong>Lungs</strong> → <strong>Hold</strong> → <strong>Right Nose</strong>', 
+      benefits: 'Balances brain hemispheres, clears nadis' 
+    },
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Kapalabhati (Skull Shining)', 
+      ratio: 'Rapid passive/active', 
+      level: 'Advanced', 
+      sequence: '<strong>Nose</strong> (passive) → <strong>Belly contracts</strong> (forced) → <strong>Repeat</strong>', 
+      benefits: 'Cleanses respiratory system, energizes, clears mind' 
+    },
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Bhastrika (Bellows Breath)', 
+      ratio: '1:1 rapid', 
+      level: 'Advanced', 
+      sequence: '<strong>Nose</strong> (Forced In) → <strong>Nose</strong> (Forced Out) → <strong>Equal 1:1 Rhythm</strong>', 
+      benefits: 'Generates heat, increases prana, clears nadis' 
+    },
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Bhramari (Bee Breath)', 
+      ratio: 'Natural', 
+      level: 'Intermediate', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> → <strong>Humming vibration</strong> → <strong>Nose</strong>', 
+      benefits: 'Calms mind instantly, reduces anxiety and anger' 
+    },
+    { 
+      category: 'Core Essentials (Daily Practice)',
+      name: 'Box Breathing (Sama Vritti Kumbhaka)', 
+      ratio: '4:4:4:4', 
+      level: 'Intermediate', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (4) → <strong>Hold in</strong> (4) → <strong>Nose</strong> (4) → <strong>Hold empty</strong> (4)', 
+      benefits: 'Tactical breathing, enhances focus and calm' 
+    },
+
+    // --- CATEGORY: The Complete Sequence (Foundational -> Advanced) ---
+    
+    // Foundational Awareness
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Clavicular Breathing (Upper Chest)', 
+      ratio: 'Natural', 
+      level: 'Beginner', 
+      sequence: '<strong>Nose</strong> → <strong>Upper chest</strong> rises → <strong>Upper chest</strong> falls → <strong>Nose</strong>', 
+      benefits: 'Awareness of upper lung breathing, completes full yogic breath' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Three-Part Breath (Dirga)', 
+      ratio: 'Natural', 
+      level: 'Beginner', 
+      sequence: '<strong>Nose</strong> → <strong>Belly</strong> → <strong>Ribs</strong> → <strong>Chest</strong> → <strong>Hold</strong> → <strong>Chest</strong> → <strong>Ribs</strong> → <strong>Belly</strong> → <strong>Nose</strong>', 
+      benefits: 'Full lung expansion, complete breath awareness' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Equal (Sama Vritti)', 
+      ratio: '4:4', 
+      level: 'Beginner', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (4 counts) → <strong>Lungs</strong> → <strong>Nose</strong> (4 counts)', 
+      benefits: 'Balances nervous system, calms mind' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Extended Exhale', 
+      ratio: '4:6 / 4:8', 
+      level: 'Beginner', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (4 counts) → <strong>Lungs</strong> → <strong>Nose</strong> (6-8 counts)', 
+      benefits: 'Activates parasympathetic, reduces anxiety' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Coherent Breathing', 
+      ratio: '5:5', 
+      level: 'Beg-Int', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (5 counts) → <strong>Lungs</strong> → <strong>Nose</strong> (5 counts)', 
+      benefits: 'Improves heart rate variability, optimal breathing rate' 
+    },
+    
+    // Balancing & Refinement
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Viloma (Interrupted Breath)', 
+      ratio: 'Paused intervals', 
+      level: 'Intermediate', 
+      sequence: '<strong>Nose</strong> → <strong>Pause</strong> → <strong>Nose</strong> → <strong>Pause</strong> → <strong>Lungs full</strong> → ... → <strong>Empty</strong>', 
+      benefits: 'Builds lung capacity, refines breath control' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Ratio Breathing', 
+      ratio: '4:6, 5:7', 
+      level: 'Intermediate', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (shorter) → <strong>Lungs</strong> → <strong>Nose</strong> (longer)', 
+      benefits: 'Customizable nervous system regulation' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Anuloma Viloma', 
+      ratio: '4:4 or varies', 
+      level: 'Beg-Int', 
+      sequence: '<strong>Both Nostrils</strong> → <strong>Lungs</strong> → <strong>Alternate nostril exhale</strong>', 
+      benefits: 'Similar to Nadi Shodhana, balances energy channels' 
+    },
+
+    // Cooling & Heating (Temperature)
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Sitali (Cooling Breath)', 
+      ratio: 'Natural', 
+      level: 'Intermediate', 
+      sequence: '<strong>Mouth</strong> (rolled tongue) → <strong>Lungs</strong> → <strong>Nose</strong>', 
+      benefits: 'Cools body, reduces pitta, calms anger' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Sitkari/Sheetkari (Hissing Breath)', 
+      ratio: 'Natural', 
+      level: 'Intermediate', 
+      sequence: '<strong>Mouth</strong> (clenched teeth) → <strong>Lungs</strong> → <strong>Nose</strong>', 
+      benefits: 'Cooling effect, lowers blood pressure, alternative to Sitali' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Chandra Bhedana (Left Nostril)', 
+      ratio: '4:4 or 4:8:4', 
+      level: 'Int-Adv', 
+      sequence: '<strong>Left Nose</strong> → <strong>Lungs</strong> → <strong>Hold</strong> → <strong>Right Nose</strong>', 
+      benefits: 'Cools, calms, activates Ida nadi' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Surya Bhedana (Right Nostril)', 
+      ratio: '4:4 or 4:8:4', 
+      level: 'Int-Adv', 
+      sequence: '<strong>Right Nose</strong> → <strong>Lungs</strong> → <strong>Hold</strong> → <strong>Left Nose</strong>', 
+      benefits: 'Energizes, increases heat, activates Pingala nadi' 
+    },
+
+    // Kriyas & Prep
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Swana Pranayama (Panting Breath)', 
+      ratio: 'Rapid', 
+      level: 'Intermediate', 
+      sequence: '<strong>Mouth</strong> (tongue out) → <strong>Rapid panting</strong> → <strong>Belly movement</strong>', 
+      benefits: 'Preparation for Bhastrika and Kapalabhati' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Agnisara/Agnisar Kriya', 
+      ratio: 'Bahir Kumbhaka', 
+      level: 'Int-Adv', 
+      sequence: '<strong>Nose</strong> → <strong>Exhale completely</strong> → <strong>Hold empty</strong> → <strong>Belly pumping</strong> → <strong>Nose</strong>', 
+      benefits: 'Stimulates digestive fire, strengthens abdomen, detoxifies' 
+    },
+
+    // Advanced Retention & States
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Antar Kumbhaka (Internal Retention)', 
+      ratio: '4:2:8 / 4:8:8', 
+      level: 'Int-Adv', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (4) → <strong>Hold in</strong> (2-8) → <strong>Nose</strong> (8)', 
+      benefits: 'Increases oxygen absorption, builds energy' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Bahya Kumbhaka/Bahya Pranayama', 
+      ratio: '4:8:12 (1:2:3)', 
+      level: 'Advanced', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (4) → <strong>Nose</strong> (8) → <strong>Hold empty</strong> (12) → <strong>3 Bandhas</strong>', 
+      benefits: 'Deep relaxation, digestive health, reproductive system' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Classical Pranayama', 
+      ratio: '1:4:2', 
+      level: 'Advanced', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (1) → <strong>Hold in</strong> (4) → <strong>Nose</strong> (2)', 
+      benefits: 'Traditional intensive practice, expert supervision required' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Murchha Pranayama (Swooning Breath)', 
+      ratio: 'Extended retention', 
+      level: 'Advanced', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> (full) → <strong>Jalandhar Bandha</strong> → <strong>Hold</strong> → <strong>Nose</strong>', 
+      benefits: 'Induces altered consciousness, advanced meditation state' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Plavini Pranayama (Floating Breath)', 
+      ratio: 'Extended retention', 
+      level: 'Advanced', 
+      sequence: '<strong>Nose/Mouth</strong> → <strong>Swallow air</strong> → <strong>Stomach fills</strong> → <strong>Hold</strong> → <strong>Nose/Mouth</strong>', 
+      benefits: 'Body lightness, advanced retention, buoyancy' 
+    },
+
+    // Spiritual / Mantra
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Udgitha/Udgeeth (OM Chanting)', 
+      ratio: 'Natural, extended', 
+      level: 'Intermediate', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> → <strong>OM chant</strong> → <strong>Nose/Mouth</strong>', 
+      benefits: 'Meditation support, reduces stress, promotes spiritual connection' 
+    },
+    { 
+      category: 'Deepening Practice (The Sequence)',
+      name: 'Pranava Pranayama', 
+      ratio: 'Natural', 
+      level: 'Intermediate', 
+      sequence: '<strong>Nose</strong> → <strong>Lungs</strong> → <strong>Mental OM</strong> → <strong>Nose</strong>', 
+      benefits: 'Spontaneous breath awareness with mantra, meditative' 
+    },
+  ];
+
   readonly poseCategories = signal<PoseCategory[]>([
     {
       id: 'phase1',
@@ -27,8 +271,11 @@ export class AppComponent {
         { 
           sanskritName: 'Surya Namaskar', 
           englishName: 'Sun Salutation',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'SOOR-yah nah-mahs-KAR',
           benefit: 'Best for metabolism', 
+          pranayama: ['Ujjayi', 'Three-Part'],
+          mudra: ['Pranamasana (Prayer)'],
           imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/special/surya-namaskar-transparent.png?raw=true',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
@@ -37,9 +284,9 @@ export class AppComponent {
             "The sequence warms up the entire body."
           ],
           frequency: [
-            { level: 'Beginner', sets: '1', reps: '3-5 rounds', frequency: 'Once daily, ideal in the morning' },
-            { level: 'Intermediate', sets: '1', reps: '6-8 rounds', frequency: 'Once daily, ideal in the morning' },
-            { level: 'Advanced', sets: '1', reps: '10-12+ rounds', frequency: 'Once or twice daily, morning & evening' }
+            { level: 'Beginner', sets: '1', reps: '3-5 rounds', frequency: 'Once daily' },
+            { level: 'Intermediate', sets: '1', reps: '6-8 rounds', frequency: 'Once daily' },
+            { level: 'Advanced', sets: '1', reps: '10-12+ rounds', frequency: 'Twice daily' }
           ],
           why: [
             "Metabolism: The best all-around practice for boosting metabolism and warming up the body.",
@@ -50,8 +297,11 @@ export class AppComponent {
         { 
           sanskritName: 'Virabhadrasana I', 
           englishName: 'Warrior 1',
-          pronunciation: 'veer-ah-bah-DRAHS-anna one',
-          benefit: 'Builds strength and confidence', 
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'veer-ah-bah-DRAHS-anna I',
+          benefit: 'Builds strength', 
+          pranayama: ['Ujjayi', 'Three-Part'],
+          mudra: ['Anjali Mudra'],
           imageUrl: 'https://www.theyogacollective.com/wp-content/uploads/2019/10/Warrior-1-for-Pose-Page-1200x800.jpeg',
           howToDo: [
             "Step your feet wide apart, about 4 feet.",
@@ -60,9 +310,9 @@ export class AppComponent {
             "Raise your arms overhead, palms facing each other or together. Gaze forward."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '45 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '60 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Strength: Builds strength in your legs, core, and shoulders.",
@@ -73,8 +323,11 @@ export class AppComponent {
         { 
           sanskritName: 'Virabhadrasana II', 
           englishName: 'Warrior 2',
-          pronunciation: 'veer-ah-bah-DRAHS-anna two',
-          benefit: 'Improves balance and concentration', 
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'veer-ah-bah-DRAHS-anna II',
+          benefit: 'Improves balance', 
+          pranayama: ['Ujjayi'],
+          mudra: ['Chin Mudra'],
           imageUrl: 'https://liforme.com/cdn/shop/articles/0019_Warrior_II_-_Virabhadrasana_II_08_Laruga_31ba9e6e-26d7-42d2-b673-724fbd06a4f5.jpg',
           howToDo: [
             "From Warrior 1 stance, open your arms parallel to the floor.",
@@ -83,9 +336,9 @@ export class AppComponent {
             "Keep your torso centered over your hips."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '45 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '60 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Hip Opener: Stretches the hips, groin, and shoulders.",
@@ -96,8 +349,11 @@ export class AppComponent {
         { 
           sanskritName: 'Utkatasana', 
           englishName: 'Chair Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'oot-kah-TAHS-anna',
           benefit: 'Boosts calorie burn', 
+          pranayama: ['Ujjayi', 'Bhastrika'],
+          mudra: ['Anjali Mudra'],
           imageUrl: 'https://omstars.com/blog/wp-content/uploads/2022/07/how-to-do-Utkatasana.png',
           howToDo: [
             "Stand with your feet together or hip-width apart.",
@@ -106,9 +362,9 @@ export class AppComponent {
             "Keep your thighs as parallel to the floor as possible. Keep your core engaged."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 seconds', sets: '1-2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '45 seconds', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '60 seconds', sets: '2-3', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30 seconds', sets: '1-2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45 seconds', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 seconds', sets: '2-3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Heat Building: Creates internal heat, boosting metabolism and calorie burn.",
@@ -126,8 +382,11 @@ export class AppComponent {
         { 
           sanskritName: 'Kumbhakasana', 
           englishName: 'Plank Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'koom-bahk-AHS-anna',
-          benefit: 'Tones all core muscles', 
+          benefit: 'Tones core', 
+          pranayama: ['Ujjayi', 'Kapalabhati'],
+          mudra: ['Hasta Bandha'],
           imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/05/Plank-Pose_Andrew-Clark_2400x1350.jpeg',
           howToDo: [
             "Start on your hands and knees.",
@@ -136,9 +395,9 @@ export class AppComponent {
             "Engage your core and glutes. Don't let your hips sag or rise."
           ],
           frequency: [
-            { level: 'Beginner', duration: '20-30 seconds', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '45-60 seconds', sets: '2-3', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '90+ seconds', sets: '3', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '20-30 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45-60 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '90+ secs', sets: '3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Full Body Toning: Tones the entire core, as well as the arms, wrists, and spine.",
@@ -149,8 +408,11 @@ export class AppComponent {
         { 
           sanskritName: 'Navasana', 
           englishName: 'Boat Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'nah-VAHS-anna',
-          benefit: 'Strengthens abs and spine', 
+          benefit: 'Strengthens abs', 
+          pranayama: ['Ujjayi', 'Bhastrika'],
+          mudra: ['None'],
           imageUrl: 'https://cdn.prod.website-files.com/67691f03eb5bfa3289b3dae7/67691f03eb5bfa3289b3ea9b_boat-pose-yoga.jpeg',
           howToDo: [
             "Sit on the floor with your knees bent.",
@@ -159,9 +421,9 @@ export class AppComponent {
             "Extend your arms forward, parallel to the floor. Keep your chest lifted."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15-20 secs (knees bent)', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '30-45 seconds', sets: '2-3', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '60 seconds (Full Boat)', sets: '3', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '15-20 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30-45 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 secs', sets: '3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Digestive Fire: Tones and strengthens the abdominal muscles, stimulating 'Agni' (digestive fire).",
@@ -172,8 +434,11 @@ export class AppComponent {
         { 
           sanskritName: 'Paripurna Navasana', 
           englishName: 'Full Boat Pose',
-          pronunciation: 'par-ee-POOR-nah nah-VAHS-anna',
-          benefit: 'Deepens core engagement', 
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'par-ee-POOR-nah',
+          benefit: 'Deepens core', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
           imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/10/Boat-Pose_Andrew-Clark_2400x1350.jpeg',
           howToDo: [
             "This is the full expression of Navasana.",
@@ -182,9 +447,9 @@ export class AppComponent {
             "Extend arms forward. Keep breathing deeply."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15-20 seconds', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '25-30 seconds', sets: '2-3', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '30-45 seconds', sets: '3', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '15-20 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '25-30 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '30-45 secs', sets: '3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Intense Core Work: Deeply strengthens the abdominal muscles and hip flexors.",
@@ -202,8 +467,11 @@ export class AppComponent {
         { 
           sanskritName: 'Bhujangasana', 
           englishName: 'Cobra Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'boo-jun-GAHS-anna',
-          benefit: 'Energizes the spine', 
+          benefit: 'Energizes spine', 
+          pranayama: ['Diaphragmatic', 'Ujjayi'],
+          mudra: ['None'],
           imageUrl: 'https://rishikeshashtangayogaschool.com/blog/wp-content/uploads/2021/11/cobra-pose_11zon.jpg',
           howToDo: [
             "Lie on your stomach with your forehead on the floor, legs together.",
@@ -212,9 +480,9 @@ export class AppComponent {
             "Keep your shoulders relaxed and away from your ears. Look slightly upward."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15 seconds', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '20-25 seconds', sets: '2-3', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '30 seconds', sets: '3', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '15 seconds', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '20-25 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '30 seconds', sets: '3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Spinal Strength: Strengthens the spine and increases its flexibility.",
@@ -224,9 +492,12 @@ export class AppComponent {
         },
         { 
           sanskritName: 'Urdhva Mukha Svanasana', 
-          englishName: 'Upward Facing Dog',
-          pronunciation: 'OORD-vah MOO-kah shvah-NAHS-anna',
-          benefit: 'Opens chest and lungs', 
+          englishName: 'Upward Dog',
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'OORD-vah MOO-kah',
+          benefit: 'Opens chest', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
           imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/12/Upward-Facing-Dog_Andrew-Clark.jpg',
           howToDo: [
             "Lie face down. Place hands alongside your body near your lower ribs.",
@@ -235,9 +506,9 @@ export class AppComponent {
             "The tops of your feet and your hands are the only points of contact with the floor."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15 seconds', sets: '3-5', reps: '1 per set', frequency: 'As part of a flow' },
-            { level: 'Intermediate', duration: '20-25 seconds', sets: '3-5', reps: '1 per set', frequency: 'As part of a flow' },
-            { level: 'Advanced', duration: '30 seconds', sets: '3-5', reps: '1 per set', frequency: 'As part of a flow' }
+            { level: 'Beginner', duration: '15 seconds', sets: '3-5', reps: '1', frequency: 'In flow' },
+            { level: 'Intermediate', duration: '20-25 secs', sets: '3-5', reps: '1', frequency: 'In flow' },
+            { level: 'Advanced', duration: '30 seconds', sets: '3-5', reps: '1', frequency: 'In flow' }
           ],
           why: [
             "Posture: Improves posture by strengthening back muscles and opening the chest.",
@@ -248,8 +519,11 @@ export class AppComponent {
         { 
           sanskritName: 'Dhanurasana', 
           englishName: 'Bow Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'don-your-AHS-anna',
-          benefit: 'Powerful metabolic booster', 
+          benefit: 'Metabolic booster', 
+          pranayama: ['Diaphragmatic'],
+          mudra: ['None'],
           imageUrl: 'https://www.theyogacollective.com/wp-content/uploads/2019/10/AdobeStock_193776647-1-1200x800.jpeg',
           howToDo: [
             "Lie on your stomach. Bend your knees and hold your ankles.",
@@ -258,9 +532,9 @@ export class AppComponent {
             "Breathe steadily while holding the pose."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15-20 seconds', sets: '1-2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '25 seconds', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '30 seconds', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '15-20 secs', sets: '1-2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '25 seconds', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '30 seconds', sets: '2', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Metabolism: Massages the entire digestive tract, boosting metabolism and aiding weight loss.",
@@ -271,8 +545,11 @@ export class AppComponent {
         { 
           sanskritName: 'Chakrasana', 
           englishName: 'Wheel Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'chak-RAHS-anna',
-          benefit: 'Energizes entire body', 
+          benefit: 'Energizes body', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
           imageUrl: 'https://fitsri.com/wp-content/uploads/2020/10/how-to-do-chakrasana-1024x683.jpg',
           howToDo: [
             "Lie on your back with knees bent, feet flat on the floor close to your hips.",
@@ -281,9 +558,9 @@ export class AppComponent {
             "Allow your head to hang gently. Straighten arms and legs as much as possible."
           ],
           frequency: [
-            { level: 'Beginner', duration: '3-5 breaths (Bridge Pose)', sets: '2', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '5-8 breaths', sets: '2-3', reps: '1 per set', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '10+ breaths', sets: '3', reps: '1 per set', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '3-5 breaths', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '5-8 breaths', sets: '2-3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '10+ breaths', sets: '3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Full Body Energy: Opens up the entire body, providing a massive energy boost.",
@@ -301,8 +578,11 @@ export class AppComponent {
         { 
           sanskritName: 'Sarvangasana', 
           englishName: 'Shoulder Stand',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'sar-van-GAHS-anna',
           benefit: 'Stimulates thyroid', 
+          pranayama: ['Ujjayi', 'Diaphragmatic'],
+          mudra: ['None'],
           imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sarvangasana/f-sarvangasana.png?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sarvangasana/m-sarvangasana.png?raw=true',
           stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sarvangasana/f-sarvangasana-steps.png?raw=true',
@@ -314,9 +594,9 @@ export class AppComponent {
             "Press your sternum towards your chin. Hold the pose, breathing deeply."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 seconds', sets: '1', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '1 minute', sets: '1', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '2-3 minutes', sets: '1', reps: '1', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30 seconds', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1 minute', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '2-3 minutes', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Thyroid Health: Stimulates the thyroid and parathyroid glands, regulating metabolism.",
@@ -327,8 +607,11 @@ export class AppComponent {
         { 
           sanskritName: 'Halasana', 
           englishName: 'Plow Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'hah-LAHS-anna',
-          benefit: 'Boosts digestion & metabolism', 
+          benefit: 'Boosts digestion', 
+          pranayama: ['Ujjayi', 'Diaphragmatic'],
+          mudra: ['Interlaced Fingers'],
           imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/halasana/f-halasana.png?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/halasana/m-halasana.png?raw=true',
           stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/halasana/f-halasana-steps.png?raw=true',
@@ -340,9 +623,9 @@ export class AppComponent {
             "You can interlace your fingers on the floor behind your back for a deeper stretch."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30-60 seconds', sets: '1', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '1-3 minutes', sets: '1', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '3-5 minutes', sets: '1', reps: '1', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-3 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Digestion: Massages abdominal organs, improving digestion and boosting metabolism.",
@@ -353,26 +636,29 @@ export class AppComponent {
         { 
           sanskritName: 'Sirsasana', 
           englishName: 'Headstand',
+          schedule: ['All'],
           pronunciation: 'sheer-SHAH-sa-na',
-          benefit: 'Increases brain oxygen', 
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
+          benefit: 'Brain oxygen', 
+          pranayama: ['Ujjayi', 'Equal'],
+          mudra: ['Bound Hands'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/1.png?raw=true',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/4.png?raw=true'
           ],
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/1.png?raw=true',
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/1.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/2.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/3.png?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/4.png?raw=true'
           ],
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/f-steps.png?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/m-steps.png?raw=true',
-          handImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/Sirsasana/f-hand.png?raw=true',
-          handImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/Sirsasana/m-hand.png?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/f-steps.png?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/m-steps.png?raw=true',
+          handImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/f-hand.png?raw=true',
+          handImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/m-hand.png?raw=true',
           howToDo: [
             "Kneel on the floor and interlock your fingers to create a cup with your hands.",
             "Place your forearms and the crown of your head on the floor, cupping the back of your head with your hands.",
@@ -381,9 +667,9 @@ export class AppComponent {
             "Keep your core engaged and body in a straight line."
           ],
           frequency: [
-            { level: 'Beginner', duration: 'Up to 30 secs (with wall support)', sets: '1', reps: '1', frequency: 'Once daily' },
-            { level: 'Intermediate', duration: '1-2 minutes', sets: '1', reps: '1', frequency: 'Once daily' },
-            { level: 'Advanced', duration: '3-5 minutes', sets: '1', reps: '1', frequency: 'Once or twice daily' }
+            { level: 'Beginner', duration: '30 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Brain & Nervous System: Increases blood flow to the brain, enhancing focus, memory, and mental clarity. Reduces stress & anxiety.",
@@ -393,9 +679,12 @@ export class AppComponent {
         },
         { 
           sanskritName: 'Pincha Mayurasana', 
-          englishName: 'Feathered Peacock Pose',
+          englishName: 'Feathered Peacock',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'pin-cha my-yur-AHS-anna',
-          benefit: 'Strengthens shoulders & core', 
+          benefit: 'Shoulder strength', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
           imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/pincha-mayurasana/f-pincha.png?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/pincha-mayurasana/m-pincha.png?raw=true',
           stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/pincha-mayurasana/f-pincha-steps.png?raw=true',
@@ -416,9 +705,9 @@ export class AppComponent {
             "Squeeze legs together, engage core, and press down firmly through forearms. Gaze slightly forward."
           ],
           frequency: [
-            { level: 'Beginner', duration: 'Hold Dolphin Pose 30-60s', sets: '2', reps: '1', frequency: 'Daily to build strength' },
-            { level: 'Intermediate', duration: 'Practice kicking up (against wall)', sets: '5-10 attempts', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: 'Hold 15-60 seconds', sets: '2-3', reps: '1', frequency: 'Once daily' }
+            { level: 'Beginner', duration: 'Dolphin 60s', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: 'Kick-up reps', sets: '10', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: 'Hold 60 secs', sets: '2-3', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Upper Body Strength: Builds tremendous strength in the shoulders, arms, and upper back.",
@@ -429,8 +718,11 @@ export class AppComponent {
         { 
           sanskritName: 'Viparita Karani', 
           englishName: 'Legs-Up-the-Wall',
+          schedule: ['Sun'],
           pronunciation: 'vip-par-ee-tah kar-AHN-ee',
-          benefit: 'Reduces fatigue, restores energy', 
+          benefit: 'Restores energy', 
+          pranayama: ['Equal', 'Diaphragmatic'],
+          mudra: ['Chin Mudra'],
           imageUrl: 'https://www.rishikulyogshalarishikesh.com/blog/wp-content/uploads/2024/09/Legs-Up-the-Wall-Pose-1024x958.jpg',
           howToDo: [
             "Sit with your side against a wall.",
@@ -439,9 +731,9 @@ export class AppComponent {
             "Relax your arms out to the sides, palms up. Breathe deeply."
           ],
           frequency: [
-            { level: 'Beginner', duration: '5 minutes', sets: '1', reps: '1', frequency: 'Once daily, ideal before bed' },
-            { level: 'Intermediate', duration: '10 minutes', sets: '1', reps: '1', frequency: 'Once daily, ideal before bed' },
-            { level: 'Advanced', duration: '15 minutes', sets: '1', reps: '1', frequency: 'Once daily, ideal before bed' }
+            { level: 'Beginner', duration: '5 minutes', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '10 minutes', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '15 minutes', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Restoration: Calms the nervous system, reduces fatigue and restores energy.",
@@ -459,8 +751,11 @@ export class AppComponent {
         { 
           sanskritName: 'Ardha Matsyendrasana', 
           englishName: 'Half Spinal Twist',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'ARD-hah mahts-yen-DRAHS-anna',
-          benefit: 'Stimulates liver and kidneys', 
+          benefit: 'Stimulates liver', 
+          pranayama: ['Diaphragmatic'],
+          mudra: ['Abhaya Mudra'],
           imageUrl: 'https://www.keralatourism.org/images/yoga/static-banner/large/Ardha_Matsyendrasana_-_The_Spinal_Twist-07032020173900.jpg',
           howToDo: [
             "Sit with legs extended. Bend your right knee and place the foot outside your left thigh.",
@@ -469,9 +764,9 @@ export class AppComponent {
             "Place your right hand on the floor behind you and bring your left elbow to the outside of your right knee."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily, ideally after practice' },
-            { level: 'Intermediate', duration: '45 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily, ideally after practice' },
-            { level: 'Advanced', duration: '60 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily, ideally after practice' }
+            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Detoxification: Massages abdominal organs like the liver and kidneys, aiding in detox.",
@@ -482,8 +777,11 @@ export class AppComponent {
         { 
           sanskritName: 'Bharadvajasana', 
           englishName: 'Seated Twist',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'bah-rahd-vah-JAHS-anna',
-          benefit: 'Improves digestive health', 
+          benefit: 'Improves digestion', 
+          pranayama: ['Diaphragmatic'],
+          mudra: ['Chin Mudra'],
           imageUrl: 'https://omstars.com/blog/wp-content/uploads/2021/09/Bharadvajasana.png',
           howToDo: [
             "Sit on the floor with legs straight out.",
@@ -492,9 +790,9 @@ export class AppComponent {
             "Place your right hand on the floor behind you and your left hand on your right thigh."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '45 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '60 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Organ Health: Stimulates the digestive organs and improves metabolism.",
@@ -505,8 +803,11 @@ export class AppComponent {
         { 
           sanskritName: 'Marichyasana C', 
           englishName: 'Marichi\'s Twist',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'mah-ree-chee-AHS-anna C',
-          benefit: 'Massages abdominal organs', 
+          benefit: 'Massages organs', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
           imageUrl: 'https://www.vinyasayogaashram.com/blog/wp-content/uploads/2023/10/marichyasana.jpg',
           howToDo: [
             "Sit with your left leg extended. Bend your right knee and place the foot on the floor, close to your inner left thigh.",
@@ -515,9 +816,9 @@ export class AppComponent {
             "For a deeper bind, clasp your hands behind your back."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Intermediate', duration: '45 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' },
-            { level: 'Advanced', duration: '60 secs per side', sets: '1 per side', reps: '1', frequency: 'Once daily during practice' }
+            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Detox & Digestion: Massages abdominal organs, including the liver and spleen, to improve function.",
@@ -535,8 +836,11 @@ export class AppComponent {
         { 
           sanskritName: 'Vrksasana', 
           englishName: 'Tree Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'vrik-SHAHS-anna',
-          benefit: 'Improves balance and focus', 
+          benefit: 'Improves balance', 
+          pranayama: ['Equal'],
+          mudra: ['Anjali Mudra'],
           imageUrl: 'https://images.unsplash.com/photo-1566501206165-001c4674c3e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           howToDo: [
             "Stand tall in Mountain Pose. Shift your weight to your left foot.",
@@ -545,9 +849,9 @@ export class AppComponent {
             "Find a focal point (Drishti) to help you balance. Hold and breathe."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 seconds', sets: '1 per side', reps: '1', frequency: 'Once daily' },
-            { level: 'Intermediate', duration: '45-60 seconds', sets: '1 per side', reps: '1', frequency: 'Once daily' },
-            { level: 'Advanced', duration: '60+ seconds', sets: '1 per side', reps: '1', frequency: 'Once daily' }
+            { level: 'Beginner', duration: '30 seconds', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60+ seconds', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Focus: Enhances mental concentration and steadiness.",
@@ -558,8 +862,11 @@ export class AppComponent {
         { 
           sanskritName: 'Garudasana', 
           englishName: 'Eagle Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'gah-roo-DAHS-anna',
-          benefit: 'Opens shoulders and hips', 
+          benefit: 'Opens shoulders', 
+          pranayama: ['Ujjayi'],
+          mudra: ['Eagle Arms'],
           imageUrl: 'https://images.unsplash.com/photo-1599447421405-0753f5d10972?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           howToDo: [
             "Bend your knees slightly. Cross your right leg over your left thigh and hook the foot behind the calf.",
@@ -568,9 +875,9 @@ export class AppComponent {
             "Sit deeper into the squat and hold."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15-20 seconds', sets: '1 per side', reps: '1', frequency: 'Once daily' },
-            { level: 'Intermediate', duration: '30-45 seconds', sets: '1 per side', reps: '1', frequency: 'Once daily' },
-            { level: 'Advanced', duration: '45-60 seconds', sets: '1 per side', reps: '1', frequency: 'Once daily' }
+            { level: 'Beginner', duration: '15-20 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30-45 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '45-60 secs', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Flexibility: Deeply stretches the upper back, shoulders, and outer hips.",
@@ -588,8 +895,11 @@ export class AppComponent {
         { 
           sanskritName: 'Paschimottanasana', 
           englishName: 'Seated Forward Bend',
+          schedule: ['Tue', 'Thu', 'Sat'],
           pronunciation: 'posh-ee-moh-tan-AHS-anna',
           benefit: 'Calms the brain', 
+          pranayama: ['Ujjayi', 'Extended Exhale'],
+          mudra: ['None'],
           imageUrl: 'https://images.unsplash.com/photo-1599447292180-45fd84092efd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           howToDo: [
             "Sit with legs extended straight in front of you.",
@@ -598,9 +908,9 @@ export class AppComponent {
             "Reach for your feet or shins. Keep the spine long, neck relaxed."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30-60 seconds', sets: '1', reps: '1', frequency: 'Once daily' },
-            { level: 'Intermediate', duration: '1-2 minutes', sets: '1', reps: '1', frequency: 'Once daily' },
-            { level: 'Advanced', duration: '3-5 minutes', sets: '1', reps: '1', frequency: 'Once daily' }
+            { level: 'Beginner', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
             "Calming: Soothes the nervous system and relieves mild depression and anxiety.",
@@ -611,8 +921,11 @@ export class AppComponent {
         { 
           sanskritName: 'Balasana', 
           englishName: 'Child\'s Pose',
+          schedule: ['Sun'],
           pronunciation: 'bah-LAHS-anna',
-          benefit: 'Restorative relaxation', 
+          benefit: 'Relaxation', 
+          pranayama: ['Diaphragmatic', 'Equal'],
+          mudra: ['None'],
           imageUrl: 'https://images.unsplash.com/photo-1544367563-12123d8965cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
           howToDo: [
             "Kneel on the floor, toes together and knees hip-width apart.",
@@ -621,9 +934,9 @@ export class AppComponent {
             "Rest your forehead on the mat and breathe deeply."
           ],
           frequency: [
-            { level: 'Beginner', duration: '1-2 minutes', sets: '1', reps: '1', frequency: 'Anytime for rest' },
-            { level: 'Intermediate', duration: '3-5 minutes', sets: '1', reps: '1', frequency: 'Anytime for rest' },
-            { level: 'Advanced', duration: '5+ minutes', sets: '1', reps: '1', frequency: 'Anytime for rest' }
+            { level: 'Beginner', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Anytime' },
+            { level: 'Intermediate', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Anytime' },
+            { level: 'Advanced', duration: '5+ mins', sets: '1', reps: '1', frequency: 'Anytime' }
           ],
           why: [
             "Rest: A deeply restorative pose that calms the mind and body.",
@@ -635,84 +948,207 @@ export class AppComponent {
     },
     {
       id: 'phase8',
-      title: 'Phase 8: Stillness & Integration (Final)',
-      description: 'Breathwork and relaxation. Boost metabolism, consolidate energy, and find deep peace.',
+      title: 'Phase 8: Dhyana Asanas (Meditative Poses)',
+      description: 'Cultivate mental stability and deep peace. Perfect for meditation and integrating your practice.',
       poses: [
         { 
-          sanskritName: 'Kapalbhati', 
-          englishName: 'Skull Shining Breath',
-          pronunciation: 'kah-pahl-BAH-tee',
-          benefit: 'Increases metabolic rate', 
-          imageUrl: 'https://shivohamyogaschool.com/wp-content/uploads/2022/01/How-To-Do-Kapalbhati-Pranayama.jpg',
+          subCategory: 'Meditative Asanas',
+          sanskritName: 'Vajrasana', 
+          englishName: 'Thunderbolt Pose',
+          schedule: ['Mon', 'Thu'],
+          pronunciation: 'vah-JRAHS-anna',
+          benefit: 'Aids digestion', 
+          pranayama: ['Diaphragmatic'],
+          mudra: ['Chin Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana-main.jpg?raw=true',
+          imageUrls: [
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana-main.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana-rear.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana.jpg?raw=true'
+          ],
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana-main.jpg?raw=true',
+          imageUrlsMale: [
+             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana-main.jpg?raw=true',
+             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana-rear.jpg?raw=true',
+             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana.jpg?raw=true'
+          ],
           howToDo: [
-            "Sit in a comfortable position with a straight spine.",
-            "Inhale passively and exhale forcefully by drawing your abdominal muscles in sharply.",
-            "The inhale is a natural recoil. Focus on the sharp, quick exhale.",
-            "Start with one round of 20-30 breaths."
+            "Kneel on the floor with knees close together.",
+            "Sit back on your heels, keeping your spine straight.",
+            "Place your hands on your knees, palms facing down.",
+            "Keep your head straight and gaze forward."
           ],
           frequency: [
-            { level: 'Beginner', sets: '1 round', reps: '30 breaths', frequency: 'Once daily, on an empty stomach' },
-            { level: 'Intermediate', sets: '2 rounds', reps: '50-60 breaths', frequency: 'Once daily, on an empty stomach' },
-            { level: 'Advanced', sets: '3 rounds', reps: '60-100 breaths', frequency: 'Once daily, on an empty stomach' }
+            { level: 'Beginner', duration: '2-5 mins', sets: '1', reps: '1', frequency: 'After meals' },
+            { level: 'Intermediate', duration: '5-10 mins', sets: '1', reps: '1', frequency: 'After meals' },
+            { level: 'Advanced', duration: '15+ mins', sets: '1', reps: '1', frequency: 'After meals' }
           ],
           why: [
-            "Metabolism Boost: The rapid breathing increases the metabolic rate and generates internal heat.",
-            "Detoxification: Cleanses the lungs and nasal passages.",
-            "Energy: Quickly energizes the mind and body."
+            "Digestion: One of the few poses recommended immediately after eating to aid digestion.",
+            "Stability: Provides a solid foundation for pranayama and meditation.",
+            "Joint Health: Increases flexibility in the ankles and knees."
           ]
         },
         { 
-          sanskritName: 'Bhastrika', 
-          englishName: 'Bellows Breath',
-          pronunciation: 'bhas-TREE-kah',
-          benefit: 'Boosts energy instantly', 
-          imageUrl: 'https://www.flexifyme.com/blogs/wp-content/uploads/2025/07/Bhramari-Pranayama.png',
+          subCategory: 'Meditative Asanas',
+          sanskritName: 'Padmasana', 
+          englishName: 'Lotus Pose',
+          schedule: ['Tue', 'Fri'],
+          pronunciation: 'pad-MAHS-anna',
+          benefit: 'Deep stability', 
+          pranayama: ['Nadi Shodhana', 'Ujjayi'],
+          mudra: ['Chin Mudra', 'Bhairava'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-padmasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-padmasana.jpg?raw=true',
           howToDo: [
-            "Sit comfortably with a straight spine.",
-            "Inhale and exhale forcefully and equally through your nose.",
-            "The movement should come from your diaphragm, like pumping a bellow.",
-            "Keep your head, neck, and shoulders still."
+            "Sit with legs extended. Bend the right knee and place the foot on the left thigh, heel close to the abdomen.",
+            "Bend the left knee and place the foot on the right thigh, heel close to the abdomen.",
+            "Keep the spine straight and shoulders relaxed.",
+            "Place hands in a mudra on the knees."
           ],
           frequency: [
-            { level: 'Beginner', sets: '1 round', reps: '10 breaths', frequency: 'Once daily, on an empty stomach' },
-            { level: 'Intermediate', sets: '2 rounds', reps: '15 breaths', frequency: 'Once daily, on an empty stomach' },
-            { level: 'Advanced', sets: '3 rounds', reps: '20 breaths', frequency: 'Once daily, on an empty stomach' }
+            { level: 'Beginner', duration: 'Avoid if painful', sets: '0', reps: '0', frequency: 'Caution' },
+            { level: 'Intermediate', duration: '1-3 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '10+ mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
-            "Instant Energy: Massively increases prana (life force energy), providing an instant energy lift.",
-            "Clarity: Clears the mind and sharpens focus.",
-            "Metabolism: Stirs up metabolic processes in the body."
+            "Stability: The crossed legs create a solid base that holds the spine straight effortlessly.",
+            "Focus: Locks the body in place, minimizing distraction and promoting deep concentration.",
+            "Energy: Retains vital energy within the body."
           ]
         },
         { 
-          sanskritName: 'Ujjayi Breath', 
-          englishName: 'Victorious Breath',
-          pronunciation: 'oo-JAH-yee breath',
-          benefit: 'Activates thyroid & warms the body', 
-          imageUrl: 'https://d5sbbf6usl3xq.cloudfront.net/ujjayi_yoga.png',
+          subCategory: 'Meditative Asanas',
+          sanskritName: 'Bhadrasana', 
+          englishName: 'Gracious Pose',
+          schedule: ['Wed', 'Sat'],
+          pronunciation: 'bhad-RAHS-anna',
+          benefit: 'Root chakra', 
+          pranayama: ['Ujjayi'],
+          mudra: ['Nasikagra Drishti'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-bhadrasana-main.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-bhadrasana-main.jpg?raw=true',
           howToDo: [
-            "Breathe in and out through your nose.",
-            "Slightly constrict the back of your throat, creating a soft 'ocean' or 'hissing' sound.",
-            "The sound should be audible to you but not loud.",
-            "Keep the breath long, smooth, and even."
+            "Sit in Vajrasana (kneeling). Separate your knees as wide as possible.",
+            "Keep the toes in contact with each other behind you, allowing the buttocks to rest on the floor between the feet.",
+            "Place hands on knees, keep spine straight.",
+            "Gaze at the nose tip or close eyes."
           ],
           frequency: [
-            { level: 'Beginner', duration: '2-3 mins seated', frequency: 'Use throughout yoga or anytime' },
-            { level: 'Intermediate', duration: '5 mins seated', frequency: 'Use throughout yoga or anytime' },
-            { level: 'Advanced', duration: '10+ mins for meditation', frequency: 'Use throughout yoga or anytime' }
+            { level: 'Beginner', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '10+ mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
-            "Internal Heat: The friction of the breath warms the body from the inside out, activating the thyroid.",
-            "Calm Focus: Calms the nervous system and helps to focus the mind.",
-            "Stamina: Increases oxygenation and improves endurance during practice."
+            "Hip Opener: Deeply opens the hips and pelvic region.",
+            "Root Chakra: Stimulates the Mooladhara chakra.",
+            "Digestion: beneficial for stomach ailments."
           ]
         },
         { 
+          subCategory: 'Meditative Asanas',
+          sanskritName: 'Siddhasana', 
+          englishName: 'Perfect Pose',
+          schedule: ['All'],
+          pronunciation: 'sid-DHAHS-anna',
+          benefit: 'Purifies energy', 
+          pranayama: ['Kapalabhati', 'Bhastrika'],
+          mudra: ['Chin Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-siddhasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-siddhasana.jpg?raw=true',
+          howToDo: [
+            "Sit with legs extended. Bend the left knee and place the heel near the perineum.",
+            "Bend the right knee and place the right heel against the pubic bone, directly above the left heel.",
+            "Tuck the toes of the right foot between the calf and thigh muscles of the left leg.",
+            "Keep spine erect, hands in chin mudra on knees."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '1-3 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '5-10 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '15-30+ mins', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Energy Control: Directs energy upwards to the higher chakras.",
+            "Nervous System: Calms the nervous system and balances the mind.",
+            "Flexibility: Increases flexibility in hips and knees."
+          ]
+        },
+        { 
+          subCategory: 'Meditative Asanas',
+          sanskritName: 'Bhramari', 
+          englishName: 'Bee Breath',
+          schedule: ['All'],
+          pronunciation: 'bhrah-MAH-ree',
+          benefit: 'Soothes mind', 
+          pranayama: ['Bhramari'],
+          mudra: ['Shanmukhi Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-bhramari.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-bhramari.jpg?raw=true',
+          howToDo: [
+            "Sit comfortably with eyes closed.",
+            "Place your index fingers on your ears (on the tragus cartilage).",
+            "Inhale deeply through the nose.",
+            "Exhale slowly while making a deep, steady humming sound like a bee.",
+            "Feel the vibration resonate in the head."
+          ],
+          frequency: [
+            { level: 'Beginner', sets: '1 round', reps: '5-10 breaths', frequency: 'As needed' },
+            { level: 'Intermediate', sets: '1 round', reps: '10-20 breaths', frequency: 'As needed' },
+            { level: 'Advanced', sets: '1 round', reps: '20+ breaths', frequency: 'As needed' }
+          ],
+          why: [
+            "Anxiety Relief: Instantly calms the mind and reduces anger or anxiety.",
+            "Insomnia: Helps induce deep sleep.",
+            "Focus: Improves concentration and memory."
+          ]
+        },
+        { 
+          subCategory: 'Meditative Asanas',
+          sanskritName: 'Sukhasana', 
+          englishName: 'Easy Pose',
+          // Schedule removed as requested
+          pronunciation: 'soo-KAHS-anna',
+          benefit: 'Meditation base', 
+          pranayama: ['Nadi Shodhana', 'Equal'],
+          mudra: ['Chin Mudra', 'Gyan Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-sukhasana-main.jpg?raw=true',
+          imageUrls: [
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-sukhasana-main.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-sukhasana.jpg?raw=true'
+          ],
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-sukhasana-main.jpg?raw=true',
+          imageUrlsMale: [
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-sukhasana-main.jpg?raw=true',
+             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-sukhasana.jpg?raw=true'
+          ],
+          howToDo: [
+            "Sit on the floor or a cushion with your legs crossed.",
+            "Place each foot beneath the opposite knee.",
+            "Keep your spine straight, head aligned with your neck.",
+            "Rest your hands on your knees, palms up or down. Close your eyes and breathe."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '1-5 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '5-15 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '20+ mins', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Mental Calm: A stable posture that centers the mind and reduces stress.",
+            "Posture: Strengthens the back and improves body alignment.",
+            "Meditation: The classic comfortable seat for breathwork and mindfulness."
+          ]
+        },
+        { 
+          subCategory: 'Relaxation Asanas',
           sanskritName: 'Savasana', 
           englishName: 'Corpse Pose',
+          schedule: ['All'],
           pronunciation: 'shah-VAHS-anna',
-          benefit: 'Deep relaxation & integration', 
-          imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          benefit: 'Deep relaxation', 
+          pranayama: ['Diaphragmatic', 'Coherent'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-savasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-savasana.jpg?raw=true',
           howToDo: [
             "Lie flat on your back, legs extended and feet falling open.",
             "Arms rest alongside the body, palms facing up.",
@@ -720,9 +1156,9 @@ export class AppComponent {
             "Remain completely still for 5-10 minutes, allowing the benefits of practice to integrate."
           ],
           frequency: [
-            { level: 'Beginner', duration: '5 minutes', sets: '1', reps: '1', frequency: 'After every practice' },
-            { level: 'Intermediate', duration: '10 minutes', sets: '1', reps: '1', frequency: 'After every practice' },
-            { level: 'Advanced', duration: '15+ minutes', sets: '1', reps: '1', frequency: 'After every practice' }
+            { level: 'Beginner', duration: '5 mins', sets: '1', reps: '1', frequency: 'End of practice' },
+            { level: 'Intermediate', duration: '10 mins', sets: '1', reps: '1', frequency: 'End of practice' },
+            { level: 'Advanced', duration: '15+ mins', sets: '1', reps: '1', frequency: 'End of practice' }
           ],
           why: [
             "Integration: Allows the body to absorb the benefits of the yoga practice.",
@@ -808,5 +1244,25 @@ export class AppComponent {
   hideWarmUp() {
     this.showWarmUpView.set(false);
     window.scrollTo(0, 0);
+  }
+
+  getScheduleDisplay(schedule: string[] | undefined): string {
+    if (!schedule || schedule.length === 0) return '';
+    
+    // Handle "All" case specifically
+    if (schedule.includes('All')) return 'Daily';
+
+    return schedule.map(day => {
+      switch(day) {
+        case 'Mon': return 'M';
+        case 'Tue': return 'Tu';
+        case 'Wed': return 'W';
+        case 'Thu': return 'Th';
+        case 'Fri': return 'F';
+        case 'Sat': return 'Sa';
+        case 'Sun': return 'Su';
+        default: return day;
+      }
+    }).join(' - ');
   }
 }
