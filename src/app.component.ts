@@ -276,7 +276,8 @@ export class AppComponent {
           benefit: 'Best for metabolism', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Pranamasana (Prayer)'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/special/surya-namaskar-transparent.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-surya-namaskar.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-surya-namaskar.jpg?raw=true',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
             "Start in Mountain Pose, flow through poses like Forward Fold, Lunge, Plank, Cobra/Upward Dog, and Downward Dog.",
@@ -295,14 +296,15 @@ export class AppComponent {
           ]
         },
         { 
-          sanskritName: 'Virabhadrasana I', 
+          sanskritName: 'Virabhadrasana Series', 
           englishName: 'Warrior 1',
           schedule: ['Mon', 'Wed', 'Fri'],
           pronunciation: 'veer-ah-bah-DRAHS-anna I',
           benefit: 'Builds strength', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Anjali Mudra'],
-          imageUrl: 'https://www.theyogacollective.com/wp-content/uploads/2019/10/Warrior-1-for-Pose-Page-1200x800.jpeg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-virabhadrasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-virabhadrasana.jpg?raw=true',
           howToDo: [
             "Step your feet wide apart, about 4 feet.",
             "Turn your right foot out 90 degrees and your left foot in slightly.",
@@ -321,55 +323,30 @@ export class AppComponent {
           ]
         },
         { 
-          sanskritName: 'Virabhadrasana II', 
-          englishName: 'Warrior 2',
+          sanskritName: 'Konasana Series', 
+          englishName: 'Bound Angle Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'veer-ah-bah-DRAHS-anna II',
-          benefit: 'Improves balance', 
-          pranayama: ['Ujjayi'],
-          mudra: ['Chin Mudra'],
-          imageUrl: 'https://liforme.com/cdn/shop/articles/0019_Warrior_II_-_Virabhadrasana_II_08_Laruga_31ba9e6e-26d7-42d2-b673-724fbd06a4f5.jpg',
+          pronunciation: 'bah-dah koh-NAHS-anna',
+          benefit: 'Hip Opener', 
+          pranayama: ['Diaphragmatic'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-konasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-konasana.jpg?raw=true',
           howToDo: [
-            "From Warrior 1 stance, open your arms parallel to the floor.",
-            "Keep your front knee bent directly over the ankle.",
-            "Turn your head to look out over your front fingertips.",
-            "Keep your torso centered over your hips."
+            "Sit with your legs straight out in front of you.",
+            "Bend your knees and pull your heels towards your pelvis.",
+            "Drop your knees out to the sides and press the soles of your feet together.",
+            "Hold your feet or ankles. Keep your spine straight."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
+            { level: 'Beginner', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '2-4 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '5+ mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
-            "Hip Opener: Stretches the hips, groin, and shoulders.",
-            "Balance: Improves balance and stability.",
-            "Power: Cultivates a sense of power and focus."
-          ]
-        },
-        { 
-          sanskritName: 'Utkatasana', 
-          englishName: 'Chair Pose',
-          schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'oot-kah-TAHS-anna',
-          benefit: 'Boosts calorie burn', 
-          pranayama: ['Ujjayi', 'Bhastrika'],
-          mudra: ['Anjali Mudra'],
-          imageUrl: 'https://omstars.com/blog/wp-content/uploads/2022/07/how-to-do-Utkatasana.png',
-          howToDo: [
-            "Stand with your feet together or hip-width apart.",
-            "Inhale and raise your arms overhead.",
-            "Exhale and bend your knees, sitting back as if in an imaginary chair.",
-            "Keep your thighs as parallel to the floor as possible. Keep your core engaged."
-          ],
-          frequency: [
-            { level: 'Beginner', duration: '30 seconds', sets: '1-2', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '45 seconds', sets: '2', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '60 seconds', sets: '2-3', reps: '1', frequency: 'Daily' }
-          ],
-          why: [
-            "Heat Building: Creates internal heat, boosting metabolism and calorie burn.",
-            "Strength: Strengthens the ankles, thighs, calves, and spine.",
-            "Stimulation: Stimulates the heart and abdominal organs."
+            "Flexibility: Stretches the inner thighs, groins, and knees.",
+            "Circulation: Stimulates the heart and improves general circulation.",
+            "Reproductive Health: Soothes menstrual discomfort and sciatica."
           ]
         },
       ],
@@ -387,7 +364,8 @@ export class AppComponent {
           benefit: 'Tones core', 
           pranayama: ['Ujjayi', 'Kapalabhati'],
           mudra: ['Hasta Bandha'],
-          imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/05/Plank-Pose_Andrew-Clark_2400x1350.jpeg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-kumbhakasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-kumbhakasana.jpg?raw=true',
           howToDo: [
             "Start on your hands and knees.",
             "Step your feet back, one at a time, to bring your body into a straight line from head to heels.",
@@ -406,6 +384,60 @@ export class AppComponent {
           ]
         },
         { 
+          sanskritName: 'Dandasana', 
+          englishName: 'Staff Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'dahn-DAHS-anna',
+          benefit: 'Improves posture', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-dandasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-dandasana.jpg?raw=true',
+          howToDo: [
+            "Sit on the floor with your legs extended straight in front of you.",
+            "Sit on your sitting bones, spine erect.",
+            "Place your hands on the floor beside your hips, fingers pointing forward.",
+            "Flex your feet, engaging your thighs. Tuck your chin slightly."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '30-60 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3+ mins', sets: '2', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Posture: Strengthens the back muscles and lengthens the spine.",
+            "Alignment: Teaches alignment for other seated poses.",
+            "Core: Activates the deep core stabilizers."
+          ]
+        },
+        { 
+          sanskritName: 'Paschimottanasana', 
+          englishName: 'Seated Forward Bend',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'posh-ee-moh-tan-AHS-anna',
+          benefit: 'Calms the brain', 
+          pranayama: ['Ujjayi', 'Extended Exhale'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-paschimottanasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-paschimottanasana.jpg?raw=true',
+          howToDo: [
+            "Sit with legs extended straight in front of you.",
+            "Inhale and reach your arms up, lengthening the spine.",
+            "Exhale and hinge at your hips to fold forward over your legs.",
+            "Reach for your feet or shins. Keep the spine long, neck relaxed."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Calming: Soothes the nervous system and relieves mild depression and anxiety.",
+            "Flexibility: deeply stretches the entire back of the body, from heels to head.",
+            "Digestion: Compresses the abdomen, stimulating digestive organs."
+          ]
+        },
+        { 
           sanskritName: 'Navasana', 
           englishName: 'Boat Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
@@ -413,7 +445,8 @@ export class AppComponent {
           benefit: 'Strengthens abs', 
           pranayama: ['Ujjayi', 'Bhastrika'],
           mudra: ['None'],
-          imageUrl: 'https://cdn.prod.website-files.com/67691f03eb5bfa3289b3dae7/67691f03eb5bfa3289b3ea9b_boat-pose-yoga.jpeg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-navasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-navasana.jpg?raw=true',
           howToDo: [
             "Sit on the floor with your knees bent.",
             "Lean back slightly and lift your feet off the floor, keeping your shins parallel to the ground (Half Boat).",
@@ -431,32 +464,6 @@ export class AppComponent {
             "Balance: Improves balance and focus."
           ]
         },
-        { 
-          sanskritName: 'Paripurna Navasana', 
-          englishName: 'Full Boat Pose',
-          schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'par-ee-POOR-nah',
-          benefit: 'Deepens core', 
-          pranayama: ['Ujjayi'],
-          mudra: ['None'],
-          imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/10/Boat-Pose_Andrew-Clark_2400x1350.jpeg',
-          howToDo: [
-            "This is the full expression of Navasana.",
-            "From a seated position, lift your legs until they are straight and at a 45-degree angle.",
-            "Keep your torso lifted to form a 'V' shape with your legs.",
-            "Extend arms forward. Keep breathing deeply."
-          ],
-          frequency: [
-            { level: 'Beginner', duration: '15-20 secs', sets: '2', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '25-30 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '30-45 secs', sets: '3', reps: '1', frequency: 'Daily' }
-          ],
-          why: [
-            "Intense Core Work: Deeply strengthens the abdominal muscles and hip flexors.",
-            "Digestion: Stimulates the intestines and improves digestion.",
-            "Confidence: Builds determination and self-confidence."
-          ]
-        },
       ],
     },
     {
@@ -465,32 +472,6 @@ export class AppComponent {
       description: 'Activate thyroid, adrenal & nervous system. Open the chest for more oxygen and energy.',
       poses: [
         { 
-          sanskritName: 'Bhujangasana', 
-          englishName: 'Cobra Pose',
-          schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'boo-jun-GAHS-anna',
-          benefit: 'Energizes spine', 
-          pranayama: ['Diaphragmatic', 'Ujjayi'],
-          mudra: ['None'],
-          imageUrl: 'https://rishikeshashtangayogaschool.com/blog/wp-content/uploads/2021/11/cobra-pose_11zon.jpg',
-          howToDo: [
-            "Lie on your stomach with your forehead on the floor, legs together.",
-            "Place your hands under your shoulders, fingers pointing forward.",
-            "Inhale and lift your head, chest, and abdomen, keeping your navel on the floor.",
-            "Keep your shoulders relaxed and away from your ears. Look slightly upward."
-          ],
-          frequency: [
-            { level: 'Beginner', duration: '15 seconds', sets: '2', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '20-25 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '30 seconds', sets: '3', reps: '1', frequency: 'Daily' }
-          ],
-          why: [
-            "Spinal Strength: Strengthens the spine and increases its flexibility.",
-            "Energy Boost: Opens the chest and lungs, invigorating the body and reducing fatigue.",
-            "Stress Relief: Soothes the adrenal glands and reduces stress."
-          ]
-        },
-        { 
           sanskritName: 'Urdhva Mukha Svanasana', 
           englishName: 'Upward Dog',
           schedule: ['Mon', 'Wed', 'Fri'],
@@ -498,7 +479,8 @@ export class AppComponent {
           benefit: 'Opens chest', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://cdn.yogajournal.com/wp-content/uploads/2021/12/Upward-Facing-Dog_Andrew-Clark.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-svanasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-svanasana.jpg?raw=true',
           howToDo: [
             "Lie face down. Place hands alongside your body near your lower ribs.",
             "Inhale and press through your hands, lifting your torso and legs a few inches off the floor.",
@@ -517,6 +499,33 @@ export class AppComponent {
           ]
         },
         { 
+          sanskritName: 'Ustrasana', 
+          englishName: 'Camel Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'oosh-TRAHS-anna',
+          benefit: 'Deep heart opener', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-ustrasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-ustrasana.jpg?raw=true',
+          howToDo: [
+            "Kneel on the floor with knees hip-width apart.",
+            "Press your shins and tops of feet firmly into floor.",
+            "Place your hands on your lower back. Inhale, lift your chest.",
+            "Exhale, lean back and reach for your heels. Keep your neck neutral or drop back gently."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '15-20 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30 secs', sets: '2-3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '45-60 secs', sets: '3', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Flexibility: Stretches the entire front of the body, ankles, thighs, and groins.",
+            "Posture: Improves posture and strengthens back muscles.",
+            "Organs: Stimulates the organs of the abdomen and neck (thyroid)."
+          ]
+        },
+        { 
           sanskritName: 'Dhanurasana', 
           englishName: 'Bow Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
@@ -524,7 +533,8 @@ export class AppComponent {
           benefit: 'Metabolic booster', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://www.theyogacollective.com/wp-content/uploads/2019/10/AdobeStock_193776647-1-1200x800.jpeg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-dhanurasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-dhanurasana.jpg?raw=true',
           howToDo: [
             "Lie on your stomach. Bend your knees and hold your ankles.",
             "Inhale and lift your chest and thighs off the floor, pulling your ankles.",
@@ -543,6 +553,35 @@ export class AppComponent {
           ]
         },
         { 
+          sanskritName: 'Setu Bandha Sarvangasana', 
+          englishName: 'Bridge Pose',
+          schedule: ['Mon', 'Wed', 'Fri'],
+          pronunciation: 'SET-too BAHN-dah',
+          benefit: 'Calms brain', 
+          pranayama: ['Ujjayi', 'Diaphragmatic'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-setu-bandha-sarvangasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-setu-bandha-sarvangasana.jpg?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-setu-bandha-sarvangasana-steps.jpg?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-setu-bandha-sarvangasana-steps.jpg?raw=true',
+          howToDo: [
+            "Lie supine on the floor, knees bent, feet flat hip-width apart.",
+            "Arms alongside the body, palms facing down.",
+            "Inhale, press into feet and arms, lift your hips towards the ceiling.",
+            "Roll your shoulders under and clasp hands below your pelvis. Lift chest to chin."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '30 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '45-60 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60-90 secs', sets: '3', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Calming: Calms the brain and helps alleviate stress and mild depression.",
+            "Stretching: Stretches the chest, neck, and spine.",
+            "Therapeutic: Stimulates abdominal organs, lungs, and thyroid."
+          ]
+        },
+        { 
           sanskritName: 'Chakrasana', 
           englishName: 'Wheel Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
@@ -550,7 +589,8 @@ export class AppComponent {
           benefit: 'Energizes body', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://fitsri.com/wp-content/uploads/2020/10/how-to-do-chakrasana-1024x683.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-chakrasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-chakrasana.jpg?raw=true',
           howToDo: [
             "Lie on your back with knees bent, feet flat on the floor close to your hips.",
             "Place your hands on the floor by your ears, fingers pointing towards your feet.",
@@ -892,32 +932,6 @@ export class AppComponent {
       title: 'Phase 7: Forward Bends (Cool Down)',
       description: 'Calm the nervous system. Lengthen the spine and hamstrings to wind down.',
       poses: [
-        { 
-          sanskritName: 'Paschimottanasana', 
-          englishName: 'Seated Forward Bend',
-          schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'posh-ee-moh-tan-AHS-anna',
-          benefit: 'Calms the brain', 
-          pranayama: ['Ujjayi', 'Extended Exhale'],
-          mudra: ['None'],
-          imageUrl: 'https://images.unsplash.com/photo-1599447292180-45fd84092efd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-          howToDo: [
-            "Sit with legs extended straight in front of you.",
-            "Inhale and reach your arms up, lengthening the spine.",
-            "Exhale and hinge at your hips to fold forward over your legs.",
-            "Reach for your feet or shins. Keep the spine long, neck relaxed."
-          ],
-          frequency: [
-            { level: 'Beginner', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
-          ],
-          why: [
-            "Calming: Soothes the nervous system and relieves mild depression and anxiety.",
-            "Flexibility: deeply stretches the entire back of the body, from heels to head.",
-            "Digestion: Compresses the abdomen, stimulating digestive organs."
-          ]
-        },
         { 
           sanskritName: 'Balasana', 
           englishName: 'Child\'s Pose',
