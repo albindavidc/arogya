@@ -158,8 +158,8 @@ import { WarmUpComponent } from './warm-up.component';
                 <div class="holo-border-container h-full">
                     <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
                       <!-- Updated conditional styling for Phase 4 (Inversions) or Surya Namaskar -->
-                      <figure [class]="category.id === 'phase4' && pose.sanskritName !== 'Surya Namaskar' ? 'overflow-hidden rounded-t-xl relative' : 'aspect-[4/3] overflow-hidden rounded-t-xl relative'">
-                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" [class.h-full]="category.id !== 'phase4' || pose.sanskritName === 'Surya Namaskar'" [class.object-contain]="pose.sanskritName === 'Surya Namaskar'" [class.p-4]="pose.sanskritName === 'Surya Namaskar'" />
+                      <figure [class]="category.id === 'phase4' ? 'overflow-hidden rounded-t-xl relative' : 'aspect-[4/3] overflow-hidden rounded-t-xl relative'">
+                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" [class.h-full]="category.id !== 'phase4'" />
                         
                         <!-- Step Badge - Top Left -->
                         @if (getStepValue(pose.schedule); as step) {
