@@ -6,7 +6,476 @@ import { WarmUpComponent } from './warm-up.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+<div class="min-h-screen">
+
+  @if (!showWarmUpView()) {
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-30 border-b border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex justify-between items-center">
+          <div>
+            <h1 class="text-2xl font-bold text-gradient-primary">Arogya</h1>
+            <p class="text-[#6E6E7A] text-xs md:text-sm">Nourish Your Inner Fire</p>
+          </div>
+
+          <div class="flex items-center gap-4 md:gap-6">
+            <nav class="hidden md:flex items-center space-x-6">
+              @for(category of poseCategories(); track category.id) {
+                <button (click)="scrollTo(category.id)" class="text-xs md:text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">{{ category.title.split(':')[0] }}</button>
+              }
+              <button (click)="scrollTo('top5')" class="text-xs md:text-sm font-medium text-[#B8B8C4] hover:text-white transition-colors">Top 5</button>
+            </nav>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Intro Section -->
+      <section class="relative text-center mb-16 py-20 overflow-hidden">
+        <p class="quote text-lg md:text-xl italic text-accent-glow mb-6">
+          "Think wisely, act smartly, live peacefully."
+        </p>
+        <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F4F4F8]" style="text-shadow: 0 0 40px rgba(180, 160, 232, 0.3);">
+          Revitalize Your Body & Mind
+        </h2>
+
+        <!-- Gender Toggle -->
+        <div class="flex justify-center my-10">
+          <div class="flex items-center space-x-2 bg-black/20 p-1 rounded-full border border-white/10">
+            <button (click)="setGender('female')" 
+                    [class]="'px-4 py-1.5 text-sm md:text-base rounded-full transition-all duration-300 relative ' + (selectedGender() === 'female' ? 'text-white' : 'text-[#B8B8C4] hover:text-white')">
+              @if(selectedGender() === 'female') {
+                <span class="absolute inset-0 rounded-full active-gender-glow opacity-30 blur-md"></span>
+                <span class="absolute inset-0 rounded-full border border-white/50"></span>
+              }
+              <span class="relative">Female Poses</span>
+            </button>
+            <button (click)="setGender('male')" 
+                    [class]="'px-4 py-1.5 text-sm md:text-base rounded-full transition-all duration-300 relative ' + (selectedGender() === 'male' ? 'text-white' : 'text-[#B8B8C4] hover:text-white')">
+               @if(selectedGender() === 'male') {
+                <span class="absolute inset-0 rounded-full active-gender-glow opacity-30 blur-md"></span>
+                <span class="absolute inset-0 rounded-full border border-white/50"></span>
+              }
+              <span class="relative">Male Poses</span>
+            </button>
+          </div>
+        </div>
+        
+        <p class="text-base md:text-lg leading-7 text-[#B8B8C4] max-w-2xl mx-auto">
+          Discover a curated collection of yoga poses scientifically known to improve metabolism, energy, hormonal balance, and digestive power.
+        </p>
+
+        <button (click)="showWarmUp()" class="mt-8 bg-transparent font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 button-outline-accent focus-ring-accent text-sm md:text-base">
+          Start with a Warm-Up
+        </button>
+      </section>
+
+      <!-- Sample Card Structure / Legend -->
+      <section class="max-w-md mx-auto mb-20 relative">
+        <div class="absolute -inset-1 bg-gradient-to-r from-white/10 to-white/5 rounded-2xl blur opacity-25"></div>
+        <div class="relative bg-black/60 border border-dashed border-white/20 rounded-xl p-6">
+          <h3 class="text-center text-[#B8B8C4] text-xs font-bold uppercase tracking-widest mb-4">Card Structure Guide</h3>
+          <!-- The Sample Card -->
+          <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl shadow-lg shadow-black/30 flex flex-col mx-auto max-w-[280px] pointer-events-none select-none">
+             <figure class="aspect-[4/3] bg-gradient-to-br from-white/5 to-white/10 rounded-t-xl flex items-center justify-center relative">
+               <span class="text-white/20 text-4xl font-serif italic">Photo</span>
+               <!-- Step/Variations Badge - Top Left -->
+               <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md border border-white/10 text-[#F4F4F8] text-[10px] font-bold px-2 py-1.5 rounded-lg shadow-sm flex flex-col gap-0.5 leading-none text-left">
+                 <span>S: Steps</span>
+                 <span>V: Variations</span>
+               </div>
+               <!-- Reference Schedule Badge - Moved to Right -->
+               <div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md border border-white/10 text-[#F4F4F8] text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                 Days
+               </div>
+             </figure>
+             <div class="p-4 flex flex-col flex-grow">
+                <!-- Header -->
+                <div class="mb-3">
+                  <h3 class="text-sm font-bold text-[#F4F4F8] leading-tight flex flex-col gap-0.5">
+                    <span>Sanskrit Name</span>
+                    <span class="text-[#B8B8C4] font-normal text-xs opacity-80">(Sanskrit Pronunciation)</span>
+                  </h3>
+                  <p class="text-xs text-accent mt-1 font-medium">English Name</p>
+                </div>
+                
+                <!-- Details -->
+                <div class="mt-auto space-y-2 text-[10px] sm:text-xs">
+                   <div class="flex items-start gap-2 text-[#B8B8C4]">
+                       <span class="text-accent opacity-80">💨</span>
+                       <span>Pranayama (Breath)</span>
+                   </div>
+                   <div class="flex items-start gap-2 text-[#B8B8C4]">
+                       <span class="text-accent opacity-80">🙏</span>
+                       <span>Mudra (Hand Gesture)</span>
+                   </div>
+                   <div class="flex items-start gap-2 text-[#B8B8C4]">
+                       <span class="text-accent opacity-80">⏱️</span>
+                       <span>Duration</span>
+                   </div>
+                </div>
+
+                <!-- Tag -->
+                <div class="mt-3 pt-3 border-t border-white/5">
+                  <span class="inline-block bg-gradient-to-r from-[#A0E8C8]/5 to-[#A0C8E8]/5 border border-[#A0E8C8]/20 text-[#A0E8C8] text-[10px] font-medium px-2 py-0.5 rounded-full">
+                    Unique Benefit
+                  </span>
+                </div>
+             </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Pose Categories -->
+      @for (category of poseCategories(); track category.id; let catIndex = $index) {
+        <section [id]="category.id" class="mb-20 scroll-mt-20">
+          <div class="mb-6 flex gap-4">
+             <div class="w-1.5 rounded-full category-bar-gradient" style="filter: blur(2px);"></div>
+            <div>
+              <h2 class="text-2xl md:text-3xl font-bold text-[#F4F4F8]">{{ category.title }}</h2>
+              <p class="text-[#B8B8C4] mt-1 text-sm md:text-base">{{ category.description }}</p>
+            </div>
+          </div>
+          
+          <!-- UPDATED GRID: 5 columns on XL, adjusted gaps and text sizes -->
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            @for (pose of category.poses; track pose.sanskritName; let poseIndex = $index) {
+              <!-- Sub Category Header -->
+              @if (pose.subCategory && (poseIndex === 0 || pose.subCategory !== category.poses[poseIndex - 1].subCategory)) {
+                <div class="col-span-full mt-4 mb-2 pt-4 first:pt-0 border-b border-white/5 pb-2">
+                    <h3 class="text-sm md:text-base font-bold text-accent flex items-center gap-2 uppercase tracking-wider">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_rgba(180,160,232,0.8)]"></span>
+                        {{ pose.subCategory }}
+                    </h3>
+                </div>
+              }
+
+              <div (click)="openModal(pose)" 
+                  class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer h-full">
+                <div class="holo-border-container h-full">
+                    <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
+                      <!-- Updated conditional styling for Phase 4 (Inversions) or Surya Namaskar -->
+                      <figure [class]="category.id === 'phase4' && pose.sanskritName !== 'Surya Namaskar' ? 'overflow-hidden rounded-t-xl relative' : 'aspect-[4/3] overflow-hidden rounded-t-xl relative'">
+                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full object-cover transition-transform duration-300 group-hover:scale-105" [class.h-full]="category.id !== 'phase4' || pose.sanskritName === 'Surya Namaskar'" [class.object-contain]="pose.sanskritName === 'Surya Namaskar'" [class.p-4]="pose.sanskritName === 'Surya Namaskar'" />
+                        
+                        <!-- Step Badge - Top Left -->
+                        @if (getStepValue(pose.schedule); as step) {
+                          <div class="absolute top-2 left-2 bg-black/50 backdrop-blur-md border border-white/10 text-[#F4F4F8] text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm z-10">
+                            {{ step }}
+                          </div>
+                        }
+
+                        <!-- Schedule Badge - Moved to Right -->
+                        @let scheduleText = getScheduleDisplay(pose.schedule);
+                        @if (scheduleText) {
+                          <div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md border border-white/10 text-[#F4F4F8] text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm z-10">
+                            {{ scheduleText }}
+                          </div>
+                        }
+                      </figure>
+                      <div class="p-4 flex flex-col flex-grow">
+                        <!-- Header Section -->
+                        <div class="mb-3">
+                          <h3 class="text-sm font-bold text-[#F4F4F8] leading-tight flex flex-col gap-0.5">
+                            <span>{{ pose.sanskritName }}</span>
+                            <span class="text-[#B8B8C4] font-normal text-xs opacity-80">({{ pose.pronunciation }})</span>
+                          </h3>
+                          <p class="text-xs text-accent mt-1 font-medium">{{ pose.englishName }}</p>
+                        </div>
+                        
+                        <!-- Details Grid -->
+                        <div class="mt-auto space-y-2 text-[10px] sm:text-xs">
+                           <!-- Pranayama -->
+                           @if (pose.pranayama && pose.pranayama.length > 0) {
+                            <div class="flex items-start gap-2 text-[#B8B8C4]">
+                                <span class="text-accent opacity-80" title="Pranayama">💨</span>
+                                <span>{{ pose.pranayama.join(' / ') }}</span>
+                            </div>
+                           }
+                           
+                           <!-- Mudra -->
+                           @if (pose.mudra && pose.mudra.length > 0 && pose.mudra[0] !== 'None') {
+                             <div class="flex items-start gap-2 text-[#B8B8C4]">
+                                 <span class="text-accent opacity-80" title="Mudra">🙏</span>
+                                 <span>{{ pose.mudra.join(', ') }}</span>
+                             </div>
+                           }
+                           
+                           <!-- Duration -->
+                           @if (pose.frequency.length > 0) {
+                              <div class="flex items-start gap-2 text-[#B8B8C4]">
+                                 <span class="text-accent opacity-80" title="Duration">⏱️</span>
+                                 <span>{{ pose.frequency[0].duration || 'As per comfort' }}</span>
+                              </div>
+                           }
+                        </div>
+
+                        <!-- Benefit Tag -->
+                        <div class="mt-3 pt-3 border-t border-white/5">
+                          <span class="inline-block bg-gradient-to-r from-[#A0E8C8]/5 to-[#A0C8E8]/5 border border-[#A0E8C8]/20 text-[#A0E8C8] text-[10px] font-medium px-2 py-0.5 rounded-full truncate max-w-full">
+                            {{ pose.benefit }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      }
+
+      <!-- Top 5 Section -->
+      <section id="top5" class="mb-20 bg-black/30 border border-white/5 rounded-xl p-8 lg:p-12 scroll-mt-20">
+        <div class="text-center mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-[#F4F4F8]">
+            <span class="text-yellow-400 mr-2">🌟</span>Top 5 for the Fastest Results
+          </h2>
+          <p class="text-[#B8B8C4] mt-2 max-w-2xl mx-auto text-sm md:text-base">If you want the most effective poses to kickstart your journey, focus on these.</p>
+        </div>
+        
+        <!-- Updated Top 5 Grid to match standard card layout -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          @for (pose of topPoses(); track pose.sanskritName) {
+            <div (click)="openModal(pose)" class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer h-full">
+               <div class="holo-border-container h-full">
+                    <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
+                      <!-- Special Glow for Top 5 -->
+                      <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-[#E8A0BF]/10 to-[#B4A0E8]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+
+                      <figure class="aspect-[4/3] overflow-hidden rounded-t-xl relative">
+                        <img [src]="selectedGender() === 'male' && pose.imageUrlMale ? pose.imageUrlMale : pose.imageUrl" [alt]="pose.englishName" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                         <!-- Top 5 Badge - Moved to Left -->
+                         <div class="absolute top-2 left-2 bg-yellow-400/90 backdrop-blur-md border border-yellow-200/50 text-black text-[10px] font-bold px-2 py-0.5 rounded-full z-10 shadow-sm">
+                             TOP 5
+                         </div>
+                         
+                         <!-- Step Badge (if any) - Below Top 5 or Next to it? Let's put it below for now or next to it. 
+                              Actually, Top 5 badge is absolute top-2 left-2. 
+                              If we have a step badge, it might overlap. 
+                              Let's put step badge at top-2 left-16 (offset) or similar if Top 5 exists.
+                              Or just put it top-8 left-2?
+                              Let's try top-8 left-2 for Top 5 items if step exists.
+                          -->
+                         @if (getStepValue(pose.schedule); as step) {
+                           <div class="absolute top-8 left-2 bg-black/50 backdrop-blur-md border border-white/10 text-[#F4F4F8] text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm z-10">
+                             {{ step }}
+                           </div>
+                         }
+
+                         <!-- Schedule Badge for Top 5 - Moved to Right -->
+                         @let scheduleTextTop5 = getScheduleDisplay(pose.schedule);
+                         @if (scheduleTextTop5) {
+                          <div class="absolute top-2 right-2 bg-black/50 backdrop-blur-md border border-white/10 text-[#F4F4F8] text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm z-10">
+                            {{ scheduleTextTop5 }}
+                          </div>
+                        }
+                      </figure>
+                      
+                      <div class="p-4 flex flex-col flex-grow relative z-10">
+                        <div class="mb-3">
+                          <h3 class="text-sm font-bold text-[#F4F4F8] leading-tight flex flex-col gap-0.5">
+                            <span>{{ pose.sanskritName }}</span>
+                            <span class="text-[#B8B8C4] font-normal text-xs opacity-80">({{ pose.pronunciation }})</span>
+                          </h3>
+                          <p class="text-xs text-accent mt-1 font-medium">{{ pose.englishName }}</p>
+                        </div>
+                        
+                         <div class="mt-auto space-y-2 text-[10px] sm:text-xs">
+                           <!-- Pranayama -->
+                           @if (pose.pranayama && pose.pranayama.length > 0) {
+                            <div class="flex items-start gap-2 text-[#B8B8C4]">
+                                <span class="text-accent opacity-80">💨</span>
+                                <span>{{ pose.pranayama.join(' / ') }}</span>
+                            </div>
+                           }
+                           
+                           <!-- Mudra -->
+                           @if (pose.mudra && pose.mudra.length > 0 && pose.mudra[0] !== 'None') {
+                             <div class="flex items-start gap-2 text-[#B8B8C4]">
+                                 <span class="text-accent opacity-80">🙏</span>
+                                 <span>{{ pose.mudra.join(', ') }}</span>
+                             </div>
+                           }
+                           
+                           <!-- Duration -->
+                           @if (pose.frequency.length > 0) {
+                              <div class="flex items-start gap-2 text-[#B8B8C4]">
+                                 <span class="text-accent opacity-80">⏱️</span>
+                                 <span>{{ pose.frequency[0].duration || 'As per comfort' }}</span>
+                              </div>
+                           }
+                        </div>
+
+                         <div class="mt-3 pt-3 border-t border-white/5">
+                          <span class="inline-block bg-gradient-to-r from-[#A0E8C8]/5 to-[#A0C8E8]/5 border border-[#A0E8C8]/20 text-[#A0E8C8] text-[10px] font-medium px-2 py-0.5 rounded-full truncate max-w-full">
+                            {{ pose.benefit }}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+               </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <!-- Pranayama Table Section -->
+      <section id="pranayama" class="mb-20 bg-black/30 border border-white/5 rounded-xl p-6 lg:p-10 scroll-mt-20">
+        <h2 class="text-2xl md:text-3xl font-bold text-[#F4F4F8] mb-8 border-b border-white/10 pb-4">
+          Complete Pranayama Reference Table
+        </h2>
+
+        <!-- Responsive Table Wrapper -->
+        <div class="overflow-x-auto custom-scrollbar mb-10 border border-white/10 rounded-lg">
+          <table class="w-full text-left border-collapse min-w-[1000px]">
+            <thead>
+              <tr class="bg-white/5 text-accent border-b border-white/10">
+                <th class="p-4 font-bold text-xs uppercase tracking-wider w-1/5">Name</th>
+                <th class="p-4 font-bold text-xs uppercase tracking-wider w-24">Ratio</th>
+                <th class="p-4 font-bold text-xs uppercase tracking-wider w-28">Level</th>
+                <th class="p-4 font-bold text-xs uppercase tracking-wider w-1/3">Instruction Sequence</th>
+                <th class="p-4 font-bold text-xs uppercase tracking-wider">Benefits</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              @for(technique of breathingTechniques; track technique.name; let i = $index) {
+                <!-- Category Header Row -->
+                @if(i === 0 || technique.category !== breathingTechniques[i-1].category) {
+                  <tr class="bg-white/10">
+                    <td colspan="5" class="p-3 text-sm font-bold text-accent tracking-widest uppercase border-y border-white/10 pl-6">
+                      {{ technique.category }}
+                    </td>
+                  </tr>
+                }
+                
+                <tr class="hover:bg-white/[0.03] transition-colors">
+                  <td class="p-4 text-sm font-semibold text-[#F4F4F8]">{{ technique.name }}</td>
+                  <td class="p-4 text-xs text-[#B8B8C4]">{{ technique.ratio }}</td>
+                  <td class="p-4 text-xs">
+                    <span [class]="'px-2 py-1 rounded-md text-[10px] uppercase font-bold tracking-wide border ' + 
+                      (technique.level.includes('Adv') ? 'border-fuchsia-500/30 text-fuchsia-300 bg-fuchsia-500/10' : 
+                      (technique.level.includes('Int') ? 'border-sky-500/30 text-sky-300 bg-sky-500/10' : 
+                      'border-green-500/30 text-green-300 bg-green-500/10'))">
+                      {{ technique.level }}
+                    </span>
+                  </td>
+                  <!-- Updated to use [innerHTML] for bold formatting -->
+                  <td class="p-4 text-sm text-[#B8B8C4] font-mono leading-relaxed" [innerHTML]="technique.sequence"></td>
+                  <td class="p-4 text-sm text-[#B8B8C4] italic">{{ technique.benefits }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Legend & Notes Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10 text-sm">
+           <!-- Legend -->
+           <div class="bg-white/[0.02] border border-white/5 rounded-lg p-5">
+             <h3 class="text-[#F4F4F8] font-bold mb-3 uppercase tracking-wider text-xs">Sequence Notation</h3>
+             <ul class="space-y-1.5 text-[#B8B8C4]">
+               <li><strong class="text-white">Nose:</strong> Nasal passage (inhale/exhale)</li>
+               <li><strong class="text-white">Mouth:</strong> Oral passage (specific techniques)</li>
+               <li><strong class="text-white">Lungs:</strong> Complete lung filling</li>
+               <li><strong class="text-white">Belly:</strong> Abdominal/diaphragmatic region</li>
+               <li><strong class="text-white">Hold in:</strong> Antar Kumbhaka (retention after inhale)</li>
+               <li><strong class="text-white">Hold empty:</strong> Bahir Kumbhaka (retention after exhale)</li>
+               <li><strong class="text-white">→ :</strong> Direction of breath flow</li>
+               <li><strong class="text-white">| :</strong> Alternation point</li>
+             </ul>
+           </div>
+
+           <!-- Bandhas -->
+           <div class="bg-white/[0.02] border border-white/5 rounded-lg p-5">
+             <h3 class="text-[#F4F4F8] font-bold mb-3 uppercase tracking-wider text-xs">The 3 Bandhas (Energy Locks)</h3>
+             <p class="text-[#B8B8C4] mb-2 text-xs">Used in advanced practices with breath retention:</p>
+             <ul class="space-y-1.5 text-[#B8B8C4]">
+               <li><span class="text-accent">1. Jalandhara Bandha:</span> Chin to chest (Throat Lock)</li>
+               <li><span class="text-accent">2. Uddiyana Bandha:</span> Navel drawn in and up (Abdominal Lock)</li>
+               <li><span class="text-accent">3. Mula Bandha:</span> Perineum lifted (Root Lock)</li>
+               <li class="pt-1 border-t border-white/10 mt-1"><strong class="text-white">Maha Bandha:</strong> All three locks applied together</li>
+             </ul>
+           </div>
+        </div>
+
+        <!-- Safety Guidelines -->
+        <div class="border-l-4 border-red-500/50 bg-red-500/5 p-6 rounded-r-lg mb-8">
+           <h3 class="text-red-200 font-bold mb-3 flex items-center gap-2">
+             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+             Critical Safety Guidelines
+           </h3>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-[#B8B8C4]">
+             <div>
+               <h4 class="text-white font-semibold mb-2">General Precautions</h4>
+               <ul class="list-disc list-inside space-y-1 opacity-90">
+                 <li>Always practice on an empty stomach (2-5 hours after meals)</li>
+                 <li>Sit in a comfortable upright position with straight spine</li>
+                 <li>Start slowly and build gradually—never force the breath</li>
+                 <li>Discontinue if experiencing dizziness, nausea, or discomfort</li>
+               </ul>
+             </div>
+             <div>
+               <h4 class="text-white font-semibold mb-2">Specific Contraindications</h4>
+               <ul class="list-disc list-inside space-y-1 opacity-90">
+                 <li><strong class="text-red-300">Retention (Kumbhaka):</strong> Avoid if pregnant, heart disease, or hypertension.</li>
+                 <li><strong class="text-red-300">Kapalabhati & Bhastrika:</strong> Not for pregnancy, hypertension, epilepsy, hernia, or recent surgery.</li>
+                 <li><strong class="text-red-300">Bahya Pranayama:</strong> Avoid during menstruation, pregnancy, heart problems, hernia.</li>
+               </ul>
+             </div>
+           </div>
+        </div>
+        
+        <!-- Breathing Pathways -->
+        <div class="bg-gradient-to-r from-blue-900/10 to-transparent p-6 rounded-lg border border-blue-500/10">
+           <h3 class="text-blue-200 font-bold mb-3 text-sm uppercase tracking-wider">Breathing Pathway Clarification</h3>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+             <div>
+                <h4 class="text-white font-semibold mb-1">Primary Natural Breathing</h4>
+                <p class="text-[#B8B8C4]">IN: Nose → Lungs | OUT: Lungs → Nose. <span class="opacity-70">Nose breathing is optimal for filtration, warming, and humidifying air.</span></p>
+             </div>
+             <div>
+                <h4 class="text-white font-semibold mb-1">Nasal Cycle</h4>
+                <p class="text-[#B8B8C4]"><span class="text-blue-300">Left (Ida):</span> Cooling, calming. <span class="text-orange-300">Right (Pingala):</span> Warming, energizing. Nostrils alternate dominance every 90-120 mins.</p>
+             </div>
+           </div>
+        </div>
+
+      </section>
+
+      <!-- Call to Action -->
+      <section class="text-center py-12">
+          <h3 class="text-2xl font-bold text-[#F4F4F8]">Ready for a daily routine?</h3>
+          <p class="mt-2 text-[#B8B8C4]">I can create a 7-minute daily metabolism-boost yoga routine for you to follow every morning.</p>
+          <button class="mt-6 text-black font-bold py-3 px-8 rounded-full hover:scale-105 transition-transform button-primary-gradient focus-ring-accent">
+              Generate My 7-Minute Routine
+          </button>
+      </section>
+    </main>
+
+    <footer class="bg-black/20 border-t border-white/5 text-[#6E6E7A] mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm">
+        <p>&copy; 2025 Arogya. Practice with compassion.</p>
+      </div>
+    </footer>
+  } @else {
+    <app-warm-up (back)="hideWarmUp()" [gender]="selectedGender()"></app-warm-up>
+  }
+</div>
+
+@if (selectedPose(); as pose) {
+  <app-pose-detail-modal 
+    [pose]="pose" 
+    [gender]="selectedGender()"
+    (close)="closeModal()"
+    (previous)="goToPreviousPose()"
+    (next)="goToNextPose()">
+  </app-pose-detail-modal>
+}
+`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [PoseDetailModalComponent, WarmUpComponent],
 })
@@ -272,7 +741,7 @@ export class AppComponent {
           sanskritName: 'Surya Namaskar', 
           englishName: 'Sun Salutation',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'SOOR-yah nah-mahs-KAR',
+          pronunciation: 'SOOR-yah nah-muhs-KAR-ah',
           benefit: 'Best for metabolism', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Pranamasana (Prayer)'],
@@ -297,9 +766,9 @@ export class AppComponent {
         },
         { 
           sanskritName: 'Virabhadrasana Series', 
-          englishName: 'Warrior 1',
+          englishName: 'Warrior Poses',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'veer-ah-bah-DRAHS-anna I',
+          pronunciation: 'veer-ah-bhah-DRAHS-ah-nah',
           benefit: 'Builds strength', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Anjali Mudra'],
@@ -324,9 +793,9 @@ export class AppComponent {
         },
         { 
           sanskritName: 'Konasana Series', 
-          englishName: 'Bound Angle Pose',
+          englishName: 'Angle Poses',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'bah-dah koh-NAHS-anna',
+          pronunciation: 'ko-NAHS-ah-nah',
           benefit: 'Hip Opener', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
@@ -360,7 +829,7 @@ export class AppComponent {
           sanskritName: 'Kumbhakasana', 
           englishName: 'Plank Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'koom-bahk-AHS-anna',
+          pronunciation: 'koom-bhah-KAHS-ah-nah',
           benefit: 'Tones core', 
           pranayama: ['Ujjayi', 'Kapalabhati'],
           mudra: ['Hasta Bandha'],
@@ -387,7 +856,7 @@ export class AppComponent {
           sanskritName: 'Dandasana', 
           englishName: 'Staff Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'dahn-DAHS-anna',
+          pronunciation: 'dun-DAHS-ah-nah',
           benefit: 'Improves posture', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
@@ -410,38 +879,12 @@ export class AppComponent {
             "Core: Activates the deep core stabilizers."
           ]
         },
-        { 
-          sanskritName: 'Paschimottanasana', 
-          englishName: 'Seated Forward Bend',
-          schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'posh-ee-moh-tan-AHS-anna',
-          benefit: 'Calms the brain', 
-          pranayama: ['Ujjayi', 'Extended Exhale'],
-          mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-paschimottanasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-paschimottanasana.jpg?raw=true',
-          howToDo: [
-            "Sit with legs extended straight in front of you.",
-            "Inhale and reach your arms up, lengthening the spine.",
-            "Exhale and hinge at your hips to fold forward over your legs.",
-            "Reach for your feet or shins. Keep the spine long, neck relaxed."
-          ],
-          frequency: [
-            { level: 'Beginner', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
-          ],
-          why: [
-            "Calming: Soothes the nervous system and relieves mild depression and anxiety.",
-            "Flexibility: deeply stretches the entire back of the body, from heels to head.",
-            "Digestion: Compresses the abdomen, stimulating digestive organs."
-          ]
-        },
+
         { 
           sanskritName: 'Navasana', 
           englishName: 'Boat Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'nah-VAHS-anna',
+          pronunciation: 'nah-VAHS-ah-nah',
           benefit: 'Strengthens abs', 
           pranayama: ['Ujjayi', 'Bhastrika'],
           mudra: ['None'],
@@ -475,7 +918,7 @@ export class AppComponent {
           sanskritName: 'Urdhva Mukha Svanasana', 
           englishName: 'Upward Dog',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'OORD-vah MOO-kah',
+          pronunciation: 'OORD-vah MOO-kah shvahn-AHS-ah-nah',
           benefit: 'Opens chest', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
@@ -502,7 +945,7 @@ export class AppComponent {
           sanskritName: 'Ustrasana', 
           englishName: 'Camel Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'oosh-TRAHS-anna',
+          pronunciation: 'oosh-TRAHS-ah-nah',
           benefit: 'Deep heart opener', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
@@ -529,7 +972,7 @@ export class AppComponent {
           sanskritName: 'Dhanurasana', 
           englishName: 'Bow Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'don-your-AHS-anna',
+          pronunciation: 'dun-yoor-AHS-ah-nah',
           benefit: 'Metabolic booster', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
@@ -556,7 +999,7 @@ export class AppComponent {
           sanskritName: 'Setu Bandha Sarvangasana', 
           englishName: 'Bridge Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'SET-too BAHN-dah',
+          pronunciation: 'SAY-too BAHN-dhah sar-vahn-GAHS-ah-nah',
           benefit: 'Calms brain', 
           pranayama: ['Ujjayi', 'Diaphragmatic'],
           mudra: ['None'],
@@ -585,7 +1028,7 @@ export class AppComponent {
           sanskritName: 'Chakrasana', 
           englishName: 'Wheel Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'chak-RAHS-anna',
+          pronunciation: 'chuk-RAHS-ah-nah',
           benefit: 'Energizes body', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
@@ -619,14 +1062,14 @@ export class AppComponent {
           sanskritName: 'Sarvangasana', 
           englishName: 'Shoulder Stand',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'sar-van-GAHS-anna',
+          pronunciation: 'sar-vahn-GAHS-ah-nah',
           benefit: 'Stimulates thyroid', 
           pranayama: ['Ujjayi', 'Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sarvangasana/f-sarvangasana.png?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sarvangasana/m-sarvangasana.png?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sarvangasana/f-sarvangasana-steps.png?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sarvangasana/m-sarvangasana-steps.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sarvangasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sarvangasana.jpg?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sarvangasana-steps.jpg?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sarvangasana-steps.jpg?raw=true',
           howToDo: [
             "Lie on your back with arms alongside your body, palms down.",
             "Inhale and lift your legs, hips, and back off the floor, using your hands to support your lower back.",
@@ -648,14 +1091,14 @@ export class AppComponent {
           sanskritName: 'Halasana', 
           englishName: 'Plow Pose',
           schedule: ['Mon', 'Wed', 'Fri'],
-          pronunciation: 'hah-LAHS-anna',
+          pronunciation: 'hah-LAHS-ah-nah',
           benefit: 'Boosts digestion', 
           pranayama: ['Ujjayi', 'Diaphragmatic'],
           mudra: ['Interlaced Fingers'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/halasana/f-halasana.png?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/halasana/m-halasana.png?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/halasana/f-halasana-steps.png?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/halasana/m-halasana-steps.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-halasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-halasana.jpg?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-halasana-steps.jpg?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-halasana-steps.jpg?raw=true',
           howToDo: [
             "From Shoulder Stand, slowly lower your legs over your head.",
             "Attempt to touch your toes to the floor behind your head.",
@@ -677,28 +1120,28 @@ export class AppComponent {
           sanskritName: 'Sirsasana', 
           englishName: 'Headstand',
           schedule: ['All'],
-          pronunciation: 'sheer-SHAH-sa-na',
+          pronunciation: 'sheer-SHAHS-ah-nah',
           benefit: 'Brain oxygen', 
           pranayama: ['Ujjayi', 'Equal'],
           mudra: ['Bound Hands'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/1.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana.jpg?raw=true',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana-2.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana-3.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana-4.jpg?raw=true'
           ],
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/1.png?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana.jpg?raw=true',
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/1.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/2.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/3.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/4.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana-2.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana-3.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana-4.jpg?raw=true'
           ],
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/f-steps.png?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/m-steps.png?raw=true',
-          handImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/sirsasana/f-hand.png?raw=true',
-          handImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/sirsasana/m-hand.png?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sirsasana-steps.jpg?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sirsasana-steps.jpg?raw=true',
+          handImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sirsasana-hand.jpg?raw=true',
+          handImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sirsasana-hand.jpg?raw=true',
           howToDo: [
             "Kneel on the floor and interlock your fingers to create a cup with your hands.",
             "Place your forearms and the crown of your head on the floor, cupping the back of your head with your hands.",
@@ -721,21 +1164,21 @@ export class AppComponent {
           sanskritName: 'Pincha Mayurasana', 
           englishName: 'Feathered Peacock',
           schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'pin-cha my-yur-AHS-anna',
+          pronunciation: 'PEEN-chah mah-yoor-AHS-ah-nah',
           benefit: 'Shoulder strength', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/pincha-mayurasana/f-pincha.png?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/pincha-mayurasana/m-pincha.png?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/pincha-mayurasana/f-pincha-steps.png?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/pincha-mayurasana/m-pincha-steps.png?raw=true',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha.jpg?raw=true',
+          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha-steps.jpg?raw=true',
+          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha-steps.jpg?raw=true',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/pincha-mayurasana/f-pincha-warmup1.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversion-poses/pincha-mayurasana/f-pincha-warmup2.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha-warmup1.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha-warmup2.jpg?raw=true'
           ],
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/pincha-mayurasana/m-pincha-warmup1.png?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversion-poses/pincha-mayurasana/m-pincha-warmup2.png?raw=true'
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha-warmup1.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha-warmup2.jpg?raw=true'
           ],
           howToDo: [
             "Start on hands and knees. Place forearms on the floor, parallel to each other, shoulder-width apart.",
@@ -790,13 +1233,14 @@ export class AppComponent {
       poses: [
         { 
           sanskritName: 'Ardha Matsyendrasana', 
-          englishName: 'Half Spinal Twist',
+          englishName: 'Half Lord of the Fishes',
           schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'ARD-hah mahts-yen-DRAHS-anna',
+          pronunciation: 'maht-syen-DRAHS-ah-nah',
           benefit: 'Stimulates liver', 
           pranayama: ['Diaphragmatic'],
           mudra: ['Abhaya Mudra'],
-          imageUrl: 'https://www.keralatourism.org/images/yoga/static-banner/large/Ardha_Matsyendrasana_-_The_Spinal_Twist-07032020173900.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-matsyendrasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-matsyendrasana.jpg?raw=true',
           howToDo: [
             "Sit with legs extended. Bend your right knee and place the foot outside your left thigh.",
             "Bend your left knee and bring the foot near your right hip.",
@@ -815,14 +1259,95 @@ export class AppComponent {
           ]
         },
         { 
+          sanskritName: 'Supta Matsyendrasana', 
+          englishName: 'Supine Spinal Twist',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'SOOP-tah maht-syen-DRAHS-ah-nah',
+          benefit: 'Releases lower back', 
+          pranayama: ['Diaphragmatic'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-supta-matsyendrasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-supta-matsyendrasana.jpg?raw=true',
+          howToDo: [
+            "Lie on your back. Hug your right knee into your chest.",
+            "Drop your right knee over to the left side of your body.",
+            "Extend your right arm out to the side and gaze to the right.",
+            "Keep both shoulders flat on the floor."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '30-60 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3+ mins/side', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Spine Health: Realigns the spine and hydrates the spinal discs.",
+            "Digestion: Massages the abdominal organs.",
+            "Relaxation: Relieves tension in the lower back and hips."
+          ]
+        },
+        { 
+          sanskritName: 'Jathara Parivartanasana A', 
+          englishName: 'Revolved Abdomen Pose A',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'jut-HUH-rah puh-ree-vahr-tah-NAHS-ah-nah',
+          benefit: 'Tones abdomen', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-jathara-parivartanasana-a.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-jathara-parivartanasana-a.jpg?raw=true',
+          howToDo: [
+            "Lie on your back with arms extended to the sides.",
+            "Lift your legs straight up to 90 degrees.",
+            "Exhale and lower both legs to the right, keeping them straight.",
+            "Try to touch your feet to your right hand. Keep left shoulder down."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: 'Knees bent', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: 'Legs straight', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: 'Hold 1 min', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Core: Strengthens the oblique muscles.",
+            "Detox: Wrings out the abdominal organs.",
+            "Spine: Rotates and releases the lower spine."
+          ]
+        },
+        { 
+          sanskritName: 'Jathara Parivartanasana B', 
+          englishName: 'Revolved Abdomen Pose B',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'jut-HUH-rah puh-ree-vahr-tah-NAHS-ah-nah',
+          benefit: 'Deep twist', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-jathara-parivartanasana-b.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-jathara-parivartanasana-b.jpg?raw=true',
+          howToDo: [
+            "Similar to variation A, but usually done with knees bent (dynamic) or holding the toes.",
+            "Focus on keeping the shoulders grounded as the legs rotate.",
+            "Engage the core to control the movement."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: 'Dynamic', sets: '5', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: 'Hold', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: 'Deep hold', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Mobility: Increases rotational flexibility of the spine.",
+            "Digestion: Stimulates peristalsis.",
+            "Energy: Removes blockages in the energy channels."
+          ]
+        },
+        { 
           sanskritName: 'Bharadvajasana', 
           englishName: 'Seated Twist',
           schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'bah-rahd-vah-JAHS-anna',
+          pronunciation: 'bhah-rahd-vah-JAHS-ah-nah',
           benefit: 'Improves digestion', 
           pranayama: ['Diaphragmatic'],
           mudra: ['Chin Mudra'],
-          imageUrl: 'https://omstars.com/blog/wp-content/uploads/2021/09/Bharadvajasana.png',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-bharadvajasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-bharadvajasana.jpg?raw=true',
           howToDo: [
             "Sit on the floor with legs straight out.",
             "Shift your weight onto your right buttock, bend your knees, and swing your legs to the left.",
@@ -840,32 +1365,6 @@ export class AppComponent {
             "Flexibility: Stretches the spine, shoulders, and hips."
           ]
         },
-        { 
-          sanskritName: 'Marichyasana C', 
-          englishName: 'Marichi\'s Twist',
-          schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'mah-ree-chee-AHS-anna C',
-          benefit: 'Massages organs', 
-          pranayama: ['Ujjayi'],
-          mudra: ['None'],
-          imageUrl: 'https://www.vinyasayogaashram.com/blog/wp-content/uploads/2023/10/marichyasana.jpg',
-          howToDo: [
-            "Sit with your left leg extended. Bend your right knee and place the foot on the floor, close to your inner left thigh.",
-            "Exhale and twist to the right. Wrap your left arm around your right leg.",
-            "Place your right fingertips on the floor behind you.",
-            "For a deeper bind, clasp your hands behind your back."
-          ],
-          frequency: [
-            { level: 'Beginner', duration: '30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '60 secs/side', sets: '1', reps: '1', frequency: 'Daily' }
-          ],
-          why: [
-            "Detox & Digestion: Massages abdominal organs, including the liver and spleen, to improve function.",
-            "Energy: Energizes the spine and nervous system.",
-            "Mindfulness: Helps to calm the mind and reduce stress."
-          ]
-        },
       ],
     },
     {
@@ -873,56 +1372,151 @@ export class AppComponent {
       title: 'Phase 6: Balance & Integration',
       description: 'Stabilize the body and mind. Cultivate focus, coordination, and inner equilibrium.',
       poses: [
-        { 
-          sanskritName: 'Vrksasana', 
-          englishName: 'Tree Pose',
-          schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'vrik-SHAHS-anna',
-          benefit: 'Improves balance', 
-          pranayama: ['Equal'],
-          mudra: ['Anjali Mudra'],
-          imageUrl: 'https://images.unsplash.com/photo-1566501206165-001c4674c3e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        {
+          sanskritName: 'Utthita Hasta Padangusthasana',
+          englishName: 'Extended Hand-to-Big-Toe Pose',
+          schedule: ['Tue', 'Thu', 'Sat', 'S4'],
+          pronunciation: 'oot-TEE-tah HA-stah pah-dahn-goosh-TAHS-ah-nah',
+          benefit: 'Leg stretch & balance',
+          pranayama: ['Ujjayi', 'Equal'],
+          mudra: ['Vishnu Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-1.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-1.jpg?raw=true',
+          imageUrls: [
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-1.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-2.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-3.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-4.jpg?raw=true'
+          ],
+          imageUrlsMale: [
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-1.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-2.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-3.jpg?raw=true',
+            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-4.jpg?raw=true'
+          ],
           howToDo: [
-            "Stand tall in Mountain Pose. Shift your weight to your left foot.",
-            "Place your right foot on your left inner thigh (or calf, never the knee).",
-            "Bring your hands to prayer position at your chest or raise them overhead.",
-            "Find a focal point (Drishti) to help you balance. Hold and breathe."
+            "Stand in Mountain Pose. Shift weight to left foot.",
+            "Lift right knee. Hook index and middle finger around big toe.",
+            "Extend leg forward. Keep spine straight and shoulders down.",
+            "If stable, open leg to the side. Gaze over left shoulder."
           ],
           frequency: [
-            { level: 'Beginner', duration: '30 seconds', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '45-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '60+ seconds', sets: '1', reps: '1', frequency: 'Daily' }
+            { level: 'Beginner', duration: '15-30 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30-45 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60+ secs', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
-            "Focus: Enhances mental concentration and steadiness.",
-            "Strength: Strengthens the legs, ankles, and core stabilizers.",
-            "Poise: Cultivates physical and mental grace."
+            "Flexibility: Deeply stretches hamstrings and hips.",
+            "Balance: Improves physical stability and mental focus.",
+            "Strength: Strengthens legs and ankles."
           ]
         },
-        { 
-          sanskritName: 'Garudasana', 
-          englishName: 'Eagle Pose',
+        {
+          sanskritName: 'Skandasana',
+          englishName: 'Side Lunge',
           schedule: ['Tue', 'Thu', 'Sat'],
-          pronunciation: 'gah-roo-DAHS-anna',
-          benefit: 'Opens shoulders', 
+          pronunciation: 'skahn-DAHS-ah-nah',
+          benefit: 'Hip & Hamstring Opener',
           pranayama: ['Ujjayi'],
-          mudra: ['Eagle Arms'],
-          imageUrl: 'https://images.unsplash.com/photo-1599447421405-0753f5d10972?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          mudra: ['Anjali Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-skandasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-skandasana.jpg?raw=true',
           howToDo: [
-            "Bend your knees slightly. Cross your right leg over your left thigh and hook the foot behind the calf.",
-            "Cross your right arm under your left arm, bending elbows to bring palms together.",
-            "Lift your elbows to shoulder height and press your forearms away from your face.",
-            "Sit deeper into the squat and hold."
+            "Start in a wide-legged standing position.",
+            "Bend your right knee deeply, keeping left leg straight.",
+            "Lower hips towards right heel. Keep left foot flexed, toes pointing up.",
+            "Hands can be on floor for support or in prayer at heart center."
           ],
           frequency: [
-            { level: 'Beginner', duration: '15-20 secs', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Intermediate', duration: '30-45 secs', sets: '1', reps: '1', frequency: 'Daily' },
-            { level: 'Advanced', duration: '45-60 secs', sets: '1', reps: '1', frequency: 'Daily' }
+            { level: 'Beginner', duration: '15-30 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30-45 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60+ secs/side', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
-            "Flexibility: Deeply stretches the upper back, shoulders, and outer hips.",
-            "Circulation: The 'squeeze and release' mechanism improves circulation to the joints.",
-            "Balance: Requires strong focus and stability."
+            "Flexibility: Opens hips and stretches inner thighs and hamstrings.",
+            "Balance: Improves balance and core stability.",
+            "Strength: Strengthens legs and glutes."
+          ]
+        },
+        {
+          sanskritName: 'Natarajasana',
+          englishName: 'Dancer Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'not-ah-rah-JAHS-ah-nah',
+          benefit: 'Grace & Balance',
+          pranayama: ['Ujjayi'],
+          mudra: ['Jnana Mudra'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-natarajasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-natarajasana.jpg?raw=true',
+          howToDo: [
+            "Stand in Mountain Pose. Shift weight to left foot.",
+            "Bend right knee back, grasp inside of right foot with right hand.",
+            "Reach left arm forward and up. Kick right foot into hand to lift leg.",
+            "Lean torso forward slightly. Gaze at a fixed point."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '15-30 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30-45 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '60+ secs', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Balance: Develops poise and concentration.",
+            "Flexibility: Stretches shoulders, chest, thighs, and abdomen.",
+            "Strength: Strengthens legs and ankles."
+          ]
+        },
+        {
+          sanskritName: 'Bakasana',
+          englishName: 'Crow Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'bah-KAHS-ah-nah',
+          benefit: 'Arm Balance',
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-bakasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-bakasana.jpg?raw=true',
+          howToDo: [
+            "Squat down, feet together, knees apart.",
+            "Place hands on floor shoulder-width apart.",
+            "Lift hips high. Place knees on upper arms/triceps.",
+            "Shift weight forward onto hands. Lift feet off floor one by one."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: 'Hold 5-10 secs', sets: '3', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: 'Hold 20-30 secs', sets: '3', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: 'Hold 60 secs', sets: '2', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Strength: Builds arm, shoulder, and core strength.",
+            "Balance: Improves coordination and balance.",
+            "Focus: Requires deep concentration."
+          ]
+        },
+        {
+          sanskritName: 'Astavakrasana',
+          englishName: 'Eight-Angle Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'ush-tah-vah-KRAHS-ah-nah',
+          benefit: 'Advanced Arm Balance',
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-astavakrasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-astavakrasana.jpg?raw=true',
+          howToDo: [
+            "Sit with legs extended. Bend right knee, bring leg over right shoulder.",
+            "Place hands on floor. Hook left ankle over right ankle.",
+            "Lean forward, bend elbows to 90 degrees.",
+            "Lift hips and extend legs to the side."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: 'Attempt lift', sets: '3', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: 'Hold 10-20 secs', sets: '2', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: 'Hold 30+ secs', sets: '2', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Strength: Strengthens wrists, arms, and shoulders.",
+            "Core: Tones abdominal muscles.",
+            "Digestion: Compresses abdominal organs, aiding digestion."
           ]
         }
       ]
@@ -933,29 +1527,84 @@ export class AppComponent {
       description: 'Calm the nervous system. Lengthen the spine and hamstrings to wind down.',
       poses: [
         { 
-          sanskritName: 'Balasana', 
-          englishName: 'Child\'s Pose',
-          schedule: ['Sun'],
-          pronunciation: 'bah-LAHS-anna',
-          benefit: 'Relaxation', 
-          pranayama: ['Diaphragmatic', 'Equal'],
+          sanskritName: 'Paschimottanasana', 
+          englishName: 'Seated Forward Bend',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'pash-chee-moh-tahn-AHS-ah-nah',
+          benefit: 'Calms the brain', 
+          pranayama: ['Ujjayi', 'Extended Exhale'],
           mudra: ['None'],
-          imageUrl: 'https://images.unsplash.com/photo-1544367563-12123d8965cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/forward-bends/f-paschimottanasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/forward-bends/m-paschimottanasana.jpg?raw=true',
           howToDo: [
-            "Kneel on the floor, toes together and knees hip-width apart.",
-            "Exhale and lower your torso between your knees.",
-            "Extend your arms forward with palms down, or rest them alongside your body.",
-            "Rest your forehead on the mat and breathe deeply."
+            "Sit with legs extended straight in front of you.",
+            "Inhale and reach your arms up, lengthening the spine.",
+            "Exhale and hinge at your hips to fold forward over your legs.",
+            "Reach for your feet or shins. Keep the spine long, neck relaxed."
           ],
           frequency: [
-            { level: 'Beginner', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Anytime' },
-            { level: 'Intermediate', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Anytime' },
-            { level: 'Advanced', duration: '5+ mins', sets: '1', reps: '1', frequency: 'Anytime' }
+            { level: 'Beginner', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3-5 mins', sets: '1', reps: '1', frequency: 'Daily' }
           ],
           why: [
-            "Rest: A deeply restorative pose that calms the mind and body.",
-            "Release: Gently stretches the lower back, hips, thighs, and ankles.",
-            "Grounding: Helps to feel grounded and connected to the earth."
+            "Calming: Soothes the nervous system and relieves mild depression and anxiety.",
+            "Flexibility: deeply stretches the entire back of the body, from heels to head.",
+            "Digestion: Compresses the abdomen, stimulating digestive organs."
+          ]
+        },
+        { 
+          sanskritName: 'Janu Sirsasana', 
+          englishName: 'Head-to-Knee Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'JAH-noo sheer-SHAHS-ah-nah',
+          benefit: 'Calms mind', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/forward-bends/f-janu-sirsasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/forward-bends/m-janu-sirsasana.jpg?raw=true',
+          howToDo: [
+            "Sit with legs extended. Bend right knee, place foot against inner left thigh.",
+            "Inhale, lengthen spine. Exhale, fold forward over left leg.",
+            "Hold foot or shin. Keep spine long.",
+            "Repeat on the other side."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: '30-60 secs/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '1-2 mins/side', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '3+ mins/side', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Liver & Kidneys: Stimulates the liver and kidneys.",
+            "Calming: Calms the brain and helps relieve mild depression.",
+            "Stretching: Stretches the spine, shoulders, hamstrings, and groins."
+          ]
+        },
+        { 
+          sanskritName: 'Kurmasana', 
+          englishName: 'Tortoise Pose',
+          schedule: ['Tue', 'Thu', 'Sat'],
+          pronunciation: 'koor-MAHS-ah-nah',
+          benefit: 'Withdraws senses', 
+          pranayama: ['Ujjayi'],
+          mudra: ['None'],
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/forward-bends/f-kurmasana.jpg?raw=true',
+          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/forward-bends/m-kurmasana.jpg?raw=true',
+          howToDo: [
+            "Sit with legs wide apart. Bend knees slightly.",
+            "Slide arms under knees, palms down.",
+            "Lean forward, extending legs and arms.",
+            "Bring chest and chin to the floor."
+          ],
+          frequency: [
+            { level: 'Beginner', duration: 'Attempt', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Intermediate', duration: '30-60 secs', sets: '1', reps: '1', frequency: 'Daily' },
+            { level: 'Advanced', duration: '1-3 mins', sets: '1', reps: '1', frequency: 'Daily' }
+          ],
+          why: [
+            "Pratyahara: Encourages withdrawal of the senses (Pratyahara).",
+            "Flexibility: Intense stretch for hips and back.",
+            "Calming: Soothes the nerves."
           ]
         }
       ]
@@ -970,7 +1619,7 @@ export class AppComponent {
           sanskritName: 'Vajrasana', 
           englishName: 'Thunderbolt Pose',
           schedule: ['Mon', 'Thu'],
-          pronunciation: 'vah-JRAHS-anna',
+          pronunciation: 'vuj-RAHS-ah-nah',
           benefit: 'Aids digestion', 
           pranayama: ['Diaphragmatic'],
           mudra: ['Chin Mudra'],
@@ -1008,7 +1657,7 @@ export class AppComponent {
           sanskritName: 'Padmasana', 
           englishName: 'Lotus Pose',
           schedule: ['Tue', 'Fri'],
-          pronunciation: 'pad-MAHS-anna',
+          pronunciation: 'pud-MAHS-ah-nah',
           benefit: 'Deep stability', 
           pranayama: ['Nadi Shodhana', 'Ujjayi'],
           mudra: ['Chin Mudra', 'Bhairava'],
@@ -1036,7 +1685,7 @@ export class AppComponent {
           sanskritName: 'Bhadrasana', 
           englishName: 'Gracious Pose',
           schedule: ['Wed', 'Sat'],
-          pronunciation: 'bhad-RAHS-anna',
+          pronunciation: 'bhuh-DRAHS-ah-nah',
           benefit: 'Root chakra', 
           pranayama: ['Ujjayi'],
           mudra: ['Nasikagra Drishti'],
@@ -1064,7 +1713,7 @@ export class AppComponent {
           sanskritName: 'Siddhasana', 
           englishName: 'Perfect Pose',
           schedule: ['All'],
-          pronunciation: 'sid-DHAHS-anna',
+          pronunciation: 'sid-DHAHS-ah-nah',
           benefit: 'Purifies energy', 
           pranayama: ['Kapalabhati', 'Bhastrika'],
           mudra: ['Chin Mudra'],
@@ -1092,7 +1741,7 @@ export class AppComponent {
           sanskritName: 'Bhramari', 
           englishName: 'Bee Breath',
           schedule: ['All'],
-          pronunciation: 'bhrah-MAH-ree',
+          pronunciation: 'bhrah-mah-REE',
           benefit: 'Soothes mind', 
           pranayama: ['Bhramari'],
           mudra: ['Shanmukhi Mudra'],
@@ -1121,7 +1770,7 @@ export class AppComponent {
           sanskritName: 'Sukhasana', 
           englishName: 'Easy Pose',
           // Schedule removed as requested
-          pronunciation: 'soo-KAHS-anna',
+          pronunciation: 'soo-KAHS-ah-nah',
           benefit: 'Meditation base', 
           pranayama: ['Nadi Shodhana', 'Equal'],
           mudra: ['Chin Mudra', 'Gyan Mudra'],
@@ -1157,7 +1806,7 @@ export class AppComponent {
           sanskritName: 'Savasana', 
           englishName: 'Corpse Pose',
           schedule: ['All'],
-          pronunciation: 'shah-VAHS-anna',
+          pronunciation: 'shuh-VAHS-ah-nah',
           benefit: 'Deep relaxation', 
           pranayama: ['Diaphragmatic', 'Coherent'],
           mudra: ['None'],
@@ -1199,7 +1848,7 @@ export class AppComponent {
 
 
   readonly topPoses = signal<Pose[]>(this.poseCategories().flatMap(c => c.poses).filter(p => [
-      'Sarvangasana', 'Surya Namaskar', 'Navasana', 'Kapalbhati', 'Dhanurasana'
+      'Sarvangasana', 'Surya Namaskar', 'Navasana', 'Kapalbhati', 'Dhanurasana', 'Bhramari'
     ].includes(p.sanskritName)));
 
   constructor() {
@@ -1263,10 +1912,15 @@ export class AppComponent {
   getScheduleDisplay(schedule: string[] | undefined): string {
     if (!schedule || schedule.length === 0) return '';
     
-    // Handle "All" case specifically
-    if (schedule.includes('All')) return 'Daily';
+    // Filter out step indicators (starting with 'S' followed by a number)
+    const days = schedule.filter(item => !/^S\d+$/.test(item));
 
-    return schedule.map(day => {
+    if (days.length === 0) return '';
+
+    // Handle "All" case specifically
+    if (days.includes('All')) return 'Daily';
+
+    return days.map(day => {
       switch(day) {
         case 'Mon': return 'M';
         case 'Tue': return 'Tu';
@@ -1278,5 +1932,11 @@ export class AppComponent {
         default: return day;
       }
     }).join(' - ');
+  }
+
+  getStepValue(schedule: string[] | undefined): string | null {
+    if (!schedule) return null;
+    const step = schedule.find(item => /^S\d+$/.test(item));
+    return step || null;
   }
 }

@@ -58,7 +58,7 @@ interface InstructionCategory {
                             <h4 class="font-bold text-[#A0E8C8] mb-2 text-xs uppercase tracking-wider opacity-80">{{ category.name }}</h4>
                             <ul class="space-y-1">
                                 @for(exercise of category.exercises; track exercise.name) {
-                                    <li class="text-[#B8B8C4] hover:text-white transition-colors cursor-pointer" (click)="scrollTo(category.name)">{{ exercise.name }}</li>
+                                    <li class="text-[#B8B8C4] hover:text-white transition-colors cursor-pointer" (click)="scrollTo(exercise.name)">{{ exercise.name }}</li>
                                 }
                             </ul>
                         </div>
@@ -74,7 +74,7 @@ interface InstructionCategory {
                             <h4 class="font-bold text-[#A0E8C8] mb-2 text-xs uppercase tracking-wider opacity-80">{{ category.name }}</h4>
                             <ul class="space-y-1">
                                 @for(exercise of category.exercises; track exercise.name) {
-                                    <li class="text-[#B8B8C4] hover:text-white transition-colors cursor-pointer" (click)="scrollTo(category.name)">{{ exercise.name }}</li>
+                                    <li class="text-[#B8B8C4] hover:text-white transition-colors cursor-pointer" (click)="scrollTo(exercise.name)">{{ exercise.name }}</li>
                                 }
                             </ul>
                         </div>
@@ -143,41 +143,35 @@ interface InstructionCategory {
              <div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
           </div>
           
-          @for(category of upperBodyCategories(); track category.name) {
-            <section [id]="category.name" class="mb-16 scroll-mt-24">
-              <div class="mb-6 flex items-baseline gap-3">
-                <h3 class="text-xl font-bold text-[#F4F4F8]">{{ category.name }}</h3>
-                <span class="h-px flex-1 bg-white/5"></span>
-              </div>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                @for(exercise of category.exercises; track exercise.name) {
-                  <div (click)="openModal(exercise)" 
-                       class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
-                    <div class="holo-border-container h-full">
-                      <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
-                        <figure class="aspect-[4/3] overflow-hidden rounded-t-xl">
-                          <img [src]="gender() === 'male' && exercise.imageUrlMale ? exercise.imageUrlMale : (exercise.imageUrlFemale || exercise.imageUrl)" [alt]="exercise.name" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                        </figure>
-                        <div class="p-5 flex flex-col flex-grow">
-                          <div class="mb-3">
-                            <h4 class="text-lg font-bold text-[#F4F4F8] leading-tight">{{ exercise.name }}</h4>
-                          </div>
-                          <div class="mt-auto">
-                            <span class="inline-flex items-center gap-1.5 bg-[#A0E8C8]/10 border border-[#A0E8C8]/20 text-[#A0E8C8] text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-md uppercase tracking-wide">
-                              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-                              </svg>
-                              {{ exercise.benefit }}
-                            </span>
-                          </div>
-                        </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            @for(exercise of upperBodyExercises(); track exercise.name) {
+              <div [id]="exercise.name" (click)="openModal(exercise)" 
+                   class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer scroll-mt-24">
+                <div class="holo-border-container h-full">
+                  <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
+                    <figure class="aspect-[4/3] overflow-hidden rounded-t-xl">
+                      <img [src]="gender() === 'male' && exercise.imageUrlMale ? exercise.imageUrlMale : (exercise.imageUrlFemale || exercise.imageUrl)" [alt]="exercise.name" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-5 flex flex-col flex-grow">
+                      <div class="mb-3">
+                        <h4 class="text-lg font-bold text-[#F4F4F8] leading-tight">{{ exercise.name }}</h4>
+                        <!-- Optional: Display Category as a subtitle since sections are gone -->
+                        <p class="text-[10px] text-[#B8B8C4] uppercase tracking-wider opacity-60 mt-1">{{ exercise.category }}</p>
+                      </div>
+                      <div class="mt-auto">
+                        <span class="inline-flex items-center gap-1.5 bg-[#A0E8C8]/10 border border-[#A0E8C8]/20 text-[#A0E8C8] text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-md uppercase tracking-wide">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                          </svg>
+                          {{ exercise.benefit }}
+                        </span>
                       </div>
                     </div>
                   </div>
-                }
+                </div>
               </div>
-            </section>
-          }
+            }
+          </div>
         </div>
 
         <!-- Lower Body Section -->
@@ -188,41 +182,35 @@ interface InstructionCategory {
              <div class="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></div>
           </div>
 
-          @for(category of lowerBodyCategories(); track category.name) {
-            <section [id]="category.name" class="mb-16 scroll-mt-24">
-              <div class="mb-6 flex items-baseline gap-3">
-                <h3 class="text-xl font-bold text-[#F4F4F8]">{{ category.name }}</h3>
-                <span class="h-px flex-1 bg-white/5"></span>
-              </div>
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                @for(exercise of category.exercises; track exercise.name) {
-                  <div (click)="openModal(exercise)" 
-                       class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer">
-                    <div class="holo-border-container h-full">
-                      <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
-                        <figure class="aspect-[4/3] overflow-hidden rounded-t-xl">
-                          <img [src]="gender() === 'male' && exercise.imageUrlMale ? exercise.imageUrlMale : (exercise.imageUrlFemale || exercise.imageUrl)" [alt]="exercise.name" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-                        </figure>
-                        <div class="p-5 flex flex-col flex-grow">
-                          <div class="mb-3">
-                            <h4 class="text-lg font-bold text-[#F4F4F8] leading-tight">{{ exercise.name }}</h4>
-                          </div>
-                          <div class="mt-auto">
-                            <span class="inline-flex items-center gap-1.5 bg-[#A0C8E8]/10 border border-[#A0C8E8]/20 text-[#A0C8E8] text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-md uppercase tracking-wide">
-                               <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
-                              </svg>
-                              {{ exercise.benefit }}
-                            </span>
-                          </div>
-                        </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+            @for(exercise of lowerBodyExercises(); track exercise.name) {
+              <div [id]="exercise.name" (click)="openModal(exercise)" 
+                   class="group relative transition-all duration-300 hover:-translate-y-1.5 cursor-pointer scroll-mt-24">
+                <div class="holo-border-container h-full">
+                  <div class="bg-black/40 backdrop-blur-sm border border-white/5 rounded-xl h-full shadow-lg shadow-black/30 flex flex-col">
+                    <figure class="aspect-[4/3] overflow-hidden rounded-t-xl">
+                      <img [src]="gender() === 'male' && exercise.imageUrlMale ? exercise.imageUrlMale : (exercise.imageUrlFemale || exercise.imageUrl)" [alt]="exercise.name" width="400" height="300" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+                    </figure>
+                    <div class="p-5 flex flex-col flex-grow">
+                      <div class="mb-3">
+                        <h4 class="text-lg font-bold text-[#F4F4F8] leading-tight">{{ exercise.name }}</h4>
+                        <!-- Optional: Display Category as a subtitle since sections are gone -->
+                        <p class="text-[10px] text-[#B8B8C4] uppercase tracking-wider opacity-60 mt-1">{{ exercise.category }}</p>
+                      </div>
+                      <div class="mt-auto">
+                        <span class="inline-flex items-center gap-1.5 bg-[#A0C8E8]/10 border border-[#A0C8E8]/20 text-[#A0C8E8] text-[10px] sm:text-xs font-semibold px-2.5 py-1 rounded-md uppercase tracking-wide">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                          </svg>
+                          {{ exercise.benefit }}
+                        </span>
                       </div>
                     </div>
                   </div>
-                }
+                </div>
               </div>
-            </section>
-          }
+            }
+          </div>
         </div>
       </main>
 
@@ -339,6 +327,15 @@ export class WarmUpComponent {
 
   readonly lowerBodyCategories = computed(() => {
     return this.exerciseCategories().filter(c => this.lowerBodyKeys.has(c.name));
+  });
+
+  // New computed properties for flat lists
+  readonly upperBodyExercises = computed(() => {
+    return this.upperBodyCategories().flatMap(c => c.exercises);
+  });
+
+  readonly lowerBodyExercises = computed(() => {
+    return this.lowerBodyCategories().flatMap(c => c.exercises);
   });
 
   readonly relatedExercises = computed(() => {
