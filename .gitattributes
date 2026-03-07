@@ -28,3 +28,16 @@
 *.gif binary
 *.ico binary
 *.webp binary
+*.bmp binary
+*.tiff binary
+*.tif binary
+*.svg text
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.mp4 binary
+*.webm binary
+*.wav binary
+*.mp3 binary
+

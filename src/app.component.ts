@@ -745,7 +745,7 @@ export class AppComponent {
           benefit: 'Best for metabolism', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Pranamasana (Prayer)'],
-          imageUrl: '/assets/images/female/foundation/f-surya-namaskar.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-surya-namaskar.jpg?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-surya-namaskar.jpg?raw=true',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
@@ -772,7 +772,7 @@ export class AppComponent {
           benefit: 'Builds strength', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Anjali Mudra'],
-          imageUrl: '/assets/images/female/foundation/f-virabhadrasana.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-virabhadrasana.jpg?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-virabhadrasana.jpg?raw=true',
           howToDo: [
             "Step your feet wide apart, about 4 feet.",
@@ -799,7 +799,7 @@ export class AppComponent {
           benefit: 'Hip Opener', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: '/assets/images/female/foundation/f-konasana.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-konasana.jpg?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-konasana.jpg?raw=true',
           howToDo: [
             "Sit with your legs straight out in front of you.",
@@ -833,7 +833,7 @@ export class AppComponent {
           benefit: 'Tones core', 
           pranayama: ['Ujjayi', 'Kapalabhati'],
           mudra: ['Hasta Bandha'],
-          imageUrl: '/assets/images/female/core/f-kumbhakasana.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-kumbhakasana.jpg?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-kumbhakasana.jpg?raw=true',
           howToDo: [
             "Start on your hands and knees.",
@@ -860,7 +860,7 @@ export class AppComponent {
           benefit: 'Improves posture', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: '/assets/images/female/core/f-dandasana.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-dandasana.jpg?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-dandasana.jpg?raw=true',
           howToDo: [
             "Sit on the floor with your legs extended straight in front of you.",
@@ -888,7 +888,7 @@ export class AppComponent {
           benefit: 'Strengthens abs', 
           pranayama: ['Ujjayi', 'Bhastrika'],
           mudra: ['None'],
-          imageUrl: '/assets/images/female/core/f-navasana.jpg',
+          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-navasana.jpg?raw=true',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-navasana.jpg?raw=true',
           howToDo: [
             "Sit on the floor with your knees bent.",
