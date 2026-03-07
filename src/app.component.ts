@@ -69,7 +69,7 @@ import { WarmUpComponent } from './warm-up.component';
         </p>
 
         <button (click)="showWarmUp()" class="mt-8 bg-transparent font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 button-outline-accent focus-ring-accent text-sm md:text-base">
-          Start with a Warm-Up
+          Start & End with a Warm-Up
         </button>
       </section>
 
@@ -745,7 +745,7 @@ export class AppComponent {
           benefit: 'Best for metabolism', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Pranamasana (Prayer)'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-surya-namaskar.jpg?raw=true',
+          imageUrl: '/assets/images/female/foundation/f-surya-namaskar.jpg',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-surya-namaskar.jpg?raw=true',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
@@ -772,7 +772,7 @@ export class AppComponent {
           benefit: 'Builds strength', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Anjali Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-virabhadrasana.jpg?raw=true',
+          imageUrl: '/assets/images/female/foundation/f-virabhadrasana.jpg',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-virabhadrasana.jpg?raw=true',
           howToDo: [
             "Step your feet wide apart, about 4 feet.",
@@ -799,7 +799,7 @@ export class AppComponent {
           benefit: 'Hip Opener', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-konasana.jpg?raw=true',
+          imageUrl: '/assets/images/female/foundation/f-konasana.jpg',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-konasana.jpg?raw=true',
           howToDo: [
             "Sit with your legs straight out in front of you.",
