@@ -833,7 +833,7 @@ export class AppComponent {
           benefit: 'Tones core', 
           pranayama: ['Ujjayi', 'Kapalabhati'],
           mudra: ['Hasta Bandha'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-kumbhakasana.jpg?raw=true',
+          imageUrl: '/assets/images/female/core/f-kumbhakasana.jpg',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-kumbhakasana.jpg?raw=true',
           howToDo: [
             "Start on your hands and knees.",
@@ -860,7 +860,7 @@ export class AppComponent {
           benefit: 'Improves posture', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-dandasana.jpg?raw=true',
+          imageUrl: '/assets/images/female/core/f-dandasana.jpg',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-dandasana.jpg?raw=true',
           howToDo: [
             "Sit on the floor with your legs extended straight in front of you.",
@@ -888,7 +888,7 @@ export class AppComponent {
           benefit: 'Strengthens abs', 
           pranayama: ['Ujjayi', 'Bhastrika'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-navasana.jpg?raw=true',
+          imageUrl: '/assets/images/female/core/f-navasana.jpg',
           imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-navasana.jpg?raw=true',
           howToDo: [
             "Sit on the floor with your knees bent.",
