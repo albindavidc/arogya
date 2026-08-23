@@ -8,7 +8,7 @@
   "description": "A compassionate guide to yoga poses scientifically known to improve metabolism, energy, hormonal balance, and digestive power.",
   "icons": [
     {
-      "src": "/assets/logo.png",
+      "src": "/favicon.png",
       "sizes": "192x192 512x512",
       "type": "image/png",
       "purpose": "any maskable"

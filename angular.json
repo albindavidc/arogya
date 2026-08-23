@@ -21,6 +21,11 @@
             "styles": ["src/styles.css"],
             "assets": [
               {
+                "glob": "favicon.png",
+                "input": "src",
+                "output": "/"
+              },
+              {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "/assets"
