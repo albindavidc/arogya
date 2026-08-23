@@ -289,9 +289,10 @@
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/logo.png">
 </head>
-<body class="bg-[#050508] text-[#B8B8C4] antialiased">
+<body>
 
   <!-- Aurora Background -->
   <div id="aurora-background">
@@ -310,17 +311,7 @@
           <div></div>
         </div>
         <!-- Logo -->
-        <svg class="splash-logo w-32 h-32 z-10" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="aurora" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#E8A0BF" />
-              <stop offset="35%" style="stop-color:#B4A0E8" />
-              <stop offset="65%" style="stop-color:#A0C8E8" />
-              <stop offset="100%" style="stop-color:#A0E8C8" />
-            </linearGradient>
-          </defs>
-          <path fill="url(#aurora)" d="M50,5 C55,15 60,25 60,35 C60,45 50,55 50,55 C50,55 40,45 40,35 C40,25 45,15 50,5 Z M25,30 C35,40 45,50 45,60 C45,70 35,80 35,80 C35,80 25,70 25,60 C25,50 30,40 25,30 Z M75,30 C65,40 55,50 55,60 C55,70 65,80 65,80 C65,80 75,70 75,60 C75,50 70,40 75,30 Z M50,65 C55,75 60,85 60,95 L40,95 C40,85 45,75 50,65 Z"/>
-        </svg>
+        <img src="/assets/logo.png" alt="Arogya Logo" class="splash-logo w-32 h-32 z-10 rounded-3xl shadow-[0_0_40px_rgba(180,160,232,0.4)]" onerror="this.src='https://placehold.co/128x128/111/fff?text=Logo'">
       </div>
       <h1 class="splash-title text-4xl mt-6 pb-2" style="background: linear-gradient(135deg, #E8A0BF 0%, #B4A0E8 50%, #A0E8C8 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">Arogya</h1>
   </div>

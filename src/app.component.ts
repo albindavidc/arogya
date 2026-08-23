@@ -14,9 +14,12 @@ import { WarmUpComponent } from './warm-up.component';
     <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-30 border-b border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-between items-center">
-          <div>
-            <h1 class="text-2xl font-bold text-gradient-primary">Arogya</h1>
-            <p class="text-[#6E6E7A] text-xs md:text-sm">Nourish Your Inner Fire</p>
+          <div class="flex items-center gap-3">
+            <img src="/assets/logo.png" alt="Arogya Logo" class="w-10 h-10 rounded-xl shadow-lg border border-white/10" onerror="this.style.display='none'">
+            <div>
+              <h1 class="text-2xl font-bold text-gradient-primary">Arogya</h1>
+              <p class="text-[#6E6E7A] text-xs md:text-sm">Nourish Your Inner Fire</p>
+            </div>
           </div>
 
           <div class="flex items-center gap-4 md:gap-6">

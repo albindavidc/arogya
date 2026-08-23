@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+@theme {
+  /* Design System Colors */
+  --color-base: var(--color-base);
+  --color-surface: var(--color-surface);
+  --color-surface-hover: var(--color-surface-hover);
+  --color-surface-border: var(--color-surface-border);
+  
+  --color-primary-start: var(--color-primary-start);
+  --color-primary-middle: var(--color-primary-middle);
+  --color-primary-end: var(--color-primary-end);
+  
+  --color-accent: var(--color-accent);
+  --color-accent-glow: var(--color-accent-glow);
+  --color-accent-glow-deep: var(--color-accent-glow-deep);
+  
+  --color-text-main: var(--color-text-main);
+  --color-text-muted: var(--color-text-muted);
+
+  /* Fonts */
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Lora", serif;
+  
+  /* Radii */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+@layer base {
+  :root {
+    /* Global Base Colors - Dark Theme Default */
+    --color-base: #050508;
+    --color-surface: rgba(255, 255, 255, 0.03);
+    --color-surface-hover: rgba(255, 255, 255, 0.06);
+    --color-surface-border: rgba(255, 255, 255, 0.08);
+    
+    --color-text-main: #F4F4F8;
+    --color-text-muted: #B8B8C4;
+
+    /* Female Theme */
+    --color-primary-start: #E8A0BF;
+    --color-primary-middle: #B4A0E8;
+    --color-primary-end: #A0E8C8;
+    
+    --color-accent: #B4A0E8;
+    --color-accent-glow: rgba(180, 160, 232, 0.4);
+    --color-accent-glow-deep: rgba(180, 160, 232, 0.1);
+
+    --color-button-start: #E8A0BF;
+    --color-button-end: #B4A0E8;
+    --color-button-shadow: rgba(232, 160, 191, 0.4);
+    --color-button-shadow-hover: rgba(232, 160, 191, 0.6);
+  }
+
+  body.male-theme {
+    --color-base: #0A0A08;
+    
+    --color-primary-start: #FF8A65;
+    --color-primary-middle: #FFD54F;
+    --color-primary-end: #81C784;
+    
+    --color-accent: #FFD54F;
+    --color-accent-glow: rgba(255, 213, 79, 0.4);
+    --color-accent-glow-deep: rgba(255, 213, 79, 0.1);
+
+    --color-button-start: #FF8A65;
+    --color-button-end: #FFD54F;
+    --color-button-shadow: rgba(255, 138, 101, 0.4);
+    --color-button-shadow-hover: rgba(255, 138, 101, 0.6);
+  }
+  
+  body {
+    @apply bg-base text-text-muted font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-main tracking-tight;
+  }
+}
+
+@layer components {
+  /* --- Design System API --- */
+  
+  /* Layout & Containers */
+  .ds-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Cards */
+  .ds-card {
+    @apply bg-surface border border-surface-border rounded-xl backdrop-blur-md transition-all duration-300;
+  }
+  .ds-card-interactive {
+    @apply ds-card cursor-pointer hover:bg-surface-hover hover:-translate-y-1 hover:shadow-lg;
+    box-shadow: 0 4px 20px var(--color-accent-glow-deep);
+  }
+
+  /* Buttons */
+  .ds-btn-primary {
+    @apply px-6 py-3 rounded-full font-bold text-base transition-all duration-300 text-text-main flex items-center justify-center gap-2;
+    background-image: linear-gradient(to right, var(--color-button-start), var(--color-button-end));
+    box-shadow: 0 4px 30px var(--color-button-shadow);
+  }
+  .ds-btn-primary:hover {
+    @apply -translate-y-0.5;
+    box-shadow: 0 6px 40px var(--color-button-shadow-hover);
+  }
+  
+  .ds-btn-outline {
+    @apply px-6 py-3 rounded-full font-bold text-base transition-all duration-300 bg-transparent flex items-center justify-center gap-2;
+    border: 1px solid hsla(from var(--color-accent) h s l / 0.5);
+    color: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent-glow-deep);
+  }
+  .ds-btn-outline:hover {
+    @apply -translate-y-0.5;
+    background-color: hsla(from var(--color-accent) h s l / 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 35px var(--color-accent-glow);
+  }
+
+  /* Typography */
+  .ds-heading-1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-text-main font-serif;
+  }
+  .ds-heading-2 {
+    @apply text-2xl md:text-3xl font-bold text-text-main;
+  }
+  .ds-heading-3 {
+    @apply text-xl font-bold text-text-main;
+  }
+  
+  .ds-text-gradient {
+    background: linear-gradient(135deg, var(--color-primary-start) 0%, var(--color-primary-middle) 50%, var(--color-primary-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .ds-badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-colors;
+  }
+  .ds-badge-accent {
+    @apply ds-badge border-accent/20 text-accent bg-accent/5;
+  }
+  
+  /* --- Legacy Utility Classes (Preserved for compatibility) --- */
+  .text-gradient-primary { @apply ds-text-gradient; }
+  .text-accent { color: var(--color-accent); }
+  .border-accent { border-color: var(--color-accent); }
+  .border-accent-20 { border-color: hsla(from var(--color-accent) h s l / 0.2); }
+  .text-primary-start { color: var(--color-primary-start); }
+  .border-primary-start { border-color: var(--color-primary-start); }
+  
+  .text-accent-glow {
+    color: var(--color-accent);
+    text-shadow: 0 0 10px var(--color-accent-glow), 0 0 20px var(--color-accent-glow-deep);
+  }
+  
+  .button-primary-gradient {
+    background-image: linear-gradient(to right, var(--color-button-start), var(--color-button-end));
+    box-shadow: 0 4px 30px var(--color-button-shadow);
+  }
+  .button-primary-gradient:hover {
+    box-shadow: 0 6px 40px var(--color-button-shadow-hover);
+  }
+  
+  .button-outline-accent {
+    border: 1px solid hsla(from var(--color-accent) h s l / 0.5);
+    color: var(--color-accent);
+    box-shadow: 0 0 20px var(--color-accent-glow-deep);
+  }
+  .button-outline-accent:hover {
+    background-color: hsla(from var(--color-accent) h s l / 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 35px var(--color-accent-glow);
+  }
+  
+  .focus-ring-accent:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --tw-ring-color: var(--color-accent);
+    --tw-ring-offset-color: #050508;
+    box-shadow: 0 0 0 2px var(--tw-ring-offset-color), 0 0 0 4px var(--tw-ring-color);
+  }
+  
+  .active-gender-glow {
+    background-image: linear-gradient(to right, var(--color-button-start), var(--color-button-end));
+  }
+  .category-bar-gradient {
+    background-image: linear-gradient(to bottom, var(--color-primary-start), var(--color-primary-middle));
+  }
+  .group:hover .top5-image-hover-border {
+    border-color: hsla(from var(--color-accent) h s l / 0.5);
+  }
+
+  /* Card Hover Effects */
+  .holo-border-container { @apply relative; }
+  .holo-border-container::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-middle), var(--color-primary-end));
+      filter: blur(8px);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: -1;
+  }
+  .holo-border-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-middle), var(--color-primary-end));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+  }
+  .group:hover .holo-border-container::before { opacity: 0.4; }
+  .group:hover .holo-border-container::after { opacity: 1; }
+}
+
+@layer utilities {
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-accent-glow-deep);
+    border-radius: 4px;
+    border: 1px solid var(--color-surface-border);
+    transition: background 0.3s ease;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-glow); }
+  * { scrollbar-width: thin; scrollbar-color: var(--color-accent-glow-deep) var(--color-surface); }
+  
+  .custom-scrollbar::-webkit-scrollbar { height: 6px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+
+  /* Splash Screen */
+  #splash-screen {
+    position: fixed; inset: 0; z-index: 100; transition: opacity 0.5s ease-out; background-color: var(--color-base);
+  }
+  body.loaded #splash-screen { opacity: 0; pointer-events: none; }
+  
+  @keyframes logo-enter { 0% { opacity: 0; transform: scale(0.9); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes text-enter { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px var(--color-accent-glow)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 30px var(--color-accent-glow)); }
+  }
+  @keyframes ripple {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
+  }
+  .splash-logo { animation: logo-enter 0.8s ease-out forwards, breathe 4s ease-in-out 0.8s infinite; }
+  .splash-title { animation: text-enter 0.8s ease-out 0.3s forwards; }
+  .ripple-loader div {
+    position: absolute; border: 2px solid var(--color-accent); opacity: 1; border-radius: 50%;
+    animation: ripple 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+    filter: drop-shadow(0 0 5px var(--color-accent-glow));
+  }
+  .ripple-loader div:nth-child(2) { animation-delay: -0.5s; }
+  .ripple-loader div:nth-child(3) { animation-delay: -1s; }
+
+  /* Aurora Background */
+  #aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; filter: blur(100px); opacity: 0.4; }
+  .blob { position: absolute; border-radius: 50%; mix-blend-mode: screen; animation-timing-function: ease-in-out; animation-iteration-count: infinite; transition: background-color 0.5s ease-in-out; }
+  .blob1 { width: 400px; height: 400px; background-color: rgba(232, 160, 191, 0.3); animation-name: move1; animation-duration: 25s; }
+  .blob2 { width: 500px; height: 500px; background-color: rgba(180, 160, 232, 0.3); animation-name: move2; animation-duration: 30s; }
+  .blob3 { width: 350px; height: 350px; background-color: rgba(160, 232, 200, 0.3); animation-name: move3; animation-duration: 20s; }
+  body.male-theme .blob1 { background-color: rgba(255, 138, 101, 0.25); }
+  body.male-theme .blob2 { background-color: rgba(255, 213, 79, 0.25); }
+  body.male-theme .blob3 { background-color: rgba(129, 199, 132, 0.25); }
+  
+  @keyframes move1 { 0%, 100% { transform: translate(10vw, 10vh) scale(1); } 50% { transform: translate(50vw, 70vh) scale(1.2); } }
+  @keyframes move2 { 0%, 100% { transform: translate(80vw, 20vh) scale(1.2); } 50% { transform: translate(20vw, 80vh) scale(1); } }
+  @keyframes move3 { 0%, 100% { transform: translate(30vw, 90vh) scale(0.9); } 50% { transform: translate(70vw, 10vh) scale(1.1); } }
+}

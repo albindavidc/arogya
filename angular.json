@@ -17,6 +17,8 @@
               "browser": "."
             },
             "browser": "index.tsx",
+            "index": "index.html",
+            "styles": ["src/styles.css"],
             "assets": [
               {
                 "glob": "**/*",
