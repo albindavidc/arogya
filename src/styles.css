@@ -1,4 +1,13 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/lora/400.css";
+@import "@fontsource/lora/400-italic.css";
+@import "@fontsource/lora/700.css";
+@import "@fontsource/lora/700-italic.css";
 @import "tailwindcss";
+@source "../index.html";
+@source "./**/*.ts";
 
 @theme {
   /* Design System Colors */
@@ -31,7 +40,7 @@
 
 @layer base {
   :root {
-    /* Global Base Colors - Dark Theme Default */
+    /* Global Base Colors - Dark Theme Default (Female Default) */
     --color-base: #050508;
     --color-surface: rgba(255, 255, 255, 0.03);
     --color-surface-hover: rgba(255, 255, 255, 0.06);
@@ -53,31 +62,48 @@
     --color-button-end: #B4A0E8;
     --color-button-shadow: rgba(232, 160, 191, 0.4);
     --color-button-shadow-hover: rgba(232, 160, 191, 0.6);
+    
+    --color-blob1: #E8A0BF;
+    --color-blob2: #B4A0E8;
+    --color-blob3: #A0E8C8;
   }
 
   body.male-theme {
     --color-base: #0A0A08;
     
-    --color-primary-start: #FF8A65;
-    --color-primary-middle: #FFD54F;
-    --color-primary-end: #81C784;
+    --color-primary-start: #A0E8C8;
+    --color-primary-middle: #A0C8E8;
+    --color-primary-end: #B4A0E8;
     
-    --color-accent: #FFD54F;
-    --color-accent-glow: rgba(255, 213, 79, 0.4);
-    --color-accent-glow-deep: rgba(255, 213, 79, 0.1);
+    --color-accent: #A0E8C8;
+    --color-accent-glow: rgba(160, 232, 200, 0.6);
+    --color-accent-glow-deep: rgba(160, 232, 200, 0.4);
 
-    --color-button-start: #FF8A65;
-    --color-button-end: #FFD54F;
-    --color-button-shadow: rgba(255, 138, 101, 0.4);
-    --color-button-shadow-hover: rgba(255, 138, 101, 0.6);
+    --color-button-start: #A0E8C8;
+    --color-button-end: #A0C8E8;
+    --color-button-shadow: rgba(160, 232, 200, 0.4);
+    --color-button-shadow-hover: rgba(160, 232, 200, 0.6);
+
+    --color-blob1: #A0E8C8;
+    --color-blob2: #A0C8E8;
+    --color-blob3: #B4A0E8;
   }
   
   body {
-    @apply bg-base text-text-muted font-sans antialiased;
+    background-color: var(--color-base);
+    color: var(--color-text-muted);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply text-text-main tracking-tight;
+    color: var(--color-text-main);
+    letter-spacing: -0.025em;
+  }
+
+  h1, h2, h3, .quote {
+    font-family: var(--font-serif);
   }
 }
 
@@ -86,37 +112,87 @@
   
   /* Layout & Containers */
   .ds-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .ds-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ds-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   /* Cards */
   .ds-card {
-    @apply bg-surface border border-surface-border rounded-xl backdrop-blur-md transition-all duration-300;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: 0.75rem;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .ds-card-interactive {
-    @apply ds-card cursor-pointer hover:bg-surface-hover hover:-translate-y-1 hover:shadow-lg;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-surface-border);
+    border-radius: 0.75rem;
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
     box-shadow: 0 4px 20px var(--color-accent-glow-deep);
+  }
+  .ds-card-interactive:hover {
+    background-color: var(--color-surface-hover);
+    transform: translateY(-0.25rem);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   }
 
   /* Buttons */
   .ds-btn-primary {
-    @apply px-6 py-3 rounded-full font-bold text-base transition-all duration-300 text-text-main flex items-center justify-center gap-2;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--color-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     background-image: linear-gradient(to right, var(--color-button-start), var(--color-button-end));
     box-shadow: 0 4px 30px var(--color-button-shadow);
   }
   .ds-btn-primary:hover {
-    @apply -translate-y-0.5;
+    transform: translateY(-0.125rem);
     box-shadow: 0 6px 40px var(--color-button-shadow-hover);
   }
   
   .ds-btn-outline {
-    @apply px-6 py-3 rounded-full font-bold text-base transition-all duration-300 bg-transparent flex items-center justify-center gap-2;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     border: 1px solid hsla(from var(--color-accent) h s l / 0.5);
     color: var(--color-accent);
     box-shadow: 0 0 20px var(--color-accent-glow-deep);
   }
   .ds-btn-outline:hover {
-    @apply -translate-y-0.5;
+    transform: translateY(-0.125rem);
     background-color: hsla(from var(--color-accent) h s l / 0.1);
     border-color: var(--color-accent);
     box-shadow: 0 0 35px var(--color-accent-glow);
@@ -124,13 +200,41 @@
 
   /* Typography */
   .ds-heading-1 {
-    @apply text-4xl sm:text-5xl lg:text-6xl font-bold text-text-main font-serif;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+    font-family: var(--font-serif);
+  }
+  @media (min-width: 640px) {
+    .ds-heading-1 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+  }
+  @media (min-width: 1024px) {
+    .ds-heading-1 {
+      font-size: 3.75rem;
+      line-height: 1;
+    }
   }
   .ds-heading-2 {
-    @apply text-2xl md:text-3xl font-bold text-text-main;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    color: var(--color-text-main);
+  }
+  @media (min-width: 768px) {
+    .ds-heading-2 {
+      font-size: 1.875rem;
+      line-height: 2.25rem;
+    }
   }
   .ds-heading-3 {
-    @apply text-xl font-bold text-text-main;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text-main);
   }
   
   .ds-text-gradient {
@@ -140,14 +244,38 @@
   }
 
   .ds-badge {
-    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-colors;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    border-width: 1px;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
   }
   .ds-badge-accent {
-    @apply ds-badge border-accent/20 text-accent bg-accent/5;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    border-width: 1px;
+    border-color: hsla(from var(--color-accent) h s l / 0.2);
+    color: var(--color-accent);
+    background-color: hsla(from var(--color-accent) h s l / 0.05);
   }
   
-  /* --- Legacy Utility Classes (Preserved for compatibility) --- */
-  .text-gradient-primary { @apply ds-text-gradient; }
+  /* --- Utility Classes (Preserved for compatibility) --- */
+  .text-gradient-primary {
+    background: linear-gradient(135deg, var(--color-primary-start) 0%, var(--color-primary-middle) 50%, var(--color-primary-end) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   .text-accent { color: var(--color-accent); }
   .border-accent { border-color: var(--color-accent); }
   .border-accent-20 { border-color: hsla(from var(--color-accent) h s l / 0.2); }
@@ -197,38 +325,68 @@
   }
 
   /* Card Hover Effects */
-  .holo-border-container { @apply relative; }
+  .holo-border-container {
+    position: relative;
+  }
   .holo-border-container::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 13px;
-      background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-middle), var(--color-primary-end));
-      filter: blur(8px);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      z-index: -1;
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-middle), var(--color-primary-end));
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: -1;
   }
   .holo-border-container::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 12px;
-      padding: 1px;
-      background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-middle), var(--color-primary-end));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
-      pointer-events: none;
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-middle), var(--color-primary-end));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
   }
   .group:hover .holo-border-container::before { opacity: 0.4; }
   .group:hover .holo-border-container::after { opacity: 1; }
 }
 
 @layer utilities {
+  /* Exact Text Color Alignments (Matching Previous CDN Version with WCAG AA Accessibility) */
+  .text-\[\#B8B8C4\],
+  .text-text-muted {
+    color: var(--color-text-muted, #B8B8C4);
+  }
+
+  .text-\[\#F4F4F8\],
+  .text-text-main {
+    color: var(--color-text-main, #F4F4F8);
+  }
+
+  .text-\[\#6E6E7A\] {
+    color: #9E9EB0; /* Enhanced from #6E6E7A to #9E9EB0 for WCAG AA compliance (4.8:1 contrast on #050508) while maintaining the muted tertiary hierarchy */
+  }
+
+  .text-\[\#A0E8C8\] {
+    color: #A0E8C8;
+  }
+
+  .text-\[\#A0C8E8\] {
+    color: #A0C8E8;
+  }
+
+  .text-\[\#050508\],
+  .active-gender-text {
+    color: #050508;
+  }
+
   /* Scrollbar */
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track {
@@ -276,12 +434,9 @@
   /* Aurora Background */
   #aurora-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; filter: blur(100px); opacity: 0.4; }
   .blob { position: absolute; border-radius: 50%; mix-blend-mode: screen; animation-timing-function: ease-in-out; animation-iteration-count: infinite; transition: background-color 0.5s ease-in-out; }
-  .blob1 { width: 400px; height: 400px; background-color: rgba(232, 160, 191, 0.3); animation-name: move1; animation-duration: 25s; }
-  .blob2 { width: 500px; height: 500px; background-color: rgba(180, 160, 232, 0.3); animation-name: move2; animation-duration: 30s; }
-  .blob3 { width: 350px; height: 350px; background-color: rgba(160, 232, 200, 0.3); animation-name: move3; animation-duration: 20s; }
-  body.male-theme .blob1 { background-color: rgba(255, 138, 101, 0.25); }
-  body.male-theme .blob2 { background-color: rgba(255, 213, 79, 0.25); }
-  body.male-theme .blob3 { background-color: rgba(129, 199, 132, 0.25); }
+  .blob1 { width: 400px; height: 400px; background-color: var(--color-blob1); animation-name: move1; animation-duration: 25s; }
+  .blob2 { width: 500px; height: 500px; background-color: var(--color-blob2); animation-name: move2; animation-duration: 30s; }
+  .blob3 { width: 350px; height: 350px; background-color: var(--color-blob3); animation-name: move3; animation-duration: 20s; }
   
   @keyframes move1 { 0%, 100% { transform: translate(10vw, 10vh) scale(1); } 50% { transform: translate(50vw, 70vh) scale(1.2); } }
   @keyframes move2 { 0%, 100% { transform: translate(80vw, 20vh) scale(1.2); } 50% { transform: translate(20vw, 80vh) scale(1); } }

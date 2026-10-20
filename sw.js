@@ -11,8 +11,7 @@ const URLS_TO_CACHE = [
   '/src/app.component.html',
   '/src/models/pose.model.ts',
   '/src/pose-detail-modal.component.ts',
-  'https://cdn.tailwindcss.com',
-  'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;700&display=swap'
+  '/favicon.png'
 ];
 
 // 'install' event: triggers when the service worker is first installed.

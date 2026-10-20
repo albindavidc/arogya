@@ -35,7 +35,7 @@ import { WarmUpComponent } from './warm-up.component';
       </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-[#B8B8C4] text-text-muted">
       <!-- Intro Section -->
       <section class="relative text-center mb-16 py-20 overflow-hidden">
         <p class="quote text-lg md:text-xl italic text-accent-glow mb-6">
@@ -47,27 +47,31 @@ import { WarmUpComponent } from './warm-up.component';
 
         <!-- Gender Toggle -->
         <div class="flex justify-center my-10">
-          <div class="flex items-center space-x-2 bg-black/20 p-1 rounded-full border border-white/10">
+          <div class="flex items-center space-x-2 bg-black/40 backdrop-blur-sm p-1.5 rounded-full border border-white/10 shadow-inner" role="group" aria-label="Pose gender selection">
             <button (click)="setGender('female')" 
-                    [class]="'px-4 py-1.5 text-sm md:text-base rounded-full transition-all duration-300 relative ' + (selectedGender() === 'female' ? 'text-white' : 'text-[#B8B8C4] hover:text-white')">
+                    type="button"
+                    [attr.aria-pressed]="selectedGender() === 'female'"
+                    aria-label="Female Poses"
+                    [class]="'px-5 py-2 text-sm md:text-base rounded-full transition-all duration-300 relative select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ' + (selectedGender() === 'female' ? 'text-[#050508] font-bold active-gender-text shadow-sm' : 'text-[#B8B8C4] text-text-muted hover:text-white font-medium hover:bg-white/5')">
               @if(selectedGender() === 'female') {
-                <span class="absolute inset-0 rounded-full active-gender-glow opacity-30 blur-md"></span>
-                <span class="absolute inset-0 rounded-full border border-white/50"></span>
+                <span class="absolute inset-0 rounded-full active-gender-glow shadow-md" aria-hidden="true"></span>
               }
-              <span class="relative">Female Poses</span>
+              <span class="relative z-10">Female Poses</span>
             </button>
             <button (click)="setGender('male')" 
-                    [class]="'px-4 py-1.5 text-sm md:text-base rounded-full transition-all duration-300 relative ' + (selectedGender() === 'male' ? 'text-white' : 'text-[#B8B8C4] hover:text-white')">
+                    type="button"
+                    [attr.aria-pressed]="selectedGender() === 'male'"
+                    aria-label="Male Poses"
+                    [class]="'px-5 py-2 text-sm md:text-base rounded-full transition-all duration-300 relative select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050508] ' + (selectedGender() === 'male' ? 'text-[#050508] font-bold active-gender-text shadow-sm' : 'text-[#B8B8C4] text-text-muted hover:text-white font-medium hover:bg-white/5')">
                @if(selectedGender() === 'male') {
-                <span class="absolute inset-0 rounded-full active-gender-glow opacity-30 blur-md"></span>
-                <span class="absolute inset-0 rounded-full border border-white/50"></span>
+                <span class="absolute inset-0 rounded-full active-gender-glow shadow-md" aria-hidden="true"></span>
               }
-              <span class="relative">Male Poses</span>
+              <span class="relative z-10">Male Poses</span>
             </button>
           </div>
         </div>
         
-        <p class="text-base md:text-lg leading-7 text-[#B8B8C4] max-w-2xl mx-auto">
+        <p class="text-base md:text-lg leading-7 text-[#B8B8C4] text-text-muted max-w-2xl mx-auto">
           Discover a curated collection of yoga poses scientifically known to improve metabolism, energy, hormonal balance, and digestive power.
         </p>
 
@@ -139,7 +143,7 @@ import { WarmUpComponent } from './warm-up.component';
              <div class="w-1.5 rounded-full category-bar-gradient" style="filter: blur(2px);"></div>
             <div>
               <h2 class="text-2xl md:text-3xl font-bold text-[#F4F4F8]">{{ category.title }}</h2>
-              <p class="text-[#B8B8C4] mt-1 text-sm md:text-base">{{ category.description }}</p>
+              <p class="text-[#B8B8C4] text-text-muted mt-1 text-sm md:text-base leading-relaxed">{{ category.description }}</p>
             </div>
           </div>
           
