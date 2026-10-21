@@ -752,8 +752,8 @@ export class AppComponent {
           benefit: 'Best for metabolism', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Pranamasana (Prayer)'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-surya-namaskar.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-surya-namaskar.jpg?raw=true',
+          imageUrl: '/assets/images/women/foundation/f-surya-namaskar.jpg',
+          imageUrlMale: '/assets/images/men/foundation/m-surya-namaskar.jpg',
           howToDo: [
             "A sequence of 12 poses flowing from one to the next.",
             "Start in Mountain Pose, flow through poses like Forward Fold, Lunge, Plank, Cobra/Upward Dog, and Downward Dog.",
@@ -779,8 +779,8 @@ export class AppComponent {
           benefit: 'Builds strength', 
           pranayama: ['Ujjayi', 'Three-Part'],
           mudra: ['Anjali Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-virabhadrasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-virabhadrasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/foundation/f-virabhadrasana.jpg',
+          imageUrlMale: '/assets/images/men/foundation/m-virabhadrasana.jpg',
           howToDo: [
             "Step your feet wide apart, about 4 feet.",
             "Turn your right foot out 90 degrees and your left foot in slightly.",
@@ -806,8 +806,8 @@ export class AppComponent {
           benefit: 'Hip Opener', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/foundation/f-konasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/foundation/m-konasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/foundation/f-konasana.jpg',
+          imageUrlMale: '/assets/images/men/foundation/m-konasana.jpg',
           howToDo: [
             "Sit with your legs straight out in front of you.",
             "Bend your knees and pull your heels towards your pelvis.",
@@ -840,8 +840,8 @@ export class AppComponent {
           benefit: 'Tones core', 
           pranayama: ['Ujjayi', 'Kapalabhati'],
           mudra: ['Hasta Bandha'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-kumbhakasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-kumbhakasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/core/f-kumbhakasana.jpg',
+          imageUrlMale: '/assets/images/men/core/m-kumbhakasana.jpg',
           howToDo: [
             "Start on your hands and knees.",
             "Step your feet back, one at a time, to bring your body into a straight line from head to heels.",
@@ -867,8 +867,8 @@ export class AppComponent {
           benefit: 'Improves posture', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-dandasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-dandasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/core/f-dandasana.jpg',
+          imageUrlMale: '/assets/images/men/core/m-dandasana.jpg',
           howToDo: [
             "Sit on the floor with your legs extended straight in front of you.",
             "Sit on your sitting bones, spine erect.",
@@ -895,8 +895,8 @@ export class AppComponent {
           benefit: 'Strengthens abs', 
           pranayama: ['Ujjayi', 'Bhastrika'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/core/f-navasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/core/m-navasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/core/f-navasana.jpg',
+          imageUrlMale: '/assets/images/men/core/m-navasana.jpg',
           howToDo: [
             "Sit on the floor with your knees bent.",
             "Lean back slightly and lift your feet off the floor, keeping your shins parallel to the ground (Half Boat).",
@@ -929,8 +929,8 @@ export class AppComponent {
           benefit: 'Opens chest', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-svanasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-svanasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/backbends/f-svanasana.jpg',
+          imageUrlMale: '/assets/images/men/backbends/m-svanasana.jpg',
           howToDo: [
             "Lie face down. Place hands alongside your body near your lower ribs.",
             "Inhale and press through your hands, lifting your torso and legs a few inches off the floor.",
@@ -956,8 +956,8 @@ export class AppComponent {
           benefit: 'Deep heart opener', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-ustrasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-ustrasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/backbends/f-ustrasana.jpg',
+          imageUrlMale: '/assets/images/men/backbends/m-ustrasana.jpg',
           howToDo: [
             "Kneel on the floor with knees hip-width apart.",
             "Press your shins and tops of feet firmly into floor.",
@@ -983,8 +983,8 @@ export class AppComponent {
           benefit: 'Metabolic booster', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-dhanurasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-dhanurasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/backbends/f-dhanurasana.jpg',
+          imageUrlMale: '/assets/images/men/backbends/m-dhanurasana.jpg',
           howToDo: [
             "Lie on your stomach. Bend your knees and hold your ankles.",
             "Inhale and lift your chest and thighs off the floor, pulling your ankles.",
@@ -1010,10 +1010,10 @@ export class AppComponent {
           benefit: 'Calms brain', 
           pranayama: ['Ujjayi', 'Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-setu-bandha-sarvangasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-setu-bandha-sarvangasana.jpg?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-setu-bandha-sarvangasana-steps.jpg?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-setu-bandha-sarvangasana-steps.jpg?raw=true',
+          imageUrl: '/assets/images/women/backbends/f-setu-bandha-sarvangasana.jpg',
+          imageUrlMale: '/assets/images/men/backbends/m-setu-bandha-sarvangasana.jpg',
+          stepsImageUrlFemale: '/assets/images/women/backbends/f-setu-bandha-sarvangasana-steps.jpg',
+          stepsImageUrlMale: '/assets/images/men/backbends/m-setu-bandha-sarvangasana-steps.jpg',
           howToDo: [
             "Lie supine on the floor, knees bent, feet flat hip-width apart.",
             "Arms alongside the body, palms facing down.",
@@ -1039,8 +1039,8 @@ export class AppComponent {
           benefit: 'Energizes body', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/backbends/f-chakrasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/backbends/m-chakrasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/backbends/f-chakrasana.jpg',
+          imageUrlMale: '/assets/images/men/backbends/m-chakrasana.jpg',
           howToDo: [
             "Lie on your back with knees bent, feet flat on the floor close to your hips.",
             "Place your hands on the floor by your ears, fingers pointing towards your feet.",
@@ -1073,10 +1073,10 @@ export class AppComponent {
           benefit: 'Stimulates thyroid', 
           pranayama: ['Ujjayi', 'Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sarvangasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sarvangasana.jpg?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sarvangasana-steps.jpg?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sarvangasana-steps.jpg?raw=true',
+          imageUrl: '/assets/images/women/inversions/f-sarvangasana.jpg',
+          imageUrlMale: '/assets/images/men/inversions/m-sarvangasana.jpg',
+          stepsImageUrlFemale: '/assets/images/women/inversions/f-sarvangasana-steps.jpg',
+          stepsImageUrlMale: '/assets/images/men/inversions/m-sarvangasana-steps.jpg',
           howToDo: [
             "Lie on your back with arms alongside your body, palms down.",
             "Inhale and lift your legs, hips, and back off the floor, using your hands to support your lower back.",
@@ -1102,10 +1102,10 @@ export class AppComponent {
           benefit: 'Boosts digestion', 
           pranayama: ['Ujjayi', 'Diaphragmatic'],
           mudra: ['Interlaced Fingers'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-halasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-halasana.jpg?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-halasana-steps.jpg?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-halasana-steps.jpg?raw=true',
+          imageUrl: '/assets/images/women/inversions/f-halasana.jpg',
+          imageUrlMale: '/assets/images/men/inversions/m-halasana.jpg',
+          stepsImageUrlFemale: '/assets/images/women/inversions/f-halasana-steps.jpg',
+          stepsImageUrlMale: '/assets/images/men/inversions/m-halasana-steps.jpg',
           howToDo: [
             "From Shoulder Stand, slowly lower your legs over your head.",
             "Attempt to touch your toes to the floor behind your head.",
@@ -1131,24 +1131,24 @@ export class AppComponent {
           benefit: 'Brain oxygen', 
           pranayama: ['Ujjayi', 'Equal'],
           mudra: ['Bound Hands'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/inversions/sirsasana.jpg',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana-2.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana-3.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/sirsasana-4.jpg?raw=true'
+            '/assets/images/women/inversions/sirsasana.jpg',
+            '/assets/images/women/inversions/sirsasana-2.jpg',
+            '/assets/images/women/inversions/sirsasana-3.jpg',
+            '/assets/images/women/inversions/sirsasana-4.jpg'
           ],
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana.jpg?raw=true',
+          imageUrlMale: '/assets/images/men/inversions/sirsasana.jpg',
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana-2.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana-3.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/sirsasana-4.jpg?raw=true'
+            '/assets/images/men/inversions/sirsasana.jpg',
+            '/assets/images/men/inversions/sirsasana-2.jpg',
+            '/assets/images/men/inversions/sirsasana-3.jpg',
+            '/assets/images/men/inversions/sirsasana-4.jpg'
           ],
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sirsasana-steps.jpg?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sirsasana-steps.jpg?raw=true',
-          handImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-sirsasana-hand.jpg?raw=true',
-          handImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-sirsasana-hand.jpg?raw=true',
+          stepsImageUrlFemale: '/assets/images/women/inversions/f-sirsasana-steps.jpg',
+          stepsImageUrlMale: '/assets/images/men/inversions/m-sirsasana-steps.jpg',
+          handImageUrlFemale: '/assets/images/women/inversions/f-sirsasana-hand.jpg',
+          handImageUrlMale: '/assets/images/men/inversions/m-sirsasana-hand.jpg',
           howToDo: [
             "Kneel on the floor and interlock your fingers to create a cup with your hands.",
             "Place your forearms and the crown of your head on the floor, cupping the back of your head with your hands.",
@@ -1175,17 +1175,17 @@ export class AppComponent {
           benefit: 'Shoulder strength', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha.jpg?raw=true',
-          stepsImageUrlFemale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha-steps.jpg?raw=true',
-          stepsImageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha-steps.jpg?raw=true',
+          imageUrl: '/assets/images/women/inversions/f-pincha.jpg',
+          imageUrlMale: '/assets/images/men/inversions/m-pincha.jpg',
+          stepsImageUrlFemale: '/assets/images/women/inversions/f-pincha-steps.jpg',
+          stepsImageUrlMale: '/assets/images/men/inversions/m-pincha-steps.jpg',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha-warmup1.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/inversions/f-pincha-warmup2.jpg?raw=true'
+            '/assets/images/women/inversions/f-pincha-warmup1.jpg',
+            '/assets/images/women/inversions/f-pincha-warmup2.jpg'
           ],
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha-warmup1.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/inversions/m-pincha-warmup2.jpg?raw=true'
+            '/assets/images/men/inversions/m-pincha-warmup1.jpg',
+            '/assets/images/men/inversions/m-pincha-warmup2.jpg'
           ],
           howToDo: [
             "Start on hands and knees. Place forearms on the floor, parallel to each other, shoulder-width apart.",
@@ -1246,8 +1246,8 @@ export class AppComponent {
           benefit: 'Stimulates liver', 
           pranayama: ['Diaphragmatic'],
           mudra: ['Abhaya Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-matsyendrasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-matsyendrasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/twists/f-matsyendrasana.jpg',
+          imageUrlMale: '/assets/images/men/twists/m-matsyendrasana.jpg',
           howToDo: [
             "Sit with legs extended. Bend your right knee and place the foot outside your left thigh.",
             "Bend your left knee and bring the foot near your right hip.",
@@ -1273,8 +1273,8 @@ export class AppComponent {
           benefit: 'Releases lower back', 
           pranayama: ['Diaphragmatic'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-supta-matsyendrasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-supta-matsyendrasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/twists/f-supta-matsyendrasana.jpg',
+          imageUrlMale: '/assets/images/men/twists/m-supta-matsyendrasana.jpg',
           howToDo: [
             "Lie on your back. Hug your right knee into your chest.",
             "Drop your right knee over to the left side of your body.",
@@ -1300,8 +1300,8 @@ export class AppComponent {
           benefit: 'Tones abdomen', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-jathara-parivartanasana-a.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-jathara-parivartanasana-a.jpg?raw=true',
+          imageUrl: '/assets/images/women/twists/f-jathara-parivartanasana-a.jpg',
+          imageUrlMale: '/assets/images/men/twists/m-jathara-parivartanasana-a.jpg',
           howToDo: [
             "Lie on your back with arms extended to the sides.",
             "Lift your legs straight up to 90 degrees.",
@@ -1327,8 +1327,8 @@ export class AppComponent {
           benefit: 'Deep twist', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-jathara-parivartanasana-b.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-jathara-parivartanasana-b.jpg?raw=true',
+          imageUrl: '/assets/images/women/twists/f-jathara-parivartanasana-b.jpg',
+          imageUrlMale: '/assets/images/men/twists/m-jathara-parivartanasana-b.jpg',
           howToDo: [
             "Similar to variation A, but usually done with knees bent (dynamic) or holding the toes.",
             "Focus on keeping the shoulders grounded as the legs rotate.",
@@ -1353,8 +1353,8 @@ export class AppComponent {
           benefit: 'Improves digestion', 
           pranayama: ['Diaphragmatic'],
           mudra: ['Chin Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/twists/f-bharadvajasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/twists/m-bharadvajasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/twists/f-bharadvajasana.jpg',
+          imageUrlMale: '/assets/images/men/twists/m-bharadvajasana.jpg',
           howToDo: [
             "Sit on the floor with legs straight out.",
             "Shift your weight onto your right buttock, bend your knees, and swing your legs to the left.",
@@ -1387,19 +1387,19 @@ export class AppComponent {
           benefit: 'Leg stretch & balance',
           pranayama: ['Ujjayi', 'Equal'],
           mudra: ['Vishnu Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-1.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-1.jpg?raw=true',
+          imageUrl: '/assets/images/women/balances/f-utthita-hasta-padangusthasana-1.jpg',
+          imageUrlMale: '/assets/images/men/balances/m-utthita-hasta-padangusthasana-1.jpg',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-1.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-2.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-3.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-utthita-hasta-padangusthasana-4.jpg?raw=true'
+            '/assets/images/women/balances/f-utthita-hasta-padangusthasana-1.jpg',
+            '/assets/images/women/balances/f-utthita-hasta-padangusthasana-2.jpg',
+            '/assets/images/women/balances/f-utthita-hasta-padangusthasana-3.jpg',
+            '/assets/images/women/balances/f-utthita-hasta-padangusthasana-4.jpg'
           ],
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-1.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-2.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-3.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-utthita-hasta-padangusthasana-4.jpg?raw=true'
+            '/assets/images/men/balances/m-utthita-hasta-padangusthasana-1.jpg',
+            '/assets/images/men/balances/m-utthita-hasta-padangusthasana-2.jpg',
+            '/assets/images/men/balances/m-utthita-hasta-padangusthasana-3.jpg',
+            '/assets/images/men/balances/m-utthita-hasta-padangusthasana-4.jpg'
           ],
           howToDo: [
             "Stand in Mountain Pose. Shift weight to left foot.",
@@ -1426,8 +1426,8 @@ export class AppComponent {
           benefit: 'Hip & Hamstring Opener',
           pranayama: ['Ujjayi'],
           mudra: ['Anjali Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-skandasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-skandasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/balances/f-skandasana.jpg',
+          imageUrlMale: '/assets/images/men/balances/m-skandasana.jpg',
           howToDo: [
             "Start in a wide-legged standing position.",
             "Bend your right knee deeply, keeping left leg straight.",
@@ -1453,8 +1453,8 @@ export class AppComponent {
           benefit: 'Grace & Balance',
           pranayama: ['Ujjayi'],
           mudra: ['Jnana Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-natarajasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-natarajasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/balances/f-natarajasana.jpg',
+          imageUrlMale: '/assets/images/men/balances/m-natarajasana.jpg',
           howToDo: [
             "Stand in Mountain Pose. Shift weight to left foot.",
             "Bend right knee back, grasp inside of right foot with right hand.",
@@ -1480,8 +1480,8 @@ export class AppComponent {
           benefit: 'Arm Balance',
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-bakasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-bakasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/balances/f-bakasana.jpg',
+          imageUrlMale: '/assets/images/men/balances/m-bakasana.jpg',
           howToDo: [
             "Squat down, feet together, knees apart.",
             "Place hands on floor shoulder-width apart.",
@@ -1507,8 +1507,8 @@ export class AppComponent {
           benefit: 'Advanced Arm Balance',
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/balances/f-astavakrasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/balances/m-astavakrasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/balances/f-astavakrasana.jpg',
+          imageUrlMale: '/assets/images/men/balances/m-astavakrasana.jpg',
           howToDo: [
             "Sit with legs extended. Bend right knee, bring leg over right shoulder.",
             "Place hands on floor. Hook left ankle over right ankle.",
@@ -1541,8 +1541,8 @@ export class AppComponent {
           benefit: 'Calms the brain', 
           pranayama: ['Ujjayi', 'Extended Exhale'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/forward-bends/f-paschimottanasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/forward-bends/m-paschimottanasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/forward-bends/f-paschimottanasana.jpg',
+          imageUrlMale: '/assets/images/men/forward-bends/m-paschimottanasana.jpg',
           howToDo: [
             "Sit with legs extended straight in front of you.",
             "Inhale and reach your arms up, lengthening the spine.",
@@ -1568,8 +1568,8 @@ export class AppComponent {
           benefit: 'Calms mind', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/forward-bends/f-janu-sirsasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/forward-bends/m-janu-sirsasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/forward-bends/f-janu-sirsasana.jpg',
+          imageUrlMale: '/assets/images/men/forward-bends/m-janu-sirsasana.jpg',
           howToDo: [
             "Sit with legs extended. Bend right knee, place foot against inner left thigh.",
             "Inhale, lengthen spine. Exhale, fold forward over left leg.",
@@ -1595,8 +1595,8 @@ export class AppComponent {
           benefit: 'Withdraws senses', 
           pranayama: ['Ujjayi'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/forward-bends/f-kurmasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/forward-bends/m-kurmasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/forward-bends/f-kurmasana.jpg',
+          imageUrlMale: '/assets/images/men/forward-bends/m-kurmasana.jpg',
           howToDo: [
             "Sit with legs wide apart. Bend knees slightly.",
             "Slide arms under knees, palms down.",
@@ -1630,17 +1630,17 @@ export class AppComponent {
           benefit: 'Aids digestion', 
           pranayama: ['Diaphragmatic'],
           mudra: ['Chin Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana-main.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-vajrasana-main.jpg',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana-main.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana-rear.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-vajrasana.jpg?raw=true'
+            '/assets/images/women/meditation/f-vajrasana-main.jpg',
+            '/assets/images/women/meditation/f-vajrasana-rear.jpg',
+            '/assets/images/women/meditation/f-vajrasana.jpg'
           ],
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana-main.jpg?raw=true',
+          imageUrlMale: '/assets/images/men/meditation/m-vajrasana-main.jpg',
           imageUrlsMale: [
-             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana-main.jpg?raw=true',
-             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana-rear.jpg?raw=true',
-             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-vajrasana.jpg?raw=true'
+             '/assets/images/men/meditation/m-vajrasana-main.jpg',
+             '/assets/images/men/meditation/m-vajrasana-rear.jpg',
+             '/assets/images/men/meditation/m-vajrasana.jpg'
           ],
           howToDo: [
             "Kneel on the floor with knees close together.",
@@ -1668,8 +1668,8 @@ export class AppComponent {
           benefit: 'Deep stability', 
           pranayama: ['Nadi Shodhana', 'Ujjayi'],
           mudra: ['Chin Mudra', 'Bhairava'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-padmasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-padmasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-padmasana.jpg',
+          imageUrlMale: '/assets/images/men/meditation/m-padmasana.jpg',
           howToDo: [
             "Sit with legs extended. Bend the right knee and place the foot on the left thigh, heel close to the abdomen.",
             "Bend the left knee and place the foot on the right thigh, heel close to the abdomen.",
@@ -1696,8 +1696,8 @@ export class AppComponent {
           benefit: 'Root chakra', 
           pranayama: ['Ujjayi'],
           mudra: ['Nasikagra Drishti'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-bhadrasana-main.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-bhadrasana-main.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-bhadrasana-main.jpg',
+          imageUrlMale: '/assets/images/men/meditation/m-bhadrasana-main.jpg',
           howToDo: [
             "Sit in Vajrasana (kneeling). Separate your knees as wide as possible.",
             "Keep the toes in contact with each other behind you, allowing the buttocks to rest on the floor between the feet.",
@@ -1724,8 +1724,8 @@ export class AppComponent {
           benefit: 'Purifies energy', 
           pranayama: ['Kapalabhati', 'Bhastrika'],
           mudra: ['Chin Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-siddhasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-siddhasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-siddhasana.jpg',
+          imageUrlMale: '/assets/images/men/meditation/m-siddhasana.jpg',
           howToDo: [
             "Sit with legs extended. Bend the left knee and place the heel near the perineum.",
             "Bend the right knee and place the right heel against the pubic bone, directly above the left heel.",
@@ -1752,8 +1752,8 @@ export class AppComponent {
           benefit: 'Soothes mind', 
           pranayama: ['Bhramari'],
           mudra: ['Shanmukhi Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-bhramari.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-bhramari.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-bhramari.jpg',
+          imageUrlMale: '/assets/images/men/meditation/m-bhramari.jpg',
           howToDo: [
             "Sit comfortably with eyes closed.",
             "Place your index fingers on your ears (on the tragus cartilage).",
@@ -1781,15 +1781,15 @@ export class AppComponent {
           benefit: 'Meditation base', 
           pranayama: ['Nadi Shodhana', 'Equal'],
           mudra: ['Chin Mudra', 'Gyan Mudra'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-sukhasana-main.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-sukhasana-main.jpg',
           imageUrls: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-sukhasana-main.jpg?raw=true',
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-sukhasana.jpg?raw=true'
+            '/assets/images/women/meditation/f-sukhasana-main.jpg',
+            '/assets/images/women/meditation/f-sukhasana.jpg'
           ],
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-sukhasana-main.jpg?raw=true',
+          imageUrlMale: '/assets/images/men/meditation/m-sukhasana-main.jpg',
           imageUrlsMale: [
-            'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-sukhasana-main.jpg?raw=true',
-             'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-sukhasana.jpg?raw=true'
+            '/assets/images/men/meditation/m-sukhasana-main.jpg',
+             '/assets/images/men/meditation/m-sukhasana.jpg'
           ],
           howToDo: [
             "Sit on the floor or a cushion with your legs crossed.",
@@ -1817,8 +1817,8 @@ export class AppComponent {
           benefit: 'Deep relaxation', 
           pranayama: ['Diaphragmatic', 'Coherent'],
           mudra: ['None'],
-          imageUrl: 'https://github.com/albindavidc/arogya-resources/blob/main/public/women/meditation/f-savasana.jpg?raw=true',
-          imageUrlMale: 'https://github.com/albindavidc/arogya-resources/blob/main/public/men/meditation/m-savasana.jpg?raw=true',
+          imageUrl: '/assets/images/women/meditation/f-savasana.jpg',
+          imageUrlMale: '/assets/images/men/meditation/m-savasana.jpg',
           howToDo: [
             "Lie flat on your back, legs extended and feet falling open.",
             "Arms rest alongside the body, palms facing up.",
